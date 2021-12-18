@@ -15,19 +15,19 @@
 
 
 /* Text Field Styles */
-#login-page.text-field {
+#login-page .text-field {
     -fx-background-color: -fx-text-box-border, -fx-background ;
     -fx-background-insets: 0, 0 0 2 0 ;
     -fx-background-radius: 20 ;
 }
 
-#login-page.text-field:focused {
+#login-page .text-field:focused {
     -fx-background-color: -fx-focus-color, -fx-background ;
 }
 
 
 /* Button Styles */
-#login-page.registration {
+#login-page .registration {
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 1.25em;
@@ -38,19 +38,17 @@
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
 }
 
-#login-page.registration:hover {
+#login-page .registration:hover {
     -fx-background-color: #e6375a;
     -fx-background-image: none;
 }
 
-#login-page.registration:pressed {
+#login-page .registration:pressed {
     -fx-padding: 10 15 13 15;
     -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
 }
 
-
-
-#login-page.login {
+#login-page .login {
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 1.25em;
@@ -61,19 +59,18 @@
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
 }
 
-#login-page.login:hover {
+#login-page .login:hover {
     -fx-background-color: #0167c8;
     -fx-background-image: none;
 }
 
-#login-page.login:pressed {
+#login-page .login:pressed {
     -fx-padding: 10 15 13 15;
     -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
 }
 
 
 /* CheckBox */
-
 .check-box {
     /* default properties */
     selected-box-color: #28a3f4;
