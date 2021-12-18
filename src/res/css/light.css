@@ -73,9 +73,14 @@
 /* CheckBox */
 .check-box {
     /* default properties */
+    -fx-text-fill: #b62f02;
     selected-box-color: #28a3f4;
-    box-color: #bfbfbf;
+    box-color: #ffffff;
     mark-color: #ffffff;
+}
+
+.check-box:hover {
+    -fx-text-fill: #007e69;
 }
 
 .check-box:selected > .box {
@@ -85,6 +90,9 @@
 
 .check-box > .box {
     /* background color of unselected checkbox */
+    -fx-border-color: #015545;
+    -fx-border-width: 2px;
+    -fx-border-style: dotted;
     -fx-background-color: box-color;
 }
 
