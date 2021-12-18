@@ -1,7 +1,11 @@
 /* Background Colors */
 
-#login-page.bg-color {
+#login-page.main-bg-color {
     -fx-background-color: #f8f8f8;
+}
+
+#login-page.sub-bg-color {
+    -fx-background-color: #212121;
 }
 
 

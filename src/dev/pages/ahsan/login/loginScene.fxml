@@ -7,39 +7,40 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="login-page" prefHeight="600.0" prefWidth="505.0" styleClass="bg-color" stylesheets="@../../../../res/css/light.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="login-page" prefHeight="590.0" prefWidth="490.0" style="-fx-background-radius: 20;" styleClass="sub-bg-color" stylesheets="@../../../../res/css/light.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="34.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Ticket Counter">
+      <AnchorPane id="login-page" layoutX="-1.0" prefHeight="578.0" prefWidth="479.0" style="-fx-background-radius: 5;" styleClass="main-bg-color" />
+      <Text layoutX="25.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Ticket Counter">
          <font>
             <Font size="60.0" />
          </font>
       </Text>
-      <TextField fx:id="tfUserName" layoutX="99.0" layoutY="157.0" prefHeight="47.0" prefWidth="305.0" styleClass="text-field">
+      <TextField fx:id="tfUserName" layoutX="89.0" layoutY="157.0" prefHeight="47.0" prefWidth="305.0" styleClass="text-field">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="tfPass" layoutX="99.0" layoutY="228.0" prefHeight="47.0" prefWidth="305.0" styleClass="text-field">
+      <TextField fx:id="tfPass" layoutX="89.0" layoutY="228.0" prefHeight="47.0" prefWidth="305.0" styleClass="text-field">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <Button fx:id="btnSignIn" layoutX="99.0" layoutY="343.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="305.0" styleClass="login" text="Sign In">
+      <Button fx:id="btnSignIn" layoutX="89.0" layoutY="343.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="305.0" styleClass="login" text="Sign In">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <CheckBox fx:id="chboxRemember" layoutX="99.0" layoutY="286.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="196.0" styleClass="check-box" text="Remember for 7 days">
+      <CheckBox fx:id="chboxRemember" layoutX="89.0" layoutY="286.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="196.0" styleClass="check-box" text="Remember for 7 days">
          <font>
             <Font size="16.0" />
          </font>
       </CheckBox>
-      <Text layoutX="160.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?">
+      <Text layoutX="150.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Button layoutX="100.0" layoutY="494.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="305.0" styleClass="registration" text="Create New Account">
+      <Button layoutX="90.0" layoutY="494.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="305.0" styleClass="registration" text="Create New Account">
          <font>
             <Font size="18.0" />
          </font>
