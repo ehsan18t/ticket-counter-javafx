@@ -1,5 +1,6 @@
 package dev.pages.ahsan.main;
 
+import dev.pages.ahsan.utils.Utils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,8 +13,6 @@ import java.util.Objects;
 
 public class Main extends Application {
     public static Stage primaryStage;
-    private static double xOffset;
-    private static double yOffset;
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -35,14 +34,7 @@ public class Main extends Application {
         scene = new Scene(root);
 
         // Make Scene Draggable
-        scene.setOnMousePressed(event -> {
-            xOffset = primaryStage.getX() - event.getScreenX();
-            yOffset = primaryStage.getY() - event.getScreenY();
-        });
-        scene.setOnMouseDragged(event -> {
-            primaryStage.setX(event.getScreenX() + xOffset);
-            primaryStage.setY(event.getScreenY() + yOffset);
-        });
+        Utils.makeDraggable(scene);
 
         // Make Scene Transparent
         scene.setFill(Color.TRANSPARENT);
