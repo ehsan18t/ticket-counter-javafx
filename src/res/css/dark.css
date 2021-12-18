@@ -1,0 +1,17 @@
+
+#login-page.main-bg-color {
+    -fx-background-color: #575757;
+    -fx-background-radius: 0px 0px 10px 10px;
+}
+
+.title-bar {
+    -fx-background-color: #383737;
+}
+
+/* Text Styles */
+.title {
+    -fx-fill: #c39595;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-font-family: "Comic Sans MS", SansSerif;
+}

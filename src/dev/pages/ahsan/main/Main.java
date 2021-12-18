@@ -13,13 +13,14 @@ import java.util.Objects;
 
 public class Main extends Application {
     public static Stage primaryStage;
+    public static Parent root;
 
     @Override
     public void start(Stage stage) throws Exception{
         Scene scene;
 
         // Set FXML
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.loginScene)));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.loginScene)));
         primaryStage = stage;
 
         // Set Title
