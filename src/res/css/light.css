@@ -1,11 +1,71 @@
+/* Title Bar Buttons */
+
+.close {
+    -fx-background-color: #ff5c5c;
+    -fx-background-size: 11px;
+    -fx-border-color: #e33e41;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+}
+
+.close:hover {
+    -fx-background-color: #c14645;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-color: #b03537;
+}
+
+
+.expand {
+    -fx-background-color: #e09e3e;
+    -fx-background-size: 11px;
+    -fx-border-color: #5a2607;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+}
+
+.expand:hover {
+    -fx-background-color: #af7c33;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-color: #5a2607;
+}
+
+
+.minimize {
+    -fx-background-color: #00ca56;
+    -fx-background-size: 11px;
+    -fx-border-color: #14ae46;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+}
+
+.minimize:hover {
+    -fx-background-color: #029740;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-color: #128435;
+}
+
 /* Background Colors */
 
 #login-page.main-bg-color {
     -fx-background-color: #f8f8f8;
+    -fx-background-radius: 0px 0px 20px 20px;
 }
 
 #login-page.sub-bg-color {
     -fx-background-color: #212121;
+}
+
+.title-bar {
+    -fx-background-color: #b1b1b1;
 }
 
 
