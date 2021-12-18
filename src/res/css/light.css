@@ -1,0 +1,98 @@
+/* Background Colors */
+
+#login-page.bg-color {
+    -fx-background-color: #f8f8f8;
+}
+
+
+/* Text Styles */
+.title {
+    -fx-fill: #7c795d;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-font-family: "Comic Sans MS", SansSerif;
+}
+
+
+/* Text Field Styles */
+#login-page.text-field {
+    -fx-background-color: -fx-text-box-border, -fx-background ;
+    -fx-background-insets: 0, 0 0 2 0 ;
+    -fx-background-radius: 20 ;
+}
+
+#login-page.text-field:focused {
+    -fx-background-color: -fx-focus-color, -fx-background ;
+}
+
+
+/* Button Styles */
+#login-page.registration {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.25em;
+    -fx-padding: 15 15 15 15;
+    -fx-background-color: linear-gradient(to right, #e052a0, #f15c41);
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+}
+
+#login-page.registration:hover {
+    -fx-background-color: #e6375a;
+    -fx-background-image: none;
+}
+
+#login-page.registration:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+
+
+#login-page.login {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.25em;
+    -fx-padding: 15 15 15 15;
+    -fx-background-color: linear-gradient(to right, #5522fa 0, #0074e4 100);
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+}
+
+#login-page.login:hover {
+    -fx-background-color: #0167c8;
+    -fx-background-image: none;
+}
+
+#login-page.login:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+
+/* CheckBox */
+
+.check-box {
+    /* default properties */
+    selected-box-color: #28a3f4;
+    box-color: #bfbfbf;
+    mark-color: #ffffff;
+}
+
+.check-box:selected > .box {
+    /* background color for selected checkbox */
+    -fx-background-color: selected-box-color;
+}
+
+.check-box > .box {
+    /* background color of unselected checkbox */
+    -fx-background-color: box-color;
+}
+
+.check-box:selected > .box > .mark,
+.check-box:indeterminate  > .box > .mark {
+    /* modify mark color */
+    -fx-background-color: mark-color;
+}
