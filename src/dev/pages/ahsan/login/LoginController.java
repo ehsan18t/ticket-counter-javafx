@@ -52,13 +52,24 @@ public class LoginController implements Initializable {
     }
 
     public void tglThemeOnClick(ActionEvent e) {
-        if (tglTheme.getText().equals("Dark Theme")) {
-            tglTheme.setText("Light Theme");
-            Config.CSS = Config.darkCSS;
-        } else {
-            tglTheme.setText("Dark Theme");
-            Config.CSS = Config.lightCSS;
-        }
+        if (!tglTheme.isSelected())
+            selectDarkTheme();
+        else
+        selectLightTheme();
         Main.root.getStylesheets().add(Objects.requireNonNull(getClass().getResource(Config.CSS)).toExternalForm());
+    }
+
+    private void selectLightTheme() {
+        tglTheme.setSelected(false);
+        tglTheme.setText("Dark Theme");
+        Main.root.getStylesheets().clear();
+        Config.CSS = Config.lightCSS;
+    }
+
+    private void selectDarkTheme() {
+        tglTheme.setText("Light Theme");
+        tglTheme.setSelected(true);
+        Main.root.getStylesheets().clear();
+        Config.CSS = Config.darkCSS;
     }
 }
