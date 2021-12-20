@@ -2,6 +2,7 @@ package dev.pages.ahsan.login;
 
 import dev.pages.ahsan.main.Config;
 import dev.pages.ahsan.main.Main;
+import dev.pages.ahsan.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,14 +63,12 @@ public class LoginController implements Initializable {
     private void selectLightTheme() {
         tglTheme.setSelected(false);
         tglTheme.setText("Dark Theme");
-        Main.root.getStylesheets().clear();
-        Config.CSS = Config.lightCSS;
+        Utils.changeCSS(Main.root, Config.lightCSS);
     }
 
     private void selectDarkTheme() {
         tglTheme.setText("Light Theme");
         tglTheme.setSelected(true);
-        Main.root.getStylesheets().clear();
-        Config.CSS = Config.darkCSS;
+        Utils.changeCSS(Main.root, Config.darkCSS);
     }
 }
