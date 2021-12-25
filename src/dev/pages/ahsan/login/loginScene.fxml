@@ -1,80 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.effect.SepiaTone?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane id="login-page" prefHeight="597.0" prefWidth="493.0" styleClass="main-bg-color" stylesheets="@../../../../res/css/light.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.pages.ahsan.login.LoginController">
-   <effect>
-      <InnerShadow />
-   </effect>
-   <Text layoutX="33.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Ticket Counter">
-      <font>
-         <Font size="60.0" />
-      </font>
-   </Text>
-   <TextField fx:id="tfUserName" layoutX="95.0" layoutY="178.0" prefHeight="47.0" prefWidth="305.0" styleClass="text-field">
-      <font>
-         <Font size="16.0" />
-      </font>
-   </TextField>
-   <TextField fx:id="tfPass" layoutX="95.0" layoutY="249.0" prefHeight="47.0" prefWidth="305.0" styleClass="text-field">
-      <font>
-         <Font size="16.0" />
-      </font>
-   </TextField>
-   <Button fx:id="btnSignIn" layoutX="95.0" layoutY="364.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="305.0" styleClass="login" text="Sign In">
-      <font>
-         <Font size="18.0" />
-      </font>
-   </Button>
-   <CheckBox fx:id="chboxRemember" layoutX="95.0" layoutY="307.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="196.0" styleClass="check-box" text="Remember for 7 days">
-      <font>
-         <Font size="16.0" />
-      </font>
-   </CheckBox>
-   <Text layoutX="156.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?">
-      <font>
-         <Font size="18.0" />
-      </font>
-   </Text>
-   <Button layoutX="96.0" layoutY="515.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="305.0" styleClass="registration" text="Create New Account">
-      <font>
-         <Font size="18.0" />
-      </font>
-   </Button>
-   <AnchorPane id="login-page" layoutX="-1.0" layoutY="-4.0" prefHeight="60.0" prefWidth="497.0" styleClass="title-bar">
-      <effect>
-         <SepiaTone />
-      </effect>
-      <ToggleButton fx:id="tglTheme" layoutX="315.0" layoutY="18.0" mnemonicParsing="false" onAction="#tglThemeOnClick" text="Dark Theme" />
-   </AnchorPane>
-   <Button fx:id="btnClose" contentDisplay="CENTER" layoutX="460.0" layoutY="19.0" mnemonicParsing="false" styleClass="close" text="   " wrapText="true">
-      <effect>
-         <DropShadow />
-      </effect>
-      <font>
-         <Font size="8.0" />
-      </font>
-   </Button>
-   <Button fx:id="btnMin" contentDisplay="CENTER" layoutX="428.0" layoutY="19.0" mnemonicParsing="false" styleClass="minimize" text="   " wrapText="true">
-      <effect>
-         <DropShadow />
-      </effect>
-      <font>
-         <Font size="8.0" />
-      </font>
-   </Button>
-   <Text fx:id="txtTitle" fill="#3a3a3a" layoutX="20.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ticket Counter v1.0" wrappingWidth="140.35737228393555">
-      <font>
-         <Font name="System Bold" size="14.0" />
-      </font>
-   </Text>
+<AnchorPane prefHeight="600.0" prefWidth="500.0" styleClass="main-bg-color" stylesheets="@../../../../res/css/light.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.pages.ahsan.login.LoginController">
+   <children>
+      <ButtonBar layoutX="421.0" layoutY="11.0">
+         <buttons>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../res/img/minimize.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../res/img/exit.png" />
+               </image>
+            </ImageView>
+         </buttons>
+      </ButtonBar>
+      <AnchorPane id="login-page" layoutX="109.0" layoutY="190.0" stylesheets="@../../../../res/css/light.css">
+         <children>
+            <TextField layoutY="26.0" prefHeight="51.0" prefWidth="280.0" promptText="User Name / Email" styleClass="text-field">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField layoutY="119.0" prefHeight="51.0" prefWidth="280.0" promptText="Passwords">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <Button layoutY="234.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="280.0" styleClass="login" text="Sign In">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Label text="User Name">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="2.0" layoutY="93.0" text="Passwords">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <CheckBox layoutX="1.0" layoutY="189.0" mnemonicParsing="false" text="Remember me">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </CheckBox>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>
