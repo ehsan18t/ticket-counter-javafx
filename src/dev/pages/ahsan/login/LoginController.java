@@ -10,7 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.Objects;
@@ -19,10 +22,10 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     @FXML
-    private Button btnClose;
+    private ImageView btnClose;
 
     @FXML
-    private Button btnMin;
+    private ImageView btnMin;
 
     @FXML
     private Button btnSignIn;
@@ -45,30 +48,44 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        txtTitle = new Text();
-        txtTitle.setText(Config.title);
+        // init
         tglTheme = new ToggleButton();
-        tglTheme.setOnAction(this::tglThemeOnClick);
+        tglTheme.setSelected(false);
 
+        // set
+        txtTitle.setText(Config.title + " " + Config.version);
+
+        // Action Event
+        tglTheme.setOnAction(this::tglThemeOnClick);
+        btnClose.setOnMouseClicked(this::setBtnCloseAction);
+        btnMin.setOnMouseClicked(this::setBtnMinAction);
     }
+
 
     public void tglThemeOnClick(ActionEvent e) {
         if (!tglTheme.isSelected())
             selectDarkTheme();
         else
-        selectLightTheme();
+            selectLightTheme();
         Main.root.getStylesheets().add(Objects.requireNonNull(getClass().getResource(Config.CSS)).toExternalForm());
     }
 
     private void selectLightTheme() {
         tglTheme.setSelected(false);
-        tglTheme.setText("Dark Theme");
         Utils.changeCSS(Main.root, Config.lightCSS);
     }
 
-    private void selectDarkTheme() {
-        tglTheme.setText("Light Theme");
+    public void selectDarkTheme() {
         tglTheme.setSelected(true);
         Utils.changeCSS(Main.root, Config.darkCSS);
+    }
+
+    private void setBtnCloseAction(MouseEvent event) {
+        System.exit(0);
+    }
+
+    private void setBtnMinAction(MouseEvent event) {
+        Stage stage = (Stage) ((ImageView) event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
     }
 }

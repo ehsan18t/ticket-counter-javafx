@@ -5,8 +5,6 @@ import dev.pages.ahsan.main.Main;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-import java.util.Objects;
-
 public class Utils {
     private static double xOffset;
     private static double yOffset;

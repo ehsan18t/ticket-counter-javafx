@@ -182,3 +182,19 @@
     /* modify mark color */
     -fx-background-color: mark-color;
 }
+
+/* Toggle Button */
+.toggle-button {
+    -fx-background-color: #F4F9F9;
+    -fx-background-image: url("@../../../../res/img/002-half-moon.png");
+    -fx-border-width: 0px;
+    -fx-background-size: 45;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-radius: 25;
+}
+
+.toggle-button:selected {
+    -fx-background-color: #575757;
+    -fx-background-image: url("@../../../../res/img/001-sun.png");
+}
