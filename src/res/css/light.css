@@ -55,12 +55,12 @@
 
 /* Background Colors */
 
-#login-page.main-bg-color {
-    -fx-background-color: #f7f7f5;
-    -fx-background-radius: 0px 0px 10px 10px;
+.main-bg-color {
+    -fx-background-color: #F4F9F9;
+    /*-fx-background-radius: 0px 0px 10px 10px;*/
 }
 
-#login-page.sub-bg-color {
+.sub-bg-color {
     -fx-background-color: #212121;
 }
 
@@ -97,13 +97,13 @@
 
 /* Text Field Styles */
 #login-page .text-field {
-    -fx-background-color: -fx-text-box-border, -fx-background ;
+    -fx-background-color: #808080, #EEF2FF;
     -fx-background-insets: 0, 0 0 2 0 ;
-    -fx-background-radius: 20 ;
+    -fx-background-radius: 25 ;
 }
 
 #login-page .text-field:focused {
-    -fx-background-color: -fx-focus-color, -fx-background ;
+    -fx-background-color: -fx-focus-color, #F5EEDC;
 }
 
 
@@ -181,4 +181,20 @@
 .check-box:indeterminate  > .box > .mark {
     /* modify mark color */
     -fx-background-color: mark-color;
+}
+
+/* Toggle Button */
+.toggle-button {
+    -fx-background-color: #F4F9F9;
+    -fx-background-image: url("@../../../../res/img/002-half-moon.png");
+    -fx-border-width: 0px;
+    -fx-background-size: 45;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-radius: 25;
+}
+
+.toggle-button:selected {
+    -fx-background-color: #575757;
+    -fx-background-image: url("@../../../../res/img/001-sun.png");
 }

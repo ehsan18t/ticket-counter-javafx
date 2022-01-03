@@ -14,31 +14,31 @@ import java.util.Objects;
 public class Main extends Application {
     public static Stage primaryStage;
     public static Parent root;
+    public static Scene scene;
 
     @Override
     public void start(Stage stage) throws Exception{
-        Scene scene;
+        primaryStage = stage;
 
         // Set FXML
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.loginScene)));
-        primaryStage = stage;
 
         // Set Title
         primaryStage.setTitle(Config.title + " " + Config.version);
 
         // Set CSS
         root.getStylesheets().add(Objects.requireNonNull(getClass().getResource(Config.CSS)).toExternalForm());
+        scene = new Scene(root);
 
         // Make Stage Transparent
         primaryStage.initStyle(StageStyle.TRANSPARENT);
-
-        scene = new Scene(root);
 
         // Make Scene Draggable
         Utils.makeDraggable(scene);
 
         // Make Scene Transparent
         scene.setFill(Color.TRANSPARENT);
+
         primaryStage.setScene(scene);
         primaryStage.show();
     }
