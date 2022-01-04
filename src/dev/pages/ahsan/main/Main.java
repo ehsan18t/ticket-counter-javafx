@@ -21,7 +21,7 @@ public class Main extends Application {
         primaryStage = stage;
 
         // Set FXML
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.loginScene)));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.registrationScene)));
 
         // Set Title
         primaryStage.setTitle(Config.title + " " + Config.version);
