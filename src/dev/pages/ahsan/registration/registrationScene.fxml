@@ -55,7 +55,7 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <Button fx:id="btnRegister" layoutX="68.0" layoutY="325.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="280.0" styleClass="registration" text="Register">
+                <Button fx:id="btnRegister" layoutX="73.0" layoutY="325.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="280.0" styleClass="registration" text="Register">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>

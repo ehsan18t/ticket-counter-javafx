@@ -5,7 +5,10 @@ import dev.pages.ahsan.main.Main;
 import dev.pages.ahsan.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -15,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -29,6 +33,9 @@ public class LoginController implements Initializable {
 
     @FXML
     private Button btnSignIn;
+
+    @FXML
+    private Button btnRegister;
 
     @FXML
     private CheckBox chboxRemember;
@@ -56,6 +63,7 @@ public class LoginController implements Initializable {
         txtTitle.setText(Config.title + " " + Config.version);
 
         // Action Event
+        btnRegister.setOnAction(this::btnRegisterAction);
         tglTheme.setOnAction(this::tglThemeOnClick);
         btnClose.setOnMouseClicked(this::setBtnCloseAction);
         btnMin.setOnMouseClicked(this::setBtnMinAction);
@@ -87,5 +95,17 @@ public class LoginController implements Initializable {
     private void setBtnMinAction(MouseEvent event) {
         Stage stage = (Stage) ((ImageView) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
+    }
+
+    private void btnRegisterAction(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.registrationScene)));
+            Scene scene = new Scene(root);
+            Utils.makeDraggable(scene);
+            Main.primaryStage.setScene(scene);
+            Main.primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
