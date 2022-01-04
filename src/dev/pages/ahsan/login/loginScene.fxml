@@ -14,6 +14,12 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="500.0" styleClass="main-bg-color" stylesheets="@../../../../res/css/light.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.pages.ahsan.login.LoginController">
     <children>
+        <Text fx:id="txtTitle" fill="#3a3a3a" layoutX="149.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Ticket Counter v1.0" wrappingWidth="185.9853515625001">
+            <font>
+                <Font name="Comic Sans MS Bold" size="18.0" />
+            </font>
+        </Text>
+      <ToggleButton fx:id="tglTheme" layoutX="438.0" layoutY="44.0" mnemonicParsing="false" onAction="#tglThemeOnClick" prefHeight="50.0" prefWidth="50.0" styleClass="toggle-button" />
         <ButtonBar layoutX="421.0" layoutY="11.0">
             <buttons>
                 <ImageView fx:id="btnMin" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -62,9 +68,9 @@
                 </CheckBox>
             </children>
         </AnchorPane>
-        <AnchorPane id="login-page" layoutX="107.0" layoutY="455.0">
+        <AnchorPane id="login-page" layoutX="107.0" layoutY="462.0">
             <children>
-                <Text layoutX="44.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                <Text layoutX="49.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?" textAlignment="CENTER">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -76,11 +82,5 @@
                 </Button>
             </children>
         </AnchorPane>
-        <Text fx:id="txtTitle" fill="#3a3a3a" layoutX="149.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Ticket Counter v1.0" wrappingWidth="185.9853515625001">
-            <font>
-                <Font name="Comic Sans MS Bold" size="18.0" />
-            </font>
-        </Text>
-      <ToggleButton fx:id="tglTheme" layoutX="438.0" layoutY="44.0" mnemonicParsing="false" onAction="#tglThemeOnClick" prefHeight="50.0" prefWidth="50.0" styleClass="toggle-button" />
     </children>
 </AnchorPane>
