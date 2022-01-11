@@ -2,6 +2,8 @@ package dev.pages.ahsan.registration;
 
 import dev.pages.ahsan.main.Config;
 import dev.pages.ahsan.main.Main;
+import dev.pages.ahsan.user.User;
+import dev.pages.ahsan.user.WriteUser;
 import dev.pages.ahsan.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +21,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -44,6 +47,9 @@ public class RegistrationController  implements Initializable {
     private TextField tfUserName;
 
     @FXML
+    private Button btnRegister;
+
+    @FXML
     private ToggleButton tglTheme;
 
     @FXML
@@ -64,37 +70,39 @@ public class RegistrationController  implements Initializable {
         tglTheme.setOnAction(this::tglThemeOnClick);
         btnClose.setOnMouseClicked(this::setBtnCloseAction);
         btnMin.setOnMouseClicked(this::setBtnMinAction);
+        btnRegister.setOnAction(this::btnRegisterAction);
     }
 
-    private void btnSigninAction(ActionEvent actionEvent) {
+    private void btnRegisterAction(ActionEvent actionEvent) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.loginScene)));
-            Scene scene = new Scene(root);
-            Utils.makeDraggable(scene);
-            Main.primaryStage.setScene(scene);
-            Main.primaryStage.show();
+            Socket sc = new Socket("localhost", 6600);
+            WriteUser wu = new WriteUser(sc);
+            wu.send("registration", new User(tfUserName.getText(), Utils.sha256(tfPass.getText())));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    private void btnSigninAction(ActionEvent actionEvent) {
+        Main.screenController.activate("Login", 600, 500);
+    }
 
     public void tglThemeOnClick(ActionEvent e) {
         if (!tglTheme.isSelected())
             selectDarkTheme();
         else
             selectLightTheme();
-        Main.root.getStylesheets().add(Objects.requireNonNull(getClass().getResource(Config.CSS)).toExternalForm());
+        Main.screenController.getRoot().getStylesheets().add(Objects.requireNonNull(getClass().getResource(Config.CSS)).toExternalForm());
     }
 
     private void selectLightTheme() {
         tglTheme.setSelected(false);
-        Utils.changeCSS(Main.root, Config.lightCSS);
+        Utils.changeCSS(Main.screenController.getRoot(), Config.lightCSS);
     }
 
     public void selectDarkTheme() {
         tglTheme.setSelected(true);
-        Utils.changeCSS(Main.root, Config.darkCSS);
+        Utils.changeCSS(Main.screenController.getRoot(), Config.darkCSS);
     }
 
     private void setBtnCloseAction(MouseEvent event) {
