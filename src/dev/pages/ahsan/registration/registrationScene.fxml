@@ -106,5 +106,10 @@
                 </Button>
             </children>
         </AnchorPane>
+      <Text fx:id="errorMsg" fill="#ff4444" layoutX="230.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>
