@@ -1,5 +1,6 @@
 package dev.pages.ahsan.main;
 
+import dev.pages.ahsan.utils.ScreenController;
 import dev.pages.ahsan.utils.Utils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,22 +14,30 @@ import java.util.Objects;
 
 public class Main extends Application {
     public static Stage primaryStage;
-    public static Parent root;
     public static Scene scene;
+    public static ScreenController screenController;
 
     @Override
     public void start(Stage stage) throws Exception{
+
         primaryStage = stage;
 
         // Set FXML
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.loginScene)));
+        Parent login = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.loginScene)));
+        Parent register = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.registrationScene)));
+
+        // scene
+        scene = new Scene(login);
+        screenController = new ScreenController(scene);
+        screenController.addScreen("Login", login);
+        screenController.addScreen("Register", register);
+        screenController.activate("Login");
 
         // Set Title
         primaryStage.setTitle(Config.title + " " + Config.version);
 
         // Set CSS
-        root.getStylesheets().add(Objects.requireNonNull(getClass().getResource(Config.CSS)).toExternalForm());
-        scene = new Scene(root);
+        screenController.getRoot().getStylesheets().add(Objects.requireNonNull(getClass().getResource(Config.CSS)).toExternalForm());
 
         // Make Stage Transparent
         primaryStage.initStyle(StageStyle.TRANSPARENT);

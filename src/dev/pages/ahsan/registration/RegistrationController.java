@@ -1,4 +1,4 @@
-package dev.pages.ahsan.login;
+package dev.pages.ahsan.registration;
 
 import dev.pages.ahsan.main.Config;
 import dev.pages.ahsan.main.Main;
@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
@@ -22,7 +21,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class LoginController implements Initializable {
+public class RegistrationController  implements Initializable {
 
     @FXML
     private ImageView btnClose;
@@ -31,16 +30,25 @@ public class LoginController implements Initializable {
     private ImageView btnMin;
 
     @FXML
-    private Button btnSignIn;
-
-    @FXML
     private Button btnRegister;
 
     @FXML
-    private CheckBox chboxRemember;
+    private Button btnSignIn;
 
     @FXML
-    private TextField tfPass;
+    private Text errorMsg;
+
+    @FXML
+    private TextField tfEmail;
+
+    @FXML
+    private TextField tfPass1;
+
+    @FXML
+    private TextField tfPass2;
+
+    @FXML
+    private TextField tfPhone;
 
     @FXML
     private TextField tfUserName;
@@ -51,14 +59,6 @@ public class LoginController implements Initializable {
     @FXML
     private Text txtTitle;
 
-    @FXML
-    private Text errorMsg;
-
-    private InputStream is;
-    private ObjectInputStream receiveObj;
-
-    private OutputStream oo;
-    private ObjectOutputStream sendObj;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -70,14 +70,14 @@ public class LoginController implements Initializable {
         txtTitle.setText(Config.title + " " + Config.version);
 
         // Action Event
-        btnRegister.setOnAction(this::btnRegisterAction);
+        btnSignIn.setOnAction(this::btnSigninAction);
         tglTheme.setOnAction(this::tglThemeOnClick);
         btnClose.setOnMouseClicked(this::setBtnCloseAction);
         btnMin.setOnMouseClicked(this::setBtnMinAction);
-        btnSignIn.setOnAction(this::btnSignInAction);
+        btnRegister.setOnAction(this::btnRegisterAction);
     }
 
-    private void btnSignInAction(ActionEvent actionEvent) {
+    private void btnRegisterAction(ActionEvent actionEvent) {
         try {
             Socket sc = new Socket("localhost", 6600);
             OutputStream oo = sc.getOutputStream();
@@ -86,28 +86,31 @@ public class LoginController implements Initializable {
             InputStream inputStream = sc.getInputStream();
             ObjectInputStream receiveObj = new ObjectInputStream(inputStream);
 
-            // sending credentials
+            // sending registration data
             System.out.println(" - Sending credentials");
-            System.out.println(" - Requesting for login");
-            sendObj.writeObject("login");
-            sendObj.writeObject(new User(tfUserName.getText(), Utils.sha256(tfPass.getText())));
+            System.out.println(" - Requesting for registration");
+            sendObj.writeObject("registration");
+            if (tfPass1.getText().equals(tfPass2.getText())) {
+                User user = new User(tfUserName.getText(), tfEmail.getText(), tfPhone.getText(), Utils.sha256(tfPass1.getText()));
+                sendObj.writeObject(user);
 
-            // reading response
-            String response = (String) receiveObj.readObject();
-            System.out.println(" - Received response: " + response);
-            if (response.contains("SUCCESS")) {
-                System.out.println(" - Received logged user info from server");
-                User user = (User) receiveObj.readObject();
-                System.out.println(" - Saving user info for later use");
-                Utils.writeUserToFile(user, "userData.ser");    // writing info to a temp file
-                System.out.println(" - Logging in to User Control Panel");
-                Main.screenController.activate("Register", 656, 500);
-            } else {
-                errorMsg.setText("Login Failed!");
-            }
+                // reading response
+                String response = (String) receiveObj.readObject();
+                System.out.println(" - Received response: " + response);
+                if (response.contains("SUCCESS")) {
+                    System.out.println(" - Registration Successful!");
+                    Main.screenController.activate("Login", 600, 500);
+                } else
+                    errorMsg.setText("User with same email already exist!");
+            } else
+                errorMsg.setText("Confirm Password doesn't match!");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    private void btnSigninAction(ActionEvent actionEvent) {
+        Main.screenController.activate("Login", 600, 500);
     }
 
     public void tglThemeOnClick(ActionEvent e) {
@@ -135,9 +138,5 @@ public class LoginController implements Initializable {
     private void setBtnMinAction(MouseEvent event) {
         Stage stage = (Stage) ((ImageView) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
-    }
-
-    private void btnRegisterAction(ActionEvent actionEvent) {
-        Main.screenController.activate("Register", 656, 500);
     }
 }
