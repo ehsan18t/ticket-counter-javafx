@@ -3,7 +3,6 @@ package dev.pages.ahsan.login;
 import dev.pages.ahsan.main.Config;
 import dev.pages.ahsan.main.Main;
 import dev.pages.ahsan.user.User;
-import dev.pages.ahsan.user.WriteUser;
 import dev.pages.ahsan.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +21,6 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class LoginController implements Initializable {
 

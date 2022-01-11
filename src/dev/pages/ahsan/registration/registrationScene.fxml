@@ -40,7 +40,7 @@
                         <Font size="16.0" />
                     </font>
                 </TextField>
-                <TextField fx:id="tfPass" layoutX="140.0" layoutY="84.0" prefHeight="40.0" prefWidth="280.0" promptText="Email">
+                <TextField fx:id="tfEmail" layoutX="140.0" layoutY="84.0" prefHeight="40.0" prefWidth="280.0" promptText="Email">
                     <font>
                         <Font size="16.0" />
                     </font>
@@ -60,7 +60,7 @@
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Button>
-            <TextField fx:id="tfPass1" layoutX="139.0" layoutY="143.0" prefHeight="40.0" prefWidth="280.0" promptText="Phone">
+            <TextField fx:id="tfPhone" layoutX="139.0" layoutY="143.0" prefHeight="40.0" prefWidth="280.0" promptText="Phone">
                <font>
                   <Font size="16.0" />
                </font>
@@ -70,7 +70,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="tfPass11" layoutX="139.0" layoutY="200.0" prefHeight="40.0" prefWidth="280.0" promptText="Passwords">
+            <TextField fx:id="tfPass1" layoutX="139.0" layoutY="200.0" prefHeight="40.0" prefWidth="280.0" promptText="Passwords">
                <font>
                   <Font size="16.0" />
                </font>
@@ -80,7 +80,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="tfPass111" layoutX="139.0" layoutY="258.0" prefHeight="40.0" prefWidth="280.0" promptText="Passwords">
+            <TextField fx:id="tfPass2" layoutX="139.0" layoutY="258.0" prefHeight="40.0" prefWidth="280.0" promptText="Passwords">
                <font>
                   <Font size="16.0" />
                </font>

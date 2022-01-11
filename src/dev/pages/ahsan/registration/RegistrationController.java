@@ -3,16 +3,11 @@ package dev.pages.ahsan.registration;
 import dev.pages.ahsan.main.Config;
 import dev.pages.ahsan.main.Main;
 import dev.pages.ahsan.user.User;
-import dev.pages.ahsan.user.WriteUser;
 import dev.pages.ahsan.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
@@ -20,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.net.URL;
 import java.util.Objects;
@@ -35,19 +30,28 @@ public class RegistrationController  implements Initializable {
     private ImageView btnMin;
 
     @FXML
+    private Button btnRegister;
+
+    @FXML
     private Button btnSignIn;
 
     @FXML
-    private CheckBox chboxRemember;
+    private Text errorMsg;
 
     @FXML
-    private TextField tfPass;
+    private TextField tfEmail;
+
+    @FXML
+    private TextField tfPass1;
+
+    @FXML
+    private TextField tfPass2;
+
+    @FXML
+    private TextField tfPhone;
 
     @FXML
     private TextField tfUserName;
-
-    @FXML
-    private Button btnRegister;
 
     @FXML
     private ToggleButton tglTheme;
@@ -76,9 +80,31 @@ public class RegistrationController  implements Initializable {
     private void btnRegisterAction(ActionEvent actionEvent) {
         try {
             Socket sc = new Socket("localhost", 6600);
-            WriteUser wu = new WriteUser(sc);
-            wu.send("registration", new User(tfUserName.getText(), Utils.sha256(tfPass.getText())));
-        } catch (IOException e) {
+            OutputStream oo = sc.getOutputStream();
+            ObjectOutputStream sendObj = new ObjectOutputStream(oo);
+
+            InputStream inputStream = sc.getInputStream();
+            ObjectInputStream receiveObj = new ObjectInputStream(inputStream);
+
+            // sending registration data
+            System.out.println(" - Sending credentials");
+            System.out.println(" - Requesting for registration");
+            sendObj.writeObject("registration");
+            if (tfPass1.getText().equals(tfPass2.getText())) {
+                User user = new User(tfUserName.getText(), tfEmail.getText(), tfPhone.getText(), Utils.sha256(tfPass1.getText()));
+                sendObj.writeObject(user);
+
+                // reading response
+                String response = (String) receiveObj.readObject();
+                System.out.println(" - Received response: " + response);
+                if (response.contains("SUCCESS")) {
+                    System.out.println(" - Registration Successful!");
+                    Main.screenController.activate("Login", 600, 500);
+                } else
+                    errorMsg.setText("User with same email already exist!");
+            } else
+                errorMsg.setText("Confirm Password doesn't match!");
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
