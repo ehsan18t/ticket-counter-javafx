@@ -10,16 +10,27 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.File;
+import java.io.*;
+import java.net.Socket;
 import java.util.Objects;
 
 public class Main extends Application {
     public static Stage primaryStage;
     public static Scene scene;
     public static ScreenController screenController;
+    public static Socket sc;
+    public static ObjectOutputStream sendObj;
+    public static ObjectInputStream receiveObj;
 
     @Override
     public void start(Stage stage) throws Exception{
+        // Configure
+        sc = new Socket(Config.server, Config.port);
+        OutputStream oo = sc.getOutputStream();
+        ObjectOutputStream sendObj = new ObjectOutputStream(oo);
+
+        InputStream inputStream = sc.getInputStream();
+        ObjectInputStream receiveObj = new ObjectInputStream(inputStream);
 
         primaryStage = stage;
 
@@ -38,14 +49,20 @@ public class Main extends Application {
 
         // Determining Page to Open
         System.out.println(" - checking User");
-        File f = new File("savedUser.ser");
+        File f = new File(Config.savedUserData);
         if (f.exists()) {
             System.out.println(" - Saved User Data found!");
             System.out.println(" - Login Using Saved Data!");
-            screenController.activate("Home");
+
+            boolean result = Utils.checkLogin(Utils.readUserFromFile(Config.savedUserData), receiveObj, sendObj);
+            if (result) {
+                System.out.println(" - Logging in to User Control Panel.");
+                Main.screenController.activate("Home");
+            }
+        } else {
+            System.out.println(" - Redirecting to Login Page.");
+            screenController.activate("Login");
         }
-        else
-        screenController.activate("Login");
 
         // Set Title
         primaryStage.setTitle(Config.title + " " + Config.version);
@@ -73,9 +90,6 @@ public class Main extends Application {
     @Override
     public void stop() throws Exception {
         super.stop(); //To change body of generated methods, choose Tools | Templates.
-        File f = new File("userData.ser");
-        if (f.delete())
-            System.out.println("Deleted temp user data userData.ser");
-        System.exit(0);
+        Utils.exit();
     }
 }

@@ -3,6 +3,10 @@ package dev.pages.ahsan.main;
 public class Config {
     public static final String title = "Ticket Counter";
     public static final String version = "v1.0";
+    public static final String server = "localhost";
+    public static final int port = 6600;
+    public static final String userTempData = "userData.ser";
+    public static final String savedUserData = "savedUser.ser";
     public static final String loginScene = "/dev/pages/ahsan/login/login.fxml";
     public static final String registrationScene = "/dev/pages/ahsan/registration/registration.fxml";
     public static final String homeScene = "/dev/pages/ahsan/dashboard/home.fxml";

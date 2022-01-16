@@ -70,7 +70,7 @@ public class RegistrationController  implements Initializable {
         txtTitle.setText(Config.title + " " + Config.version);
 
         // Action Event
-        btnSignIn.setOnAction(this::btnSigninAction);
+        btnSignIn.setOnAction(this::btnSignInAction);
         tglTheme.setOnAction(this::tglThemeOnClick);
         btnClose.setOnMouseClicked(this::setBtnCloseAction);
         btnMin.setOnMouseClicked(this::setBtnMinAction);
@@ -79,12 +79,8 @@ public class RegistrationController  implements Initializable {
 
     private void btnRegisterAction(ActionEvent actionEvent) {
         try {
-            Socket sc = new Socket("localhost", 6600);
-            OutputStream oo = sc.getOutputStream();
-            ObjectOutputStream sendObj = new ObjectOutputStream(oo);
-
-            InputStream inputStream = sc.getInputStream();
-            ObjectInputStream receiveObj = new ObjectInputStream(inputStream);
+            ObjectOutputStream sendObj = Main.sendObj;
+            ObjectInputStream receiveObj = Main.receiveObj;
 
             // sending registration data
             System.out.println(" - Sending credentials");
@@ -109,7 +105,7 @@ public class RegistrationController  implements Initializable {
         }
     }
 
-    private void btnSigninAction(ActionEvent actionEvent) {
+    private void btnSignInAction(ActionEvent actionEvent) {
         Main.screenController.activate("Login");
     }
 
@@ -132,10 +128,7 @@ public class RegistrationController  implements Initializable {
     }
 
     private void setBtnCloseAction(MouseEvent event) {
-        File f = new File("userData.ser");
-        if (f.delete())
-            System.out.println("Deleted temp user data userData.ser");
-        System.exit(0);
+        Utils.exit();
     }
 
     private void setBtnMinAction(MouseEvent event) {

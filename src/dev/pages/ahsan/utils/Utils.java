@@ -6,9 +6,7 @@ import dev.pages.ahsan.user.User;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
@@ -51,6 +49,20 @@ public class Utils {
         }
     }
 
+    public static User readUserFromFile(String filePath) {
+        User user = null;
+        try {
+            FileInputStream fileIn = new FileInputStream(filePath);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            user = (User) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
     public static void writeUserToFile(User user, String filePath) {
         try {
             FileOutputStream fileOut = new FileOutputStream(filePath);
@@ -63,4 +75,36 @@ public class Utils {
             i.printStackTrace();
         }
     }
+
+    public static boolean checkLogin(User userData, ObjectInputStream receiveObj, ObjectOutputStream sendObj) {
+        try {
+            // sending credentials
+            System.out.println(" - Sending credentials");
+            System.out.println(" - Requesting for login");
+            sendObj.writeObject("login");
+            sendObj.writeObject(userData);
+
+            // reading response
+            String response = (String) receiveObj.readObject();
+            System.out.println(" - Received response: " + response);
+            if (response.contains("SUCCESS")) {
+                System.out.println(" - Received logged user info from server");
+                User user = (User) receiveObj.readObject();
+                System.out.println(" - Saving user info for later use");
+                Utils.writeUserToFile(user, Config.userTempData);    // writing info to a temp file
+                return true;
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static void exit() {
+        File f = new File(Config.userTempData);
+        if (f.delete())
+            System.out.println(" - Deleted temp user data " + Config.userTempData);
+        System.exit(0);
+    }
+
 }

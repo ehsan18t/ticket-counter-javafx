@@ -78,37 +78,14 @@ public class LoginController implements Initializable {
     }
 
     private void btnSignInAction(ActionEvent actionEvent) {
-        try {
-            Socket sc = new Socket("localhost", 6600);
-            OutputStream oo = sc.getOutputStream();
-            ObjectOutputStream sendObj = new ObjectOutputStream(oo);
-
-            InputStream inputStream = sc.getInputStream();
-            ObjectInputStream receiveObj = new ObjectInputStream(inputStream);
-
-            // sending credentials
-            System.out.println(" - Sending credentials");
-            System.out.println(" - Requesting for login");
-            sendObj.writeObject("login");
-            sendObj.writeObject(new User(tfUserName.getText(), Utils.sha256(tfPass.getText())));
-
-            // reading response
-            String response = (String) receiveObj.readObject();
-            System.out.println(" - Received response: " + response);
-            if (response.contains("SUCCESS")) {
-                System.out.println(" - Received logged user info from server");
-                User user = (User) receiveObj.readObject();
-                System.out.println(" - Saving user info for later use");
-                Utils.writeUserToFile(user, "userData.ser");    // writing info to a temp file
-                if (chkRememberMe.isSelected())
-                    Utils.writeUserToFile(user, "savedUser.ser");
-                System.out.println(" - Logging in to User Control Panel");
-                Main.screenController.activate("Home");
-            } else {
-                errorMsg.setText("Login Failed!");
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+        boolean result = Utils.checkLogin(new User(tfUserName.getText(), Utils.sha256(tfPass.getText())), Main.receiveObj, Main.sendObj);
+        if (result) {
+            if (chkRememberMe.isSelected())
+                Utils.writeUserToFile(Utils.readUserFromFile(Config.userTempData), Config.savedUserData);
+            System.out.println(" - Logging in to User Control Panel");
+            Main.screenController.activate("Home");
+        } else {
+            errorMsg.setText("Login Failed!");
         }
     }
 
