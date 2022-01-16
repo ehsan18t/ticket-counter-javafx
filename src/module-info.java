@@ -8,4 +8,5 @@ module ticket.counter {
     exports dev.pages.ahsan.main to javafx.graphics;
     exports dev.pages.ahsan.login to javafx.graphics;
     exports dev.pages.ahsan.registration to javafx.graphics;
+    exports dev.pages.ahsan.utils to javafx.graphics;
 }
