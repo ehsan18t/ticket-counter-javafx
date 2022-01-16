@@ -103,7 +103,7 @@ public class LoginController implements Initializable {
                 if (chkRememberMe.isSelected())
                     Utils.writeUserToFile(user, "savedUser.ser");
                 System.out.println(" - Logging in to User Control Panel");
-                Main.screenController.activate("Home", 646, 1051);
+                Main.screenController.activate("Home");
             } else {
                 errorMsg.setText("Login Failed!");
             }

@@ -99,7 +99,7 @@ public class RegistrationController  implements Initializable {
                 System.out.println(" - Received response: " + response);
                 if (response.contains("SUCCESS")) {
                     System.out.println(" - Registration Successful!");
-                    Main.screenController.activate("Login", 600, 500);
+                    Main.screenController.activate("Login");
                 } else
                     errorMsg.setText("User with same email already exist!");
             } else
@@ -110,7 +110,7 @@ public class RegistrationController  implements Initializable {
     }
 
     private void btnSigninAction(ActionEvent actionEvent) {
-        Main.screenController.activate("Login", 600, 500);
+        Main.screenController.activate("Login");
     }
 
     public void tglThemeOnClick(ActionEvent e) {

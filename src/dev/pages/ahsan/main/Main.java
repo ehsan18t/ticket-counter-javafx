@@ -31,8 +31,8 @@ public class Main extends Application {
         // scene
         scene = new Scene(login);
         screenController = new ScreenController(scene);
-        screenController.addScreen("Login", login);
-        screenController.addScreen("Register", register);
+        screenController.addScreen("Login", 600, 500, login);
+        screenController.addScreen("Register", 656, 500, register);
         screenController.addScreen("Home", 646, 1051, home);
 
 
