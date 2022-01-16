@@ -5,6 +5,7 @@ public class Config {
     public static final String version = "v1.0";
     public static final String loginScene = "/dev/pages/ahsan/login/loginScene.fxml";
     public static final String registrationScene = "/dev/pages/ahsan/registration/registrationScene.fxml";
+    public static final String homeScene = "/dev/pages/ahsan/dashboard/Home.fxml";
     public static final String lightCSS = "/res/css/light.css";
     public static final String darkCSS = "/res/css/dark.css";
     public static String CSS = lightCSS;

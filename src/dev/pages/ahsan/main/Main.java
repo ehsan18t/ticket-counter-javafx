@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.File;
 import java.util.Objects;
 
 public class Main extends Application {
@@ -25,12 +26,25 @@ public class Main extends Application {
         // Set FXML
         Parent login = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.loginScene)));
         Parent register = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.registrationScene)));
+        Parent home = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.homeScene)));
 
         // scene
         scene = new Scene(login);
         screenController = new ScreenController(scene);
         screenController.addScreen("Login", login);
         screenController.addScreen("Register", register);
+        screenController.addScreen("Home", 646, 1051, home);
+
+
+        // Determining Page to Open
+        System.out.println(" - checking User");
+        File f = new File("savedUser.ser");
+        if (f.exists()) {
+            System.out.println(" - Saved User Data found!");
+            System.out.println(" - Login Using Saved Data!");
+            screenController.activate("Home");
+        }
+        else
         screenController.activate("Login");
 
         // Set Title
