@@ -37,7 +37,7 @@ public class LoginController implements Initializable {
     private Button btnRegister;
 
     @FXML
-    private CheckBox chboxRemember;
+    private CheckBox chkRememberMe;
 
     @FXML
     private TextField tfPass;
@@ -100,8 +100,10 @@ public class LoginController implements Initializable {
                 User user = (User) receiveObj.readObject();
                 System.out.println(" - Saving user info for later use");
                 Utils.writeUserToFile(user, "userData.ser");    // writing info to a temp file
+                if (chkRememberMe.isSelected())
+                    Utils.writeUserToFile(user, "savedUser.ser");
                 System.out.println(" - Logging in to User Control Panel");
-                Main.screenController.activate("Register", 656, 500);
+                Main.screenController.activate("Home", 646, 1051);
             } else {
                 errorMsg.setText("Login Failed!");
             }
@@ -129,6 +131,9 @@ public class LoginController implements Initializable {
     }
 
     private void setBtnCloseAction(MouseEvent event) {
+        File f = new File("userData.ser");
+        if (f.delete())
+            System.out.println("Deleted temp user data userData.ser");
         System.exit(0);
     }
 
@@ -138,6 +143,6 @@ public class LoginController implements Initializable {
     }
 
     private void btnRegisterAction(ActionEvent actionEvent) {
-        Main.screenController.activate("Register", 656, 500);
+        Main.screenController.activate("Register");
     }
 }
