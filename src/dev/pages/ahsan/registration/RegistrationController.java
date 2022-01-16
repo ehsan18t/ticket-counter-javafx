@@ -132,6 +132,9 @@ public class RegistrationController  implements Initializable {
     }
 
     private void setBtnCloseAction(MouseEvent event) {
+        File f = new File("userData.ser");
+        if (f.delete())
+            System.out.println("Deleted temp user data userData.ser");
         System.exit(0);
     }
 

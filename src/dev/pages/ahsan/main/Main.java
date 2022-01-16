@@ -69,4 +69,13 @@ public class Main extends Application {
     public static void main(String[] args) {
         Application.launch(args);
     }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop(); //To change body of generated methods, choose Tools | Templates.
+        File f = new File("userData.ser");
+        if (f.delete())
+            System.out.println("Deleted temp user data userData.ser");
+        System.exit(0);
+    }
 }
