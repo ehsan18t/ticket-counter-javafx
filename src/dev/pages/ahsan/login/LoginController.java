@@ -54,12 +54,6 @@ public class LoginController implements Initializable {
     @FXML
     private Text errorMsg;
 
-    private InputStream is;
-    private ObjectInputStream receiveObj;
-
-    private OutputStream oo;
-    private ObjectOutputStream sendObj;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // init
