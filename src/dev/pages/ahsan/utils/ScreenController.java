@@ -6,7 +6,18 @@ import javafx.scene.Scene;
 
 import java.util.HashMap;
 
+class Size {
+    double h;
+    double w;
+
+    public Size(double h, double w) {
+        this.h = h;
+        this.w = w;
+    }
+}
+
 public class ScreenController {
+    private final HashMap<String, Size> screenSize = new HashMap<>();
     private final HashMap<String, Parent> screenMap = new HashMap<>();
     private final Scene main;
 
@@ -18,12 +29,22 @@ public class ScreenController {
         screenMap.put(name, root);
     }
 
+    public void addScreen(String name, double h, double w, Parent root){
+        screenSize.put(name, new Size(h, w));
+        screenMap.put(name, root);
+    }
+
     public void removeScreen(String name){
         screenMap.remove(name);
     }
 
     public void activate(String name){
-        main.setRoot(screenMap.get(name) );
+        if (screenSize.containsKey(name)) {
+            Size s = screenSize.get(name);
+            Main.primaryStage.setWidth(s.w);
+            Main.primaryStage.setHeight(s.h);
+        }
+        main.setRoot(screenMap.get(name));
     }
 
     public void activate(String name, double height, double width){
