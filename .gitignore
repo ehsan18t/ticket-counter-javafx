@@ -31,3 +31,6 @@ out/
 src/META-INF/MANIFEST.MF
 userData.ser
 savedUser.ser
+
+# Exception
+!/src/lib/*
