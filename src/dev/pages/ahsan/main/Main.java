@@ -27,10 +27,10 @@ public class Main extends Application {
         // Configure
         sc = new Socket(Config.server, Config.port);
         OutputStream oo = sc.getOutputStream();
-        ObjectOutputStream sendObj = new ObjectOutputStream(oo);
+        sendObj = new ObjectOutputStream(oo);
 
         InputStream inputStream = sc.getInputStream();
-        ObjectInputStream receiveObj = new ObjectInputStream(inputStream);
+        receiveObj = new ObjectInputStream(inputStream);
 
         primaryStage = stage;
 
