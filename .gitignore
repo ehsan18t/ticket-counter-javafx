@@ -30,3 +30,4 @@ out/
 .idea/artifacts/Simple_CGPA_Calculator_jar.xml
 src/META-INF/MANIFEST.MF
 userData.ser
+savedUser.ser
