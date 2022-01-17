@@ -100,9 +100,14 @@ public class Utils {
         return false;
     }
 
+    public static boolean removeFile(String path) {
+        File f = new File(path);
+        return f.delete();
+    }
+
+
     public static void exit() {
-        File f = new File(Config.userTempData);
-        if (f.delete())
+        if (removeFile(Config.userTempData))
             System.out.println(" - Deleted temp user data " + Config.userTempData);
         System.exit(0);
     }
