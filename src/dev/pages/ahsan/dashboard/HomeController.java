@@ -1,6 +1,8 @@
 package dev.pages.ahsan.dashboard;
 
 import dev.pages.ahsan.main.Config;
+import dev.pages.ahsan.main.Main;
+import dev.pages.ahsan.utils.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
@@ -22,6 +24,9 @@ public class HomeController implements Initializable {
     @FXML
     private Text txtTitle;
 
+    @FXML
+    private ImageView btnLogout;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // set
@@ -30,7 +35,18 @@ public class HomeController implements Initializable {
         // Action Event
         btnClose.setOnMouseClicked(this::setBtnCloseAction);
         btnMin.setOnMouseClicked(this::setBtnMinAction);
+        btnLogout.setOnMouseClicked(this::btnLogoutAction);
     }
+
+    private void btnLogoutAction(MouseEvent mouseEvent) {
+        if (Utils.removeFile(Config.userTempData)) {
+            Utils.removeFile(Config.savedUserData);
+            System.out.println(" - Logout Successful!");
+            Main.screenController.activate("Login");
+        } else
+            System.out.println(" - Unexpected error on Logout Button Action!");
+    }
+
     private void setBtnCloseAction(MouseEvent event) {
         Utils.exit();
     }

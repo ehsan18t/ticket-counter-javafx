@@ -49,5 +49,10 @@
             </ImageView>
          </buttons>
       </ButtonBar>
+      <ImageView fx:id="btnLogout" fitHeight="56.0" fitWidth="48.0" layoutX="990.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../res/img/logout.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
