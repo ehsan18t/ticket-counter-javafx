@@ -8,7 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -33,10 +32,7 @@ public class HomeController implements Initializable {
         btnMin.setOnMouseClicked(this::setBtnMinAction);
     }
     private void setBtnCloseAction(MouseEvent event) {
-        File f = new File("userData.ser");
-        if (f.delete())
-            System.out.println("Deleted temp user data userData.ser");
-        System.exit(0);
+        Utils.exit();
     }
 
     private void setBtnMinAction(MouseEvent event) {
