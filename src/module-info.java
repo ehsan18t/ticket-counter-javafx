@@ -3,12 +3,14 @@ module ticket.counter {
     requires javafx.fxml;
     requires javafx.controls;
     requires javafx.graphics;
+    requires animateFX;
 
     // Opens
     opens dev.pages.ahsan.main to javafx.fxml;
     opens dev.pages.ahsan.login to javafx.fxml;
     opens dev.pages.ahsan.registration to javafx.fxml;
     opens dev.pages.ahsan.dashboard to javafx.fxml;
+    opens lib to javafx.fxml;
 
     // Exports
     exports dev.pages.ahsan.main to javafx.graphics;
