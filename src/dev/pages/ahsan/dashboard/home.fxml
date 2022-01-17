@@ -15,7 +15,7 @@
          <children>
             <HBox prefHeight="86.0" prefWidth="274.0">
                <children>
-                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="btnMenu" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
                      <image>
                         <Image url="@../../../../res/img/017-menu-6.png" />
                      </image>
@@ -27,9 +27,47 @@
                   </ImageView>
                </children>
             </HBox>
-            <AnchorPane prefHeight="625.0" prefWidth="281.0" />
+            <AnchorPane id="menuPane" fx:id="menuPane" prefHeight="562.0" prefWidth="277.0" stylesheets="@../../../../res/css/light.css" visible="false">
+               <children>
+                  <AnchorPane layoutY="94.0" prefHeight="65.0" prefWidth="289.0" styleClass="menu-item-active">
+                     <children>
+                        <Text layoutX="87.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home" wrappingWidth="123.77556228637695">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="-1.0" layoutY="159.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css">
+                     <children>
+                        <Text layoutX="76.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" wrappingWidth="135.9937629699707">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutY="224.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css">
+                     <children>
+                        <Text layoutX="83.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="About" wrappingWidth="123.77556228637695">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
          </children>
       </VBox>
+      <AnchorPane fx:id="mainPaneHome" layoutY="83.0" prefHeight="562.0" prefWidth="291.0" stylesheets="@../../../../res/css/light.css">
+         <children>
+            <Text layoutX="64.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome User">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
       <Text fx:id="txtTitle" fill="#3a3a3a" layoutX="422.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Ticket Counter v1.0" wrappingWidth="185.9853515625001">
          <font>
             <Font name="Comic Sans MS Bold" size="18.0" />
@@ -49,7 +87,7 @@
             </ImageView>
          </buttons>
       </ButtonBar>
-      <ImageView fx:id="btnLogout" fitHeight="56.0" fitWidth="48.0" layoutX="990.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btnLogout" fitHeight="40.0" fitWidth="40.0" layoutX="997.0" layoutY="589.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../res/img/logout.png" />
          </image>

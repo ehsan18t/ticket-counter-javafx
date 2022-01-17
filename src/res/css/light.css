@@ -198,3 +198,21 @@
     -fx-background-color: #575757;
     -fx-background-image: url("@../../../../res/img/001-sun.png");
 }
+
+/* Menu Pane CSS */
+#menuPane {
+    -fx-background-color: rgba(240, 248, 247, 0.7);
+}
+
+.menu-item:hover {
+    -fx-background-color: #7ce7f2;
+    -fx-opacity: 0.6;
+}
+
+.menu-item-active {
+    -fx-background-color: #beedf9;
+}
+
+.menu-icon:hover{
+    -fx-opacity: 0.6;
+}
