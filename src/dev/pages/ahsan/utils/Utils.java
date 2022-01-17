@@ -91,10 +91,14 @@ public class Utils {
                 System.out.println(" - Received logged user info from server");
                 User user = (User) receiveObj.readObject();
                 System.out.println(" - Saving user info for later use");
-                Utils.writeUserToFile(user, Config.userTempData);    // writing info to a temp file
+                Thread t  = new Thread(() -> {
+                    Utils.writeUserToFile(user, Config.userTempData);    // writing info to a temp file
+                });
+                t.start();
+                t.join();
                 return true;
             }
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException | InterruptedException e) {
             e.printStackTrace();
         }
         return false;
