@@ -1,8 +1,9 @@
 package dev.pages.ahsan.user;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Ticket {
+public class Ticket implements Serializable {
     String from;
     String to;
     LocalDate date;

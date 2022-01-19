@@ -1,13 +1,14 @@
 package dev.pages.ahsan.user;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Bus {
-    int id;
-    String from;
-    String to;
-    LocalDate date;
-    String time;
+public class Bus implements Serializable {
+    private int id;
+    private String from;
+    private String to;
+    private LocalDate date;
+    private String time;
 
     public Bus(int id, String from, String to, LocalDate date, String time) {
         this.id = id;
