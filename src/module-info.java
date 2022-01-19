@@ -12,6 +12,7 @@ module ticket.counter {
     opens dev.pages.ahsan.dashboard to javafx.fxml;
     opens dev.pages.ahsan.settings to javafx.fxml;
     opens dev.pages.ahsan.admin to javafx.fxml;
+    opens dev.pages.ahsan.user to javafx.base;
     opens lib to javafx.fxml;
 
     // Exports
