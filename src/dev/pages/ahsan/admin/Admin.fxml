@@ -136,18 +136,21 @@
                 <Image url="@../../../../res/img/logout.png" />
             </image>
         </ImageView>
-      <TableView layoutX="302.0" layoutY="324.0" prefHeight="233.0" prefWidth="723.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
+      <TableView fx:id="table" layoutX="302.0" layoutY="324.0" prefHeight="233.0" prefWidth="723.0">
+         <columns>
+            <TableColumn fx:id="idCol" prefWidth="75.05450439453125" text="Id" />
+            <TableColumn fx:id="fromCol" prefWidth="191.12725830078125" text="From" />
+            <TableColumn fx:id="toCol" minWidth="0.0" prefWidth="180.65460205078125" text="To" />
+            <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="148.36370849609375" text="Date" />
+            <TableColumn fx:id="timeCol" prefWidth="130.0362548828125" text="Time" />
+         </columns>
       </TableView>
       <Button layoutX="600.0" layoutY="570.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="148.0" text="Remove" />
-      <TextField layoutX="311.0" layoutY="83.0" prefHeight="58.0" prefWidth="332.0" promptText="From" />
-      <TextField layoutX="669.0" layoutY="83.0" prefHeight="58.0" prefWidth="332.0" promptText="To" />
-      <TextField layoutX="311.0" layoutY="161.0" prefHeight="58.0" prefWidth="332.0" promptText="id" />
-      <Button layoutX="527.0" layoutY="246.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="233.0" text="Add" />
-      <DatePicker layoutX="672.0" layoutY="160.0" prefHeight="58.0" prefWidth="171.0" promptText="Date" />
-      <TextField layoutX="855.0" layoutY="160.0" prefHeight="58.0" prefWidth="148.0" promptText="Time" />
+      <TextField fx:id="tfFrom" layoutX="311.0" layoutY="83.0" prefHeight="58.0" prefWidth="332.0" promptText="From" />
+      <TextField fx:id="tfTo" layoutX="669.0" layoutY="83.0" prefHeight="58.0" prefWidth="332.0" promptText="To" />
+      <TextField fx:id="tfId" layoutX="311.0" layoutY="161.0" prefHeight="58.0" prefWidth="332.0" promptText="Bus Id" />
+      <Button fx:id="btnAdd" layoutX="527.0" layoutY="246.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="233.0" text="Add" />
+      <DatePicker fx:id="tfDate" layoutX="672.0" layoutY="160.0" prefHeight="58.0" prefWidth="171.0" promptText="Date" />
+      <TextField fx:id="tfTime" layoutX="855.0" layoutY="160.0" prefHeight="58.0" prefWidth="148.0" promptText="Time" />
     </children>
 </AnchorPane>
