@@ -51,6 +51,9 @@ public class ChangePassController implements Initializable {
     private ImageView btnMenu;
 
     @FXML
+    private AnchorPane btnHome;
+
+    @FXML
     private AnchorPane menuPane;
 
     @FXML
@@ -96,10 +99,14 @@ public class ChangePassController implements Initializable {
         btnLogout.setOnMouseClicked(this::btnLogoutAction);
         btnMenu.setOnMouseClicked(this::btnMenuAction);
         btnSave.setOnAction(this::btnSaveAction);
+        btnHome.setOnMouseClicked(this::btnHomeAction);
+    }
+
+    private void btnHomeAction(MouseEvent mouseEvent) {
+        Main.screenController.activate("Home");
     }
 
     private void btnSaveAction(ActionEvent actionEvent) {
-        String oPass = Utils.sha256(tfOldPass.getText());
         String pass  = Utils.sha256(tfNewPass.getText());
 
         User user = new User(Main.user.getName(), Main.user.getEmail(), Main.user.getPhone(), Main.user.getPasswords());

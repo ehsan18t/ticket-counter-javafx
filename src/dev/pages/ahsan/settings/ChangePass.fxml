@@ -45,7 +45,7 @@
                 </HBox>
                 <AnchorPane id="menuPane" fx:id="menuPane" prefHeight="562.0" prefWidth="277.0" stylesheets="@../../../../res/css/light.css" visible="false">
                     <children>
-                        <AnchorPane layoutY="94.0" prefHeight="65.0" prefWidth="289.0" styleClass="menu-item">
+                        <AnchorPane fx:id="btnHome" layoutY="94.0" prefHeight="65.0" prefWidth="289.0" styleClass="menu-item">
                             <children>
                                 <Text layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home" textAlignment="CENTER" wrappingWidth="289.7454444973531">
                                     <font>
