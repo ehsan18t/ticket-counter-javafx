@@ -119,7 +119,6 @@ public class AdminController implements Initializable {
         toCol.setCellValueFactory(new PropertyValueFactory<>("to"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
         timeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
-        table.getColumns().addAll(idCol, fromCol, toCol, dateCol, timeCol);
         table.setItems(getBus());
 
         // set
