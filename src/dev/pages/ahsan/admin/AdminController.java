@@ -97,6 +97,12 @@ public class AdminController implements Initializable {
     @FXML
     private TableColumn<Bus, Integer> idCol;
 
+    @FXML
+    private Text txtEmail;
+
+    @FXML
+    private Text txtPhone;
+
     Image image1;
     Image image2;
 
@@ -125,6 +131,9 @@ public class AdminController implements Initializable {
         // set
         menuPane.setVisible(false);
         txtTitle.setText(Config.title + " " + Config.version);
+        txtUserName.setText(Main.user.getName() + "");
+        txtEmail.setText(Main.user.getEmail() + "");
+        txtPhone.setText(Main.user.getPhone() + "");
 
         // Action Event
         btnClose.setOnMouseClicked(this::setBtnCloseAction);
@@ -134,9 +143,6 @@ public class AdminController implements Initializable {
         btnSettings.setOnMouseClicked(this::btnSettingsAction);
         btnAdd.setOnAction(this::btnAddAction);
         btnRemove.setOnAction(this::btnRemoveAction);
-
-        System.out.println(" - Logged in as " + Main.user.getName());
-        txtUserName.setText(Main.user.getName() + "");
     }
 
     private void btnRemoveAction(ActionEvent actionEvent) {
