@@ -1,15 +1,19 @@
 package dev.pages.ahsan.user;
 
+import java.time.LocalDate;
+
 public class Bus {
     int id;
     String from;
     String to;
+    LocalDate date;
     String time;
 
-    public Bus(int id, String from, String to, String time) {
+    public Bus(int id, String from, String to, LocalDate date, String time) {
         this.id = id;
         this.from = from;
         this.to = to;
+        this.date = date;
         this.time = time;
     }
 
@@ -35,6 +39,14 @@ public class Bus {
 
     public void setTo(String to) {
         this.to = to;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public String getTime() {
