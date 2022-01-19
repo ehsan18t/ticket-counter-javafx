@@ -61,6 +61,17 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Add Pages
+        try {
+            Parent settings = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.settingsScene)));
+            Main.screenController.addScreen("Settings", 646, 1051, settings);
+
+            Parent admin = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.adminScene)));
+            Main.screenController.addScreen("Admin", 646, 1051, admin);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/menu-expand.png")));
         image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/017-menu-6.png")));
 
@@ -83,23 +94,11 @@ public class HomeController implements Initializable {
     }
 
     private void btnAdminAction(MouseEvent mouseEvent) {
-        try {
-            Parent admin = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.adminScene)));
-            Main.screenController.addScreen("Admin", 646, 1051, admin);
-            Main.screenController.activate("Admin");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Main.screenController.activate("Admin");
     }
 
     public void btnSettingsAction(MouseEvent mouseEvent) {
-        try {
-            Parent settings = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.settingsScene)));
-            Main.screenController.addScreen("Settings", 646, 1051, settings);
-            Main.screenController.activate("Settings");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Main.screenController.activate("Settings");
     }
 
 
