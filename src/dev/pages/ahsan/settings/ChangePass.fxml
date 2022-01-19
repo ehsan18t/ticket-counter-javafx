@@ -81,6 +81,15 @@
                                 </Text>
                             </children>
                         </AnchorPane>
+                        <AnchorPane fx:id="btnAdmin" layoutY="496.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css">
+                            <children>
+                                <Text layoutX="7.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Control" textAlignment="CENTER" wrappingWidth="274.1818389892578">
+                                    <font>
+                                        <Font size="36.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </AnchorPane>
                     </children></AnchorPane>
             </children>
         </VBox>
