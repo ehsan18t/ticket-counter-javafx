@@ -83,11 +83,17 @@ public class HomeController implements Initializable {
     }
 
     private void btnAdminAction(MouseEvent mouseEvent) {
+        try {
+            Parent admin = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.adminScene)));
+            Main.screenController.addScreen("Admin", 646, 1051, admin);
+            Main.screenController.activate("Admin");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void btnSettingsAction(MouseEvent mouseEvent) {
         try {
-            System.out.println("Clicked on settings");
             Parent settings = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.settingsScene)));
             Main.screenController.addScreen("Settings", 646, 1051, settings);
             Main.screenController.activate("Settings");
