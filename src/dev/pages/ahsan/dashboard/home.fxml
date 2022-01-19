@@ -61,7 +61,7 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="-1.0" layoutY="215.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css">
+                  <AnchorPane fx:id="btnSettings" layoutX="-1.0" layoutY="215.0" onMouseClicked="#btnSettingsAction" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css">
                      <children>
                         <Text layoutX="52.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" textAlignment="CENTER" wrappingWidth="185.9853515625001">
                            <font>
@@ -82,7 +82,7 @@
                </children></AnchorPane>
          </children>
       </VBox>
-      <AnchorPane fx:id="mainPaneHome" layoutY="83.0" prefHeight="562.0" prefWidth="291.0" stylesheets="@../../../../res/css/light.css">
+      <AnchorPane fx:id="mainPaneHome" disable="true" layoutY="83.0" prefHeight="562.0" prefWidth="291.0" stylesheets="@../../../../res/css/light.css">
          <children>
             <Text layoutX="93.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome">
                <font>

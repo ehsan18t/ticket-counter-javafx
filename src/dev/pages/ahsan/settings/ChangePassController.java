@@ -1,4 +1,4 @@
-package dev.pages.ahsan.dashboard;
+package dev.pages.ahsan.settings;
 
 import animatefx.animation.FadeIn;
 import animatefx.animation.SlideInLeft;
@@ -7,9 +7,7 @@ import dev.pages.ahsan.main.Config;
 import dev.pages.ahsan.main.Main;
 import dev.pages.ahsan.utils.Utils;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,13 +16,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.Timer;
 
-public class HomeController implements Initializable {
+public class ChangePassController implements Initializable {
     @FXML
     private ImageView btnClose;
 
@@ -49,14 +46,12 @@ public class HomeController implements Initializable {
     @FXML
     private AnchorPane mainPaneHome;
 
-    @FXML
-    private AnchorPane btnSettings;
-
     Image image1;
     Image image2;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        txtUserName = new Text();
         image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/menu-expand.png")));
         image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/017-menu-6.png")));
 
@@ -69,21 +64,12 @@ public class HomeController implements Initializable {
         btnMin.setOnMouseClicked(this::setBtnMinAction);
         btnLogout.setOnMouseClicked(this::btnLogoutAction);
         btnMenu.setOnMouseClicked(this::btnMenuAction);
-        btnSettings.setOnMouseClicked(this::btnSettingsAction);
 
-        System.out.println(" - Logged in as " + Main.user.getName());
-        txtUserName.setText(Main.user.getName() + "");
-    }
-
-    public void btnSettingsAction(MouseEvent mouseEvent) {
-        try {
-            System.out.println("Clicked on settings");
-            Parent settings = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.settingsScene)));
-            Main.screenController.addScreen("Settings", 646, 1051, settings);
-            Main.screenController.activate("Settings");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        File f1 = new File(Config.userTempData);
+//        if (f1.canWrite()) {
+//            System.out.println(Main.user.getName());
+//            txtUserName.setText(Main.user.getName() + "");
+//        }
     }
 
 
