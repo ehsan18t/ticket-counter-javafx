@@ -1,5 +1,7 @@
 package dev.pages.ahsan.main;
 
+import dev.pages.ahsan.user.Bus;
+import dev.pages.ahsan.user.Ticket;
 import dev.pages.ahsan.user.User;
 import dev.pages.ahsan.utils.ScreenController;
 import dev.pages.ahsan.utils.Utils;
@@ -14,9 +16,12 @@ import javafx.stage.StageStyle;
 import java.io.*;
 import java.net.Socket;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Main extends Application {
+    public static HashMap<Bus, HashMap<String, ArrayList<Ticket>>>  busData;
     public static User user = null;
     public static Stage primaryStage;
     public static Scene scene;

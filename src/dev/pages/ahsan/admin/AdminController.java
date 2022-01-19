@@ -6,6 +6,7 @@ import animatefx.animation.SlideOutLeft;
 import dev.pages.ahsan.main.Config;
 import dev.pages.ahsan.main.Main;
 import dev.pages.ahsan.user.Bus;
+import dev.pages.ahsan.user.Ticket;
 import dev.pages.ahsan.utils.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,16 +26,16 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.ResourceBundle;
-import java.util.Timer;
+import java.util.*;
 
 public class AdminController implements Initializable {
-    HashSet<Bus> buses;
+    HashMap<Bus, HashMap<String, ArrayList<Ticket>>> buses;
 
     @FXML
     private Button btnAdd;
+
+    @FXML
+    private Button btnRemove;
 
     @FXML
     private DatePicker tfDate;
@@ -106,12 +107,12 @@ public class AdminController implements Initializable {
 
         // get data from server
         try {
-            Main.sendObj.writeObject("getBusList");
-            buses = (HashSet<Bus>) Main.receiveObj.readObject();
+            Main.sendObj.writeObject("getBusData");
+            Main.busData = (HashMap<Bus, HashMap<String, ArrayList<Ticket>>>) Main.receiveObj.readObject();
+            buses = Main.busData;
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-
 
         // Table
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -132,9 +133,29 @@ public class AdminController implements Initializable {
         btnMenu.setOnMouseClicked(this::btnMenuAction);
         btnSettings.setOnMouseClicked(this::btnSettingsAction);
         btnAdd.setOnAction(this::btnAddAction);
+        btnRemove.setOnAction(this::btnRemoveAction);
 
         System.out.println(" - Logged in as " + Main.user.getName());
         txtUserName.setText(Main.user.getName() + "");
+    }
+
+    private void btnRemoveAction(ActionEvent actionEvent) {
+        try {
+            ObservableList<Bus> rows, allRows;
+            allRows = table.getItems();
+            rows = table.getSelectionModel().getSelectedItems();
+            for (Bus b: rows) {
+                Main.busData.remove(b);
+                buses.remove(b);
+                allRows.remove(b);
+            }
+        } catch (NoSuchElementException ignored) {}
+        try {
+            Main.sendObj.writeObject("removeBus");
+            Main.sendObj.writeObject(Main.busData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void btnAddAction(ActionEvent actionEvent) {
@@ -143,10 +164,9 @@ public class AdminController implements Initializable {
         System.out.println("Adding");
             Bus bus = new Bus(Integer.parseInt(tfId.getText()), tfFrom.getText(), tfTo.getText(), tfDate.getValue(), tfTime.getText());
             Main.sendObj.writeObject(bus);
-            buses.add(bus);
-            table.getItems().clear();
-            table.setItems(getBus());
-            table.refresh();
+            buses.put(bus, new HashMap<>());
+            ObservableList<Bus> allRows = table.getItems();
+            allRows.add(bus);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -155,16 +175,15 @@ public class AdminController implements Initializable {
     // get add buses
     public ObservableList<Bus> getBus() {
         ObservableList<Bus> allBus = FXCollections.observableArrayList();
-        allBus.addAll(buses);
+        for (Map.Entry<Bus, HashMap<String, ArrayList<Ticket>>> entry: Main.busData.entrySet()) {
+            allBus.add(entry.getKey());
+        }
         return allBus;
     }
-
-
 
     public void btnSettingsAction(MouseEvent mouseEvent) {
         Main.screenController.activate("Settings");
     }
-
 
     private void btnMenuAction(MouseEvent mouseEvent) {
         if (menuPane.isVisible()) {
