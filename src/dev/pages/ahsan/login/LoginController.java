@@ -6,7 +6,9 @@ import dev.pages.ahsan.user.User;
 import dev.pages.ahsan.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -16,8 +18,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.*;
-import java.net.Socket;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -77,6 +79,13 @@ public class LoginController implements Initializable {
             if (chkRememberMe.isSelected())
                 Utils.writeUserToFile(Utils.readUserFromFile(Config.userTempData), Config.savedUserData);
             System.out.println(" - Logging in to User Control Panel");
+            Parent home = null;
+            try {
+                home = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.homeScene)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Main.screenController.addScreen("Home", 646, 1051, home);
             Main.screenController.activate("Home");
         } else {
             errorMsg.setText("Login Failed!");

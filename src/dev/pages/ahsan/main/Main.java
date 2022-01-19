@@ -1,5 +1,6 @@
 package dev.pages.ahsan.main;
 
+import dev.pages.ahsan.user.User;
 import dev.pages.ahsan.utils.ScreenController;
 import dev.pages.ahsan.utils.Utils;
 import javafx.application.Application;
@@ -12,9 +13,11 @@ import javafx.stage.StageStyle;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.file.Files;
 import java.util.Objects;
 
 public class Main extends Application {
+    public static User user = null;
     public static Stage primaryStage;
     public static Scene scene;
     public static ScreenController screenController;
@@ -32,31 +35,38 @@ public class Main extends Application {
         InputStream inputStream = sc.getInputStream();
         receiveObj = new ObjectInputStream(inputStream);
 
+        File f1 = new File(Config.savedUserData);
+        File f2 = new File(Config.userTempData);
+
+        if (f1.exists()) {
+            Files.copy(f1.toPath(), f2.toPath());
+            while (!f2.canWrite()) {
+                System.out.println(" - Writing File");
+            }
+        }
+
         primaryStage = stage;
 
         // Set FXML
         Parent login = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.loginScene)));
         Parent register = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.registrationScene)));
-        Parent home = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.homeScene)));
 
         // scene
         scene = new Scene(login);
         screenController = new ScreenController(scene);
         screenController.addScreen("Login", 600, 500, login);
         screenController.addScreen("Register", 656, 500, register);
-        screenController.addScreen("Home", 646, 1051, home);
 
 
         // Determining Page to Open
-        System.out.println(" - checking User");
-        File f = new File(Config.savedUserData);
-        if (f.exists()) {
-            System.out.println(" - Saved User Data found!");
-            System.out.println(" - Login Using Saved Data!");
+        System.out.println(" - Checking User");
+        if (f2.exists()) {
+            boolean result = Utils.checkLogin(Utils.readUserFromFile(Config.userTempData), receiveObj, sendObj);
 
-            boolean result = Utils.checkLogin(Utils.readUserFromFile(Config.savedUserData), receiveObj, sendObj);
             if (result) {
                 System.out.println(" - Logging in to User Control Panel.");
+                Parent home = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.homeScene)));
+                screenController.addScreen("Home", 646, 1051, home);
                 Main.screenController.activate("Home");
             }
         } else {

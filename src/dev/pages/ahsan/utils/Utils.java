@@ -89,16 +89,12 @@ public class Utils {
             System.out.println(" - Received response: " + response);
             if (response.contains("SUCCESS")) {
                 System.out.println(" - Received logged user info from server");
-                User user = (User) receiveObj.readObject();
+                Main.user = (User) receiveObj.readObject();
                 System.out.println(" - Saving user info for later use");
-                Thread t  = new Thread(() -> {
-                    Utils.writeUserToFile(user, Config.userTempData);    // writing info to a temp file
-                });
-                t.start();
-                t.join();
+                Utils.writeUserToFile(Main.user, Config.userTempData);    // writing info to a temp file
                 return true;
             }
-        } catch (IOException | ClassNotFoundException | InterruptedException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return false;
