@@ -25,6 +25,10 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 
 public class HomeController implements Initializable {
+
+    @FXML
+    private AnchorPane btnAdmin;
+
     @FXML
     private ImageView btnClose;
 
@@ -70,9 +74,15 @@ public class HomeController implements Initializable {
         btnLogout.setOnMouseClicked(this::btnLogoutAction);
         btnMenu.setOnMouseClicked(this::btnMenuAction);
         btnSettings.setOnMouseClicked(this::btnSettingsAction);
+        btnAdmin.setOnMouseClicked(this::btnAdminAction);
 
         System.out.println(" - Logged in as " + Main.user.getName());
         txtUserName.setText(Main.user.getName() + "");
+
+        btnAdmin.setVisible(Main.user.getType().equals("Admin"));
+    }
+
+    private void btnAdminAction(MouseEvent mouseEvent) {
     }
 
     public void btnSettingsAction(MouseEvent mouseEvent) {
