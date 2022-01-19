@@ -100,6 +100,45 @@ public class Utils {
         return false;
     }
 
+
+    public static boolean updateInfo(User userData, String newPass, ObjectInputStream receiveObj, ObjectOutputStream sendObj) {
+        try {
+            // checking credentials
+            System.out.println(" - Sending credentials");
+            System.out.println(" - Requesting for check user");
+            String response = null;
+            if (userData.getPasswords().equals(Main.user.getPasswords()))
+                response = "SUCCESS";
+
+            // reading response
+            System.out.println(" - Received response: " + response);
+
+            // updating info
+            if (response != null) {
+                System.out.println(" - Requesting for update user data");
+
+                userData.setPasswords(newPass);
+                System.out.println(userData.getPasswords());
+
+                // sending data
+                sendObj.writeObject("updateInfo");
+                sendObj.writeObject(userData);
+
+                System.out.println(" - Received new user info from server");
+                Main.user = userData;
+                Utils.writeUserToFile(Main.user, Config.userTempData);    // writing info to a temp file
+                System.out.println(" - Updating new info");
+                File f  = new File(Config.savedUserData);
+                if (f.exists())
+                    writeUserToFile(Main.user, Config.savedUserData);
+                return true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static boolean removeFile(String path) {
         File f = new File(path);
         return f.delete();
