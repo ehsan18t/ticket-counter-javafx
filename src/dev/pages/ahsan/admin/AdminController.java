@@ -217,8 +217,7 @@ public class AdminController implements Initializable {
     }
 
     private void btnLogoutAction(MouseEvent mouseEvent) {
-        if (Utils.removeFile(Config.userTempData)) {
-            Utils.removeFile(Config.savedUserData);
+        if (Utils.removeFile(Config.userTempData) && Utils.removeFile(Config.savedUserData)) {
             System.out.println(" - Logout Successful!");
             Main.screenController.activate("Login");
         } else
