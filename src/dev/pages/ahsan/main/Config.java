@@ -10,8 +10,9 @@ public class Config {
     public static final String loginScene = "/dev/pages/ahsan/login/login.fxml";
     public static final String registrationScene = "/dev/pages/ahsan/registration/registration.fxml";
     public static final String homeScene = "/dev/pages/ahsan/dashboard/home.fxml";
-    public static final String settingsScene = "/dev/pages/ahsan/settings/ChangePass.fxml";
+    public static final String settingsScene = "/dev/pages/ahsan/settings/Settings.fxml";
     public static final String adminScene = "/dev/pages/ahsan/admin/Admin.fxml";
+    public static final String buyScene = "/dev/pages/ahsan/buy/Buy.fxml";
     public static final String lightCSS = "/res/css/light.css";
     public static final String darkCSS = "/res/css/dark.css";
     public static String CSS = lightCSS;

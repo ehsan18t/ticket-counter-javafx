@@ -1,18 +1,17 @@
-package dev.pages.ahsan.dashboard;
+package dev.pages.ahsan.settings;
 
 import animatefx.animation.FadeIn;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideOutLeft;
 import dev.pages.ahsan.main.Config;
 import dev.pages.ahsan.main.Main;
-import dev.pages.ahsan.user.Bus;
+import dev.pages.ahsan.user.User;
 import dev.pages.ahsan.utils.Utils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,18 +20,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.Timer;
 
-public class HomeController implements Initializable {
-
-    @FXML
-    private AnchorPane btnAdmin;
-
+public class SettingsController implements Initializable {
     @FXML
     private ImageView btnClose;
 
@@ -46,10 +39,19 @@ public class HomeController implements Initializable {
     private Text txtUserName;
 
     @FXML
+    private Text txtEmail;
+
+    @FXML
+    private Text txtPhone;
+
+    @FXML
     private ImageView btnLogout;
 
     @FXML
     private ImageView btnMenu;
+
+    @FXML
+    private AnchorPane btnHome;
 
     @FXML
     private AnchorPane menuPane;
@@ -58,34 +60,23 @@ public class HomeController implements Initializable {
     private AnchorPane mainPaneHome;
 
     @FXML
-    private AnchorPane btnSettings;
+    private Button btnSave;
 
     @FXML
-    private AnchorPane btnBuy;
+    private TextField tfName;
 
     @FXML
-    private TableView<Bus> table;
+    private Text txtError;
 
     @FXML
-    private TableColumn<Bus, String> timeCol;
+    private TextField tfNewPass;
 
     @FXML
-    private TableColumn<Bus, String> toCol;
+    private TextField tfOldPass;
 
     @FXML
-    private TableColumn<Bus, LocalDate> dateCol;
+    private TextField tfPhone;
 
-    @FXML
-    private TableColumn<Bus, String> fromCol;
-
-    @FXML
-    private TableColumn<Bus, Integer> idCol;
-
-    @FXML
-    private Text txtEmail;
-
-    @FXML
-    private Text txtPhone;
 
 
     Image image1;
@@ -93,57 +84,68 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Add Pages
-        try {
-            Parent settings = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.settingsScene)));
-            Main.screenController.addScreen("Settings", 646, 1051, settings);
-
-            Parent admin = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.adminScene)));
-            Main.screenController.addScreen("Admin", 646, 1051, admin);
-
-            Parent buy = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.buyScene)));
-            Main.screenController.addScreen("Buy", 646, 1051, buy);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/menu-expand.png")));
         image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/017-menu-6.png")));
 
         // set
         menuPane.setVisible(false);
         txtTitle.setText(Config.title + " " + Config.version);
-        txtUserName.setText(Main.user.getName() + "");
-        txtEmail.setText(Main.user.getEmail() + "");
-        txtPhone.setText(Main.user.getPhone() + "");
+        System.out.println(" - Logged in as " + Main.user.getName());
+        setTF();
 
         // Action Event
         btnClose.setOnMouseClicked(this::setBtnCloseAction);
         btnMin.setOnMouseClicked(this::setBtnMinAction);
         btnLogout.setOnMouseClicked(this::btnLogoutAction);
         btnMenu.setOnMouseClicked(this::btnMenuAction);
-        btnSettings.setOnMouseClicked(this::btnSettingsAction);
-        btnAdmin.setOnMouseClicked(this::btnAdminAction);
-        btnBuy.setOnMouseClicked(this::btnBuyAction);
+        btnSave.setOnAction(this::btnSaveAction);
+        btnHome.setOnMouseClicked(this::btnHomeAction);
+    }
 
-        System.out.println(" - Logged in as " + Main.user.getName());
+    private void btnHomeAction(MouseEvent mouseEvent) {
+        Main.screenController.activate("Home");
+    }
+
+    private void btnSaveAction(ActionEvent actionEvent) {
+        String pass  = Utils.sha256(tfNewPass.getText());
+
+        User user = new User(Main.user.getName(), Main.user.getEmail(), Main.user.getPhone(), Main.user.getPasswords());
+
+        user.setName(tfName.getText());
+        user.setPhone(tfPhone.getText());
+
+        // for only name and phone
+        if (tfNewPass.getText().trim().isEmpty() && tfOldPass.getText().trim().isEmpty()) {
+            pass = user.getPasswords();
+            System.out.println(" [not changing pass]");
+            boolean result = Utils.updateInfo(user, pass, Main.receiveObj, Main.sendObj);
+            if (result) {
+                System.out.println(" - Updating user info of " + Main.user.getName());
+                setTF();
+                txtError.setText("Settings Saved!");
+            }
+        } else if (!user.getPasswords().equals(pass)) {   // for passwords
+            boolean result = Utils.updateInfo(user, pass, Main.receiveObj, Main.sendObj);
+            System.out.println(" [changing pass]");
+            if (result) {
+                System.out.println(" - Updating user info of (with pass)" + Main.user.getName());
+                setTF();
+                txtError.setText("Settings Saved!");
+            } else {
+                txtError.setText("Wrong Passwords!");
+            }
+        } else {
+            txtError.setText("New passwords can not be same as old passwords!");
+        }
+    }
+
+    private void setTF() {
         txtUserName.setText(Main.user.getName() + "");
-
-        btnAdmin.setVisible(Main.user.getType().equals("Admin"));
+        txtEmail.setText(Main.user.getEmail() + "");
+        txtPhone.setText(Main.user.getPhone() + "");
+        tfName.setText(Main.user.getName() + "");
+        tfPhone.setText(Main.user.getPhone() + "");
     }
-
-    private void btnBuyAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("Buy");
-    }
-
-    private void btnAdminAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("Admin");
-    }
-
-    public void btnSettingsAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("Settings");
-    }
-
 
     private void btnMenuAction(MouseEvent mouseEvent) {
         if (menuPane.isVisible()) {

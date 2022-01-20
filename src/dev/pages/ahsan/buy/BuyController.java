@@ -1,17 +1,16 @@
-package dev.pages.ahsan.settings;
+package dev.pages.ahsan.buy;
 
 import animatefx.animation.FadeIn;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideOutLeft;
 import dev.pages.ahsan.main.Config;
 import dev.pages.ahsan.main.Main;
-import dev.pages.ahsan.user.User;
+import dev.pages.ahsan.user.Bus;
+import dev.pages.ahsan.user.Ticket;
 import dev.pages.ahsan.utils.Utils;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,11 +20,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.Objects;
-import java.util.ResourceBundle;
-import java.util.Timer;
+import java.util.*;
 
-public class ChangePassController implements Initializable {
+public class BuyController  implements Initializable {
+
+    HashMap<Bus, HashMap<String, ArrayList<Ticket>>> buses;
+
     @FXML
     private ImageView btnClose;
 
@@ -39,19 +39,10 @@ public class ChangePassController implements Initializable {
     private Text txtUserName;
 
     @FXML
-    private Text txtEmail;
-
-    @FXML
-    private Text txtPhone;
-
-    @FXML
     private ImageView btnLogout;
 
     @FXML
     private ImageView btnMenu;
-
-    @FXML
-    private AnchorPane btnHome;
 
     @FXML
     private AnchorPane menuPane;
@@ -60,24 +51,16 @@ public class ChangePassController implements Initializable {
     private AnchorPane mainPaneHome;
 
     @FXML
-    private Button btnSave;
+    private AnchorPane btnSettings;
 
     @FXML
-    private TextField tfName;
+    private Text txtEmail;
 
     @FXML
-    private Text txtError;
+    private Text txtPhone;
 
     @FXML
-    private TextField tfNewPass;
-
-    @FXML
-    private TextField tfOldPass;
-
-    @FXML
-    private TextField tfPhone;
-
-
+    private ChoiceBox<HashMap<Bus, HashMap<String, ArrayList<Ticket>>>> choiceBus;
 
     Image image1;
     Image image2;
@@ -90,61 +73,20 @@ public class ChangePassController implements Initializable {
         // set
         menuPane.setVisible(false);
         txtTitle.setText(Config.title + " " + Config.version);
-        System.out.println(" - Logged in as " + Main.user.getName());
-        setTF();
+        txtUserName.setText(Main.user.getName() + "");
+        txtEmail.setText(Main.user.getEmail() + "");
+        txtPhone.setText(Main.user.getPhone() + "");
 
         // Action Event
         btnClose.setOnMouseClicked(this::setBtnCloseAction);
         btnMin.setOnMouseClicked(this::setBtnMinAction);
         btnLogout.setOnMouseClicked(this::btnLogoutAction);
         btnMenu.setOnMouseClicked(this::btnMenuAction);
-        btnSave.setOnAction(this::btnSaveAction);
-        btnHome.setOnMouseClicked(this::btnHomeAction);
+        btnSettings.setOnMouseClicked(this::btnSettingsAction);
     }
 
-    private void btnHomeAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("Home");
-    }
-
-    private void btnSaveAction(ActionEvent actionEvent) {
-        String pass  = Utils.sha256(tfNewPass.getText());
-
-        User user = new User(Main.user.getName(), Main.user.getEmail(), Main.user.getPhone(), Main.user.getPasswords());
-
-        user.setName(tfName.getText());
-        user.setPhone(tfPhone.getText());
-
-        // for only name and phone
-        if (tfNewPass.getText().trim().isEmpty() && tfOldPass.getText().trim().isEmpty()) {
-            pass = user.getPasswords();
-            System.out.println(" [not changing pass]");
-            boolean result = Utils.updateInfo(user, pass, Main.receiveObj, Main.sendObj);
-            if (result) {
-                System.out.println(" - Updating user info of " + Main.user.getName());
-                setTF();
-                txtError.setText("Settings Saved!");
-            }
-        } else if (!user.getPasswords().equals(pass)) {   // for passwords
-            boolean result = Utils.updateInfo(user, pass, Main.receiveObj, Main.sendObj);
-            System.out.println(" [changing pass]");
-            if (result) {
-                System.out.println(" - Updating user info of (with pass)" + Main.user.getName());
-                setTF();
-                txtError.setText("Settings Saved!");
-            } else {
-                txtError.setText("Wrong Passwords!");
-            }
-        } else {
-            txtError.setText("New passwords can not be same as old passwords!");
-        }
-    }
-
-    private void setTF() {
-        txtUserName.setText(Main.user.getName() + "");
-        txtEmail.setText(Main.user.getEmail() + "");
-        txtPhone.setText(Main.user.getPhone() + "");
-        tfName.setText(Main.user.getName() + "");
-        tfPhone.setText(Main.user.getPhone() + "");
+    public void btnSettingsAction(MouseEvent mouseEvent) {
+        Main.screenController.activate("Settings");
     }
 
     private void btnMenuAction(MouseEvent mouseEvent) {
