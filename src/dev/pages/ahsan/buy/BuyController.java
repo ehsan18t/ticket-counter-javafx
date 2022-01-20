@@ -7,6 +7,7 @@ import dev.pages.ahsan.main.Config;
 import dev.pages.ahsan.main.Main;
 import dev.pages.ahsan.user.Bus;
 import dev.pages.ahsan.user.Ticket;
+import dev.pages.ahsan.utils.KeyValuePair;
 import dev.pages.ahsan.utils.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -60,7 +61,7 @@ public class BuyController  implements Initializable {
     private Text txtPhone;
 
     @FXML
-    private ChoiceBox<HashMap<Bus, HashMap<String, ArrayList<Ticket>>>> choiceBus;
+    private ChoiceBox<KeyValuePair> choiceBus;
 
     Image image1;
     Image image2;
@@ -83,7 +84,18 @@ public class BuyController  implements Initializable {
         btnLogout.setOnMouseClicked(this::btnLogoutAction);
         btnMenu.setOnMouseClicked(this::btnMenuAction);
         btnSettings.setOnMouseClicked(this::btnSettingsAction);
+
+        addValues();
     }
+
+    void addValues() {
+        for (Map.Entry<Bus, HashMap<String, ArrayList<Ticket>>> entry: Main.busData.entrySet()) {
+            String value = entry.getKey().getId() + ". " + entry.getKey().getFrom() + " - " + entry.getKey().getTo() + " [" + entry.getKey().getDate() + " - " + entry.getKey().getTime() + "]";
+            choiceBus.getItems().add(new KeyValuePair(entry.getKey(), value));
+        }
+    }
+
+
 
     public void btnSettingsAction(MouseEvent mouseEvent) {
         Main.screenController.activate("Settings");

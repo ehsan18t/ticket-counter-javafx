@@ -216,3 +216,19 @@
 .menu-icon:hover{
     -fx-opacity: 0.6;
 }
+
+/* Choicebox */
+.combo-box-popup .cell {
+    -fx-font-size : 15;
+    -fx-background-color: -fx-box-border, -fx-control-inner-background;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+}
+
+.combo-box-popup {
+    -fx-font-size : 20;
+    -fx-padding: 4 0 4 5;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-background-color: -fx-control-inner-background;
+}

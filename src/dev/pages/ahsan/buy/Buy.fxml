@@ -124,7 +124,7 @@
                 <Image url="@../../../../res/img/logout.png" />
             </image>
         </ImageView>
-      <ChoiceBox fx:id="choiceBus" layoutX="611.0" layoutY="143.0" prefHeight="49.0" prefWidth="402.0" />
+      <ChoiceBox fx:id="choiceBus" layoutX="611.0" layoutY="143.0" prefHeight="49.0" prefWidth="402.0" styleClass="combo-box-popup" stylesheets="@../../../../res/css/light.css" />
       <AnchorPane layoutX="291.0" layoutY="83.0">
          <children>
             <ToggleButton layoutY="92.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="A1" />
