@@ -8,10 +8,10 @@ public class Ticket implements Serializable {
     String to;
     LocalDate date;
     String time;
-    int seat;
+    String seat;
     int bus;
 
-    public Ticket(String from, String to, LocalDate date, String time, int seat, int bus) {
+    public Ticket(String from, String to, LocalDate date, String time, String seat, int bus) {
         this.from = from;
         this.to = to;
         this.date = date;
@@ -52,11 +52,11 @@ public class Ticket implements Serializable {
         this.time = time;
     }
 
-    public int getSeat() {
+    public String getSeat() {
         return seat;
     }
 
-    public void setSeat(int seat) {
+    public void setSeat(String seat) {
         this.seat = seat;
     }
 
