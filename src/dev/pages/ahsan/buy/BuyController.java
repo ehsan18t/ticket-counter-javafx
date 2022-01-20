@@ -9,9 +9,12 @@ import dev.pages.ahsan.user.Bus;
 import dev.pages.ahsan.user.Ticket;
 import dev.pages.ahsan.utils.KeyValuePair;
 import dev.pages.ahsan.utils.Utils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -65,13 +68,105 @@ public class BuyController  implements Initializable {
     private Text txtPhone;
 
     @FXML
+    private Button btnBuy;
+
+    @FXML
     private ChoiceBox<KeyValuePair> choiceBus;
+
+    @FXML
+    private ToggleButton btnSeat_0_0;
+
+    @FXML
+    private ToggleButton btnSeat_0_1;
+
+    @FXML
+    private ToggleButton btnSeat_0_2;
+
+    @FXML
+    private ToggleButton btnSeat_0_3;
+
+    @FXML
+    private ToggleButton btnSeat_1_0;
+
+    @FXML
+    private ToggleButton btnSeat_1_1;
+
+    @FXML
+    private ToggleButton btnSeat_1_2;
+
+    @FXML
+    private ToggleButton btnSeat_1_3;
+
+    @FXML
+    private ToggleButton btnSeat_2_0;
+
+    @FXML
+    private ToggleButton btnSeat_2_1;
+
+    @FXML
+    private ToggleButton btnSeat_2_2;
+
+    @FXML
+    private ToggleButton btnSeat_2_3;
+
+    @FXML
+    private ToggleButton btnSeat_3_0;
+
+    @FXML
+    private ToggleButton btnSeat_3_1;
+
+    @FXML
+    private ToggleButton btnSeat_3_2;
+
+    @FXML
+    private ToggleButton btnSeat_3_3;
+
+    @FXML
+    private ToggleButton btnSeat_4_0;
+
+    @FXML
+    private ToggleButton btnSeat_4_1;
+
+    @FXML
+    private ToggleButton btnSeat_4_2;
+
+    @FXML
+    private ToggleButton btnSeat_4_3;
+
+    @FXML
+    private ToggleButton btnSeat_5_0;
+
+    @FXML
+    private ToggleButton btnSeat_5_1;
+
+    @FXML
+    private ToggleButton btnSeat_5_2;
+
+    @FXML
+    private ToggleButton btnSeat_5_3;
+
+    @FXML
+    private ToggleButton btnSeat_6_0;
+
+    @FXML
+    private ToggleButton btnSeat_6_1;
+
+    @FXML
+    private ToggleButton btnSeat_6_2;
+
+    @FXML
+    private ToggleButton btnSeat_6_3;
+
+    @FXML
+    private ArrayList<ToggleButton> seats;
 
     Image image1;
     Image image2;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        seats = new ArrayList<>();
+        initBtn();
         image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/menu-expand.png")));
         image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/017-menu-6.png")));
 
@@ -113,7 +208,42 @@ public class BuyController  implements Initializable {
         }
     }
 
+    private void initBtn() {
+        seats.add(btnSeat_0_0);
+        seats.add(btnSeat_0_1);
+        seats.add(btnSeat_0_2);
+        seats.add(btnSeat_0_3);
 
+        seats.add(btnSeat_1_0);
+        seats.add(btnSeat_1_1);
+        seats.add(btnSeat_1_2);
+        seats.add(btnSeat_1_3);
+
+        seats.add(btnSeat_2_0);
+        seats.add(btnSeat_2_1);
+        seats.add(btnSeat_2_2);
+        seats.add(btnSeat_2_3);
+
+        seats.add(btnSeat_3_0);
+        seats.add(btnSeat_3_1);
+        seats.add(btnSeat_3_2);
+        seats.add(btnSeat_3_3);
+
+        seats.add(btnSeat_4_0);
+        seats.add(btnSeat_4_1);
+        seats.add(btnSeat_4_2);
+        seats.add(btnSeat_4_3);
+
+        seats.add(btnSeat_5_0);
+        seats.add(btnSeat_5_1);
+        seats.add(btnSeat_5_2);
+        seats.add(btnSeat_5_3);
+
+        seats.add(btnSeat_6_0);
+        seats.add(btnSeat_6_1);
+        seats.add(btnSeat_6_2);
+        seats.add(btnSeat_6_3);
+    }
 
     public void btnSettingsAction(MouseEvent mouseEvent) {
         Main.screenController.activate("Settings");
