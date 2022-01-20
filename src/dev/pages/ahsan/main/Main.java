@@ -32,9 +32,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
-//        System.out.println(ZonedDateTime.now().format(DateTimeFormatter.ISO_ORDINAL_DATE));
-//        String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmm").format(Calendar.getInstance().getTime());
+//        System.out.println(ZonedDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME));
+//        String timeStamp = new SimpleDateFormat("yyyyMMdd_hhmma").format(Calendar.getInstance().getTime());
 //        System.out.println(timeStamp);
+//        DateTimeFormatter timeFormatter = new DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern("hh:mm a").toFormatter(Locale.ENGLISH);
+//        LocalTime ct = LocalTime.parse("05:00 PM", timeFormatter);
+//        System.out.println(ct);
         // Configure
         sc = new Socket(Config.server, Config.port);
         OutputStream oo = sc.getOutputStream();

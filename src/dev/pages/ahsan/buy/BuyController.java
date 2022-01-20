@@ -21,6 +21,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.*;
 
 public class BuyController  implements Initializable {
@@ -84,12 +88,26 @@ public class BuyController  implements Initializable {
         btnLogout.setOnMouseClicked(this::btnLogoutAction);
         btnMenu.setOnMouseClicked(this::btnMenuAction);
         btnSettings.setOnMouseClicked(this::btnSettingsAction);
+        btnBuy.setOnAction(this::btnBuyAction);
 
         addValues();
     }
 
+    private void btnBuyAction(ActionEvent actionEvent) {
+    }
+
     void addValues() {
+        DateTimeFormatter timeFormatter = new DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern("hh:mm a").toFormatter(Locale.ENGLISH);
+        LocalTime ct = LocalTime.now();
+        LocalDate cd = LocalDate.now();
         for (Map.Entry<Bus, HashMap<String, ArrayList<Ticket>>> entry: Main.busData.entrySet()) {
+            LocalTime t  = LocalTime.parse(entry.getKey().getTime(), timeFormatter);
+            if (cd.isAfter(entry.getKey().getDate()))
+                continue;
+            if (cd.isEqual(entry.getKey().getDate()))
+                if (ct.isAfter(t))
+                    continue;
+
             String value = entry.getKey().getId() + ". " + entry.getKey().getFrom() + " - " + entry.getKey().getTo() + " [" + entry.getKey().getDate() + " - " + entry.getKey().getTime() + "]";
             choiceBus.getItems().add(new KeyValuePair(entry.getKey(), value));
         }
