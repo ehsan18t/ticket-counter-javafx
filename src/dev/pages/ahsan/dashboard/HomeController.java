@@ -5,11 +5,14 @@ import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideOutLeft;
 import dev.pages.ahsan.main.Config;
 import dev.pages.ahsan.main.Main;
+import dev.pages.ahsan.user.Bus;
 import dev.pages.ahsan.utils.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,6 +23,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -56,6 +60,31 @@ public class HomeController implements Initializable {
     @FXML
     private AnchorPane btnSettings;
 
+    @FXML
+    private TableView<Bus> table;
+
+    @FXML
+    private TableColumn<Bus, String> timeCol;
+
+    @FXML
+    private TableColumn<Bus, String> toCol;
+
+    @FXML
+    private TableColumn<Bus, LocalDate> dateCol;
+
+    @FXML
+    private TableColumn<Bus, String> fromCol;
+
+    @FXML
+    private TableColumn<Bus, Integer> idCol;
+
+    @FXML
+    private Text txtEmail;
+
+    @FXML
+    private Text txtPhone;
+
+
     Image image1;
     Image image2;
 
@@ -78,6 +107,9 @@ public class HomeController implements Initializable {
         // set
         menuPane.setVisible(false);
         txtTitle.setText(Config.title + " " + Config.version);
+        txtUserName.setText(Main.user.getName() + "");
+        txtEmail.setText(Main.user.getEmail() + "");
+        txtPhone.setText(Main.user.getPhone() + "");
 
         // Action Event
         btnClose.setOnMouseClicked(this::setBtnCloseAction);

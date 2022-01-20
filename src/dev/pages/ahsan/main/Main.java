@@ -32,6 +32,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
+//        System.out.println(ZonedDateTime.now().format(DateTimeFormatter.ISO_ORDINAL_DATE));
+//        String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmm").format(Calendar.getInstance().getTime());
+//        System.out.println(timeStamp);
         // Configure
         sc = new Socket(Config.server, Config.port);
         OutputStream oo = sc.getOutputStream();
