@@ -184,7 +184,7 @@
 }
 
 /* Toggle Button */
-.toggle-button {
+#theme.toggle-button {
     -fx-background-color: #F4F9F9;
     -fx-background-image: url("@../../../../res/img/002-half-moon.png");
     -fx-border-width: 0px;
@@ -194,7 +194,7 @@
     -fx-background-radius: 25;
 }
 
-.toggle-button:selected {
+#theme.toggle-button:selected {
     -fx-background-color: #575757;
     -fx-background-image: url("@../../../../res/img/001-sun.png");
 }
@@ -232,3 +232,32 @@
     -fx-border-width: 1px;
     -fx-background-color: -fx-control-inner-background;
 }
+
+
+/* Toggle Button */
+#seat .toggle-button {
+    -fx-background-radius: 20;
+    -fx-text-fill: black;
+    -fx-background-color: #dbd7d7;
+}
+
+#seat .toggle-button:selected {
+    -fx-background-color: #38a338;
+    -fx-text-fill: white;
+}
+
+#seat .toggle-button:selected:hover {
+    -fx-background-color: #4eb44e;
+    -fx-text-fill: white;
+}
+
+#seat .toggle-button:disabled {
+    -fx-background-color: #e03e3e;
+    -fx-text-fill: white;
+}
+
+#seat .toggle-button:selected:disabled {
+    -fx-background-color: #0e98db;
+    -fx-text-fill: white;
+}
+

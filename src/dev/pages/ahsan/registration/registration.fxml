@@ -18,7 +18,7 @@
                 <Font name="Comic Sans MS Bold" size="18.0" />
             </font>
         </Text>
-        <ToggleButton fx:id="tglTheme" layoutX="438.0" layoutY="44.0" mnemonicParsing="false" onAction="#tglThemeOnClick" prefHeight="50.0" prefWidth="50.0" styleClass="toggle-button" />
+        <ToggleButton id="theme" fx:id="tglTheme" layoutX="438.0" layoutY="44.0" mnemonicParsing="false" onAction="#tglThemeOnClick" prefHeight="50.0" prefWidth="50.0" styleClass="toggle-button" />
         <ButtonBar layoutX="421.0" layoutY="11.0">
             <buttons>
                 <ImageView fx:id="btnMin" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">

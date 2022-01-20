@@ -184,11 +184,53 @@ public class BuyController  implements Initializable {
         btnMenu.setOnMouseClicked(this::btnMenuAction);
         btnSettings.setOnMouseClicked(this::btnSettingsAction);
         btnBuy.setOnAction(this::btnBuyAction);
-
+        choiceBus.setOnAction(this::choiceBusAction);
         addValues();
     }
 
+    private void choiceBusAction(ActionEvent actionEvent) {
+        for (ToggleButton tb : seats) {
+            tb.setDisable(false);
+            tb.setSelected(false);
+        }
+        HashMap<String, ArrayList<Ticket>> data = Main.busData.get(choiceBus.getSelectionModel().getSelectedItem().getKey());
+        for (Map.Entry<String, ArrayList<Ticket>> entry: data.entrySet()) {
+            System.out.println("First Loop");
+            for (Ticket t: entry.getValue()) {
+                // Converting seat number to button index
+                String s  = t.getSeat();
+                int x = s.charAt(0) - 'A';
+                int index = (x * 4) + (s.charAt(1) - '0');
+                System.out.println(index);
+
+                // if bought by current user
+                if (entry.getKey().equals(Main.user.getEmail())) {
+                    seats.get(index - 1).setSelected(true);
+                    seats.get(index - 1).setDisable(true);
+                } else {
+                    seats.get(index - 1).setDisable(true);
+                }
+            }
+        }
+    }
+
     private void btnBuyAction(ActionEvent actionEvent) {
+        Bus bus = choiceBus.getSelectionModel().getSelectedItem().getKey();
+        String user  = Main.user.getEmail();
+
+        // If user data not exist create
+        if (!Main.busData.get(bus).containsKey(user))
+            Main.busData.get(bus).put(user, new ArrayList<>());
+        // else just retrieve the previous data
+        ArrayList<Ticket> list  = Main.busData.get(bus).get(user);
+
+        for (ToggleButton b: seats) {
+            if (b.isSelected() && !b.isDisabled()) {
+                list.add(new Ticket(bus.getFrom(), bus.getTo(), bus.getDate(), bus.getTime(), b.getText(), bus.getId()));
+                b.setSelected(true);
+                b.setDisable(true);
+            }
+        }
     }
 
     void addValues() {
