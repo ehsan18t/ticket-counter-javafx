@@ -44,7 +44,7 @@
                         </ImageView>
                     </children>
                 </HBox>
-                <AnchorPane id="menuPane" fx:id="menuPane" prefHeight="562.0" prefWidth="277.0" stylesheets="@../../../../res/css/light.css">
+                <AnchorPane id="menuPane" fx:id="menuPane" prefHeight="562.0" prefWidth="289.0" stylesheets="@../../../../res/css/light.css" visible="false">
                     <children>
                         <AnchorPane fx:id="btnHome" layoutY="94.0" prefHeight="65.0" prefWidth="289.0" styleClass="menu-item">
                             <children>
@@ -94,7 +94,7 @@
                     </children></AnchorPane>
             </children>
         </VBox>
-        <AnchorPane fx:id="mainPaneHome" disable="true" layoutY="83.0" prefHeight="562.0" prefWidth="291.0" stylesheets="@../../../../res/css/light.css" visible="false">
+        <AnchorPane fx:id="mainPaneHome" disable="true" layoutY="83.0" prefHeight="562.0" prefWidth="291.0" stylesheets="@../../../../res/css/light.css">
             <children>
                 <Text fx:id="txtUserName" fill="#f46161" layoutX="13.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User" textAlignment="CENTER" wrappingWidth="264.2673645019531">
                     <font>
@@ -125,7 +125,7 @@
             </image>
         </ImageView>
       <ChoiceBox fx:id="choiceBus" layoutX="611.0" layoutY="143.0" prefHeight="49.0" prefWidth="402.0" styleClass="combo-box-popup" stylesheets="@../../../../res/css/light.css" />
-      <AnchorPane id="seat" layoutX="291.0" layoutY="83.0" stylesheets="@../../../../res/css/light.css">
+      <AnchorPane id="seat" layoutX="301.0" layoutY="83.0" stylesheets="@../../../../res/css/light.css">
          <children>
             <ToggleButton fx:id="btnSeat_0_0" layoutY="92.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="A1" />
             <ToggleButton fx:id="btnSeat_0_1" layoutX="63.0" layoutY="92.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="A2" />
