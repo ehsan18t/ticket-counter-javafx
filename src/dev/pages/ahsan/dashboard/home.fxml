@@ -95,11 +95,12 @@
       </VBox>
       <TableView fx:id="table" layoutX="302.0" layoutY="249.0" prefHeight="308.0" prefWidth="723.0">
          <columns>
-            <TableColumn fx:id="idCol" prefWidth="75.05450439453125" text="Id" />
-            <TableColumn fx:id="fromCol" prefWidth="191.12725830078125" text="From" />
-            <TableColumn fx:id="toCol" minWidth="0.0" prefWidth="180.65460205078125" text="To" />
-            <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="148.36370849609375" text="Date" />
-            <TableColumn fx:id="timeCol" prefWidth="130.0362548828125" text="Time" />
+            <TableColumn fx:id="busIdCol" prefWidth="75.0" text="Bus Id" />
+            <TableColumn fx:id="fromCol" prefWidth="178.03634643554688" text="From" />
+            <TableColumn fx:id="toCol" minWidth="0.0" prefWidth="185.890869140625" text="To" />
+            <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="127.418212890625" text="Date" />
+            <TableColumn fx:id="timeCol" prefWidth="98.6181640625" text="Time" />
+            <TableColumn fx:id="seatCol" maxWidth="93.38187521185841" prefWidth="58.472900390625" text="Seat" />
          </columns>
       </TableView>
       <AnchorPane fx:id="mainPaneHome" disable="true" layoutY="83.0" prefHeight="562.0" prefWidth="291.0" stylesheets="@../../../../res/css/light.css">
@@ -142,21 +143,21 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fill="#3d3d3d" layoutX="-1.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30" textAlignment="CENTER" wrappingWidth="215.563628888091">
+            <Text fx:id="txtTotalCount" fill="#3d3d3d" layoutX="-1.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30" textAlignment="CENTER" wrappingWidth="215.563628888091">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Text>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="694.0" layoutY="83.0" prefHeight="136.0" prefWidth="201.0" style="-fx-background-color: skyblue; -fx-background-radius: 20;">
+      <AnchorPane layoutX="694.0" layoutY="83.0" prefHeight="136.0" prefWidth="201.0" style="-fx-background-color: lightgreen; -fx-background-radius: 20;">
          <children>
             <Text layoutX="35.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active Ticket">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fill="#3d3d3d" layoutX="-1.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30" textAlignment="CENTER" wrappingWidth="215.563628888091">
+            <Text fx:id="txtBuyCount" fill="#3d3d3d" layoutX="-1.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30" textAlignment="CENTER" wrappingWidth="215.563628888091">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
