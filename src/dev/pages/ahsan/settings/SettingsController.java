@@ -112,6 +112,8 @@ public class SettingsController implements Initializable {
         btnBuy.setOnMouseClicked(this::btnBuyAction);
         btnAbout.setOnMouseClicked(this::btnAboutAction);
         btnAdmin.setOnMouseClicked(this::btnAdminAction);
+
+        btnAdmin.setVisible(Main.user.getType().equals("Admin"));
     }
 
     private void btnAdminAction(MouseEvent mouseEvent) {

@@ -204,6 +204,8 @@ public class BuyController  implements Initializable {
         btnHome.setOnMouseClicked(this::btnHomeAction);
         btnAdmin.setOnMouseClicked(this::btnAdminAction);
 
+        btnAdmin.setVisible(Main.user.getType().equals("Admin"));
+
         addValues();
     }
 
