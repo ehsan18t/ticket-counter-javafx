@@ -261,3 +261,6 @@
     -fx-text-fill: white;
 }
 
+.align-center {
+    -fx-alignment: center;
+}

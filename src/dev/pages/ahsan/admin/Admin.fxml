@@ -128,11 +128,11 @@
         </ImageView>
       <TableView fx:id="table" layoutX="302.0" layoutY="324.0" prefHeight="233.0" prefWidth="723.0">
          <columns>
-            <TableColumn fx:id="idCol" prefWidth="75.05450439453125" text="Id" />
-            <TableColumn fx:id="fromCol" prefWidth="191.12725830078125" text="From" />
-            <TableColumn fx:id="toCol" minWidth="0.0" prefWidth="180.65460205078125" text="To" />
-            <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="148.36370849609375" text="Date" />
-            <TableColumn fx:id="timeCol" prefWidth="130.0362548828125" text="Time" />
+            <TableColumn fx:id="idCol" prefWidth="75.05450439453125" styleClass="align-center" text="Id" />
+            <TableColumn fx:id="fromCol" prefWidth="191.12725830078125" styleClass="align-center" text="From" />
+            <TableColumn fx:id="toCol" minWidth="0.0" prefWidth="180.65460205078125" styleClass="align-center" text="To" />
+            <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="148.36370849609375" styleClass="align-center" text="Date" />
+            <TableColumn fx:id="timeCol" prefWidth="130.0362548828125" styleClass="align-center" text="Time" />
          </columns>
       </TableView>
       <Button fx:id="btnRemove" layoutX="600.0" layoutY="570.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="148.0" text="Remove" />

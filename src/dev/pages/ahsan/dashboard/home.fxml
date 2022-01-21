@@ -95,12 +95,12 @@
       </VBox>
       <TableView fx:id="table" layoutX="302.0" layoutY="249.0" prefHeight="308.0" prefWidth="723.0">
          <columns>
-            <TableColumn fx:id="busIdCol" prefWidth="75.0" text="Bus Id" />
-            <TableColumn fx:id="fromCol" prefWidth="178.03634643554688" text="From" />
-            <TableColumn fx:id="toCol" minWidth="0.0" prefWidth="185.890869140625" text="To" />
-            <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="127.418212890625" text="Date" />
-            <TableColumn fx:id="timeCol" prefWidth="98.6181640625" text="Time" />
-            <TableColumn fx:id="seatCol" maxWidth="93.38187521185841" prefWidth="58.472900390625" text="Seat" />
+            <TableColumn fx:id="busIdCol" prefWidth="75.0" styleClass="align-center" text="Bus Id" />
+            <TableColumn fx:id="fromCol" prefWidth="178.03634643554688" styleClass="align-center" text="From" />
+            <TableColumn fx:id="toCol" minWidth="0.0" prefWidth="185.890869140625" styleClass="align-center" text="To" />
+            <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="127.418212890625" styleClass="align-center" text="Date" />
+            <TableColumn fx:id="timeCol" prefWidth="98.6181640625" styleClass="align-center" text="Time" />
+            <TableColumn fx:id="seatCol" maxWidth="93.38187521185841" prefWidth="58.472900390625" styleClass="align-center" text="Seat" />
          </columns>
       </TableView>
       <AnchorPane fx:id="mainPaneHome" disable="true" layoutY="83.0" prefHeight="562.0" prefWidth="291.0" stylesheets="@../../../../res/css/light.css">
