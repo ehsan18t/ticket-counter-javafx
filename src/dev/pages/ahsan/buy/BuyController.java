@@ -23,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -165,6 +166,7 @@ public class BuyController  implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        serverListener();
         seats = new ArrayList<>();
         initBtn();
         image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/menu-expand.png")));
@@ -176,6 +178,7 @@ public class BuyController  implements Initializable {
         txtUserName.setText(Main.user.getName() + "");
         txtEmail.setText(Main.user.getEmail() + "");
         txtPhone.setText(Main.user.getPhone() + "");
+        btnBuy.setDisable(true);
 
         // Action Event
         btnClose.setOnMouseClicked(this::setBtnCloseAction);
@@ -188,20 +191,57 @@ public class BuyController  implements Initializable {
         addValues();
     }
 
-    private void choiceBusAction(ActionEvent actionEvent) {
+    private void resetSeatState() {
         for (ToggleButton tb : seats) {
             tb.setDisable(false);
             tb.setSelected(false);
         }
+    }
+
+    private void resetItems() {
+        try {
+            choiceBus.getItems().clear();
+            addValues();
+        } catch (Exception ignored) {}
+    }
+
+    private void loadSeatData() {
+        try {
+//        if (choiceBus.getValue() != null || choiceBus.getValue().getKey() != null) {
+            System.out.println(Main.busData.containsKey(choiceBus.getValue().getKey()));
+            HashMap<String, ArrayList<Ticket>> data = Main.busData.get(choiceBus.getSelectionModel().getSelectedItem().getKey());
+            for (Map.Entry<String, ArrayList<Ticket>> entry : data.entrySet()) {
+                for (Ticket t : entry.getValue()) {
+                    // Converting seat number to button index
+                    String s = t.getSeat();
+                    int x = s.charAt(0) - 'A';
+                    int index = (x * 4) + (s.charAt(1) - '0');
+
+                    // if bought by current user
+                    if (entry.getKey().equals(Main.user.getEmail())) {
+                        seats.get(index - 1).setSelected(true);
+                        seats.get(index - 1).setDisable(true);
+                    } else {
+                        seats.get(index - 1).setDisable(true);
+                    }
+//                }
+            }
+        }} catch (Exception ignored) {}
+    }
+
+
+    private void loadSeatData(int i) {
+        try {
+        System.out.println(" - Loading data");
+        choiceBus.getSelectionModel().select(i);
+        System.out.println(Main.busData.containsKey(choiceBus.getValue().getKey()));
         HashMap<String, ArrayList<Ticket>> data = Main.busData.get(choiceBus.getSelectionModel().getSelectedItem().getKey());
-        for (Map.Entry<String, ArrayList<Ticket>> entry: data.entrySet()) {
-            System.out.println("First Loop");
-            for (Ticket t: entry.getValue()) {
+        for (Map.Entry<String, ArrayList<Ticket>> entry : data.entrySet()) {
+            for (Ticket t : entry.getValue()) {
                 // Converting seat number to button index
-                String s  = t.getSeat();
+                String s = t.getSeat();
                 int x = s.charAt(0) - 'A';
                 int index = (x * 4) + (s.charAt(1) - '0');
-                System.out.println(index);
 
                 // if bought by current user
                 if (entry.getKey().equals(Main.user.getEmail())) {
@@ -211,7 +251,29 @@ public class BuyController  implements Initializable {
                     seats.get(index - 1).setDisable(true);
                 }
             }
-        }
+        }} catch (NullPointerException ignored) {}
+    }
+
+    private void choiceBusAction(ActionEvent actionEvent) {
+        btnBuy.setDisable(false);
+        resetSeatState();
+        loadSeatData();
+    }
+
+    private void serverListener() {
+        new Thread(() -> {
+        while(true) {
+            try {
+                String response = (String) Main.receiveObj.readObject();
+                System.out.println(" [*] Received cmd from server " + response);
+                Main.busData = (HashMap<Bus, HashMap<String, ArrayList<Ticket>>>) Main.receiveObj.readObject();
+                if (response.contains("refresh")) {
+                    int i =  choiceBus.getSelectionModel().getSelectedIndex();
+                    resetItems();
+                    loadSeatData(i);
+                }
+            } catch (Exception ignored) {}
+        }}).start();
     }
 
     private void btnBuyAction(ActionEvent actionEvent) {
@@ -231,6 +293,12 @@ public class BuyController  implements Initializable {
                 b.setDisable(true);
             }
         }
+        try {
+            Main.sendObj.writeObject("buy");
+            Main.sendObj.writeObject(Main.busData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     void addValues() {
@@ -248,6 +316,7 @@ public class BuyController  implements Initializable {
             String value = entry.getKey().getId() + ". " + entry.getKey().getFrom() + " - " + entry.getKey().getTo() + " [" + entry.getKey().getDate() + " - " + entry.getKey().getTime() + "]";
             choiceBus.getItems().add(new KeyValuePair(entry.getKey(), value));
         }
+        choiceBus.getItems().sort(Comparator.comparing(KeyValuePair::toString));
     }
 
     private void initBtn() {

@@ -167,7 +167,6 @@ public class AdminController implements Initializable {
     private void btnAddAction(ActionEvent actionEvent) {
         try {
             Main.sendObj.writeObject("addBus");
-        System.out.println("Adding");
             Bus bus = new Bus(Integer.parseInt(tfId.getText()), tfFrom.getText(), tfTo.getText(), tfDate.getValue(), tfTime.getText());
             Main.sendObj.writeObject(bus);
             buses.put(bus, new HashMap<>());
@@ -188,6 +187,13 @@ public class AdminController implements Initializable {
     }
 
     public void btnSettingsAction(MouseEvent mouseEvent) {
+//        try {
+//        Main.screenController.removeScreen("Buy");
+//        Parent buy = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.buyScene)));
+//        Main.screenController.addScreen("Buy", 646, 1051, buy);
+//    } catch (IOException e) {
+//        e.printStackTrace();
+//    }
         Main.screenController.activate("Settings");
     }
 
