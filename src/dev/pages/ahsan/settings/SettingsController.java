@@ -54,6 +54,15 @@ public class SettingsController implements Initializable {
     private AnchorPane btnHome;
 
     @FXML
+    private AnchorPane btnBuy;
+
+    @FXML
+    private AnchorPane btnAbout;
+
+    @FXML
+    private AnchorPane btnAdmin;
+
+    @FXML
     private AnchorPane menuPane;
 
     @FXML
@@ -100,6 +109,21 @@ public class SettingsController implements Initializable {
         btnMenu.setOnMouseClicked(this::btnMenuAction);
         btnSave.setOnAction(this::btnSaveAction);
         btnHome.setOnMouseClicked(this::btnHomeAction);
+        btnBuy.setOnMouseClicked(this::btnBuyAction);
+        btnAbout.setOnMouseClicked(this::btnAboutAction);
+        btnAdmin.setOnMouseClicked(this::btnAdminAction);
+    }
+
+    private void btnAdminAction(MouseEvent mouseEvent) {
+        Main.screenController.activate("Admin");
+    }
+
+    private void btnAboutAction(MouseEvent mouseEvent) {
+        Main.screenController.activate("About");
+    }
+
+    private void btnBuyAction(MouseEvent mouseEvent) {
+        Main.screenController.activate("Buy");
     }
 
     private void btnHomeAction(MouseEvent mouseEvent) {
