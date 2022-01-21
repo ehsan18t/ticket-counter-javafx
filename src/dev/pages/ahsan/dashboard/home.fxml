@@ -72,7 +72,7 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutY="272.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css">
+                  <AnchorPane fx:id="btnAbout" layoutY="272.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css">
                      <children>
                         <Text layoutX="83.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="About" textAlignment="CENTER" wrappingWidth="123.77556228637695">
                            <font>

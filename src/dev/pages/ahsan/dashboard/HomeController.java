@@ -69,6 +69,9 @@ public class HomeController implements Initializable {
     private AnchorPane btnBuy;
 
     @FXML
+    private AnchorPane btnAbout;
+
+    @FXML
     private TableView<Ticket> table;
 
     @FXML
@@ -120,6 +123,9 @@ public class HomeController implements Initializable {
 
             Parent buy = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.buyScene)));
             Main.screenController.addScreen("Buy", 646, 1051, buy);
+
+            Parent about = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.aboutScene)));
+            Main.screenController.addScreen("About", 646, 1051, about);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -151,10 +157,13 @@ public class HomeController implements Initializable {
         btnClose.setOnMouseClicked(this::setBtnCloseAction);
         btnMin.setOnMouseClicked(this::setBtnMinAction);
         btnLogout.setOnMouseClicked(this::btnLogoutAction);
+
+        // Manu Action
         btnMenu.setOnMouseClicked(this::btnMenuAction);
-        btnSettings.setOnMouseClicked(this::btnSettingsAction);
-        btnAdmin.setOnMouseClicked(this::btnAdminAction);
         btnBuy.setOnMouseClicked(this::btnBuyAction);
+        btnSettings.setOnMouseClicked(this::btnSettingsAction);
+        btnAbout.setOnMouseClicked(this::btnAboutAction);
+        btnAdmin.setOnMouseClicked(this::btnAdminAction);
 
         System.out.println(" - Logged in as " + Main.user.getName());
         txtUserName.setText(Main.user.getName() + "");
@@ -162,8 +171,9 @@ public class HomeController implements Initializable {
         btnAdmin.setVisible(Main.user.getType().equals("Admin"));
     }
 
-
-
+    private void btnAboutAction(MouseEvent mouseEvent) {
+        Main.screenController.activate("About");
+    }
 
     // get all tickets of current user
     public ObservableList<Ticket> getTickets() {

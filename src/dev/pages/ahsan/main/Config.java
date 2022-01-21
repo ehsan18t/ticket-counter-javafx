@@ -13,6 +13,7 @@ public class Config {
     public static final String settingsScene = "/dev/pages/ahsan/settings/Settings.fxml";
     public static final String adminScene = "/dev/pages/ahsan/admin/Admin.fxml";
     public static final String buyScene = "/dev/pages/ahsan/buy/Buy.fxml";
+    public static final String aboutScene = "/dev/pages/ahsan/about/About.fxml";
     public static final String lightCSS = "/res/css/light.css";
     public static final String darkCSS = "/res/css/dark.css";
     public static String CSS = lightCSS;
