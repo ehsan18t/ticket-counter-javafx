@@ -36,9 +36,6 @@ import java.util.*;
 public class HomeController implements Initializable {
 
     @FXML
-    private AnchorPane btnAdmin;
-
-    @FXML
     private ImageView btnClose;
 
     @FXML
@@ -54,22 +51,25 @@ public class HomeController implements Initializable {
     private ImageView btnLogout;
 
     @FXML
-    private ImageView btnMenu;
-
-    @FXML
     private AnchorPane menuPane;
 
     @FXML
     private AnchorPane mainPaneHome;
 
     @FXML
-    private AnchorPane btnSettings;
+    private ImageView btnMenu;
 
     @FXML
     private AnchorPane btnBuy;
 
     @FXML
+    private AnchorPane btnSettings;
+
+    @FXML
     private AnchorPane btnAbout;
+
+    @FXML
+    private AnchorPane btnAdmin;
 
     @FXML
     private TableView<Ticket> table;

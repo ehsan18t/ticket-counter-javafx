@@ -68,16 +68,25 @@ public class AdminController implements Initializable {
     private ImageView btnLogout;
 
     @FXML
-    private ImageView btnMenu;
-
-    @FXML
     private AnchorPane menuPane;
 
     @FXML
     private AnchorPane mainPaneHome;
 
     @FXML
+    private ImageView btnMenu;
+
+    @FXML
+    private AnchorPane btnBuy;
+
+    @FXML
     private AnchorPane btnSettings;
+
+    @FXML
+    private AnchorPane btnAbout;
+
+    @FXML
+    private AnchorPane btnHome;
 
     @FXML
     private TableView<Bus> table;
@@ -139,10 +148,27 @@ public class AdminController implements Initializable {
         btnClose.setOnMouseClicked(this::setBtnCloseAction);
         btnMin.setOnMouseClicked(this::setBtnMinAction);
         btnLogout.setOnMouseClicked(this::btnLogoutAction);
-        btnMenu.setOnMouseClicked(this::btnMenuAction);
-        btnSettings.setOnMouseClicked(this::btnSettingsAction);
         btnAdd.setOnAction(this::btnAddAction);
         btnRemove.setOnAction(this::btnRemoveAction);
+
+        // Manu Action
+        btnMenu.setOnMouseClicked(this::btnMenuAction);
+        btnBuy.setOnMouseClicked(this::btnBuyAction);
+        btnSettings.setOnMouseClicked(this::btnSettingsAction);
+        btnAbout.setOnMouseClicked(this::btnAboutAction);
+        btnHome.setOnMouseClicked(this::btnHomeAction);
+    }
+
+    private void btnHomeAction(MouseEvent mouseEvent) {
+        Main.screenController.activate("Home");
+    }
+
+    private void btnAboutAction(MouseEvent mouseEvent) {
+        Main.screenController.activate("About");
+    }
+
+    private void btnBuyAction(MouseEvent mouseEvent) {
+        Main.screenController.activate("Buy");
     }
 
     private void btnRemoveAction(ActionEvent actionEvent) {
