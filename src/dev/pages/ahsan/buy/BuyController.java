@@ -60,7 +60,16 @@ public class BuyController  implements Initializable {
     private AnchorPane mainPaneHome;
 
     @FXML
+    private AnchorPane btnHome;
+
+    @FXML
     private AnchorPane btnSettings;
+
+    @FXML
+    private AnchorPane btnAbout;
+
+    @FXML
+    private AnchorPane btnAdmin;
 
     @FXML
     private Text txtEmail;
@@ -184,11 +193,30 @@ public class BuyController  implements Initializable {
         btnClose.setOnMouseClicked(this::setBtnCloseAction);
         btnMin.setOnMouseClicked(this::setBtnMinAction);
         btnLogout.setOnMouseClicked(this::btnLogoutAction);
-        btnMenu.setOnMouseClicked(this::btnMenuAction);
-        btnSettings.setOnMouseClicked(this::btnSettingsAction);
         btnBuy.setOnAction(this::btnBuyAction);
         choiceBus.setOnAction(this::choiceBusAction);
+
+
+        // Manu Action
+        btnMenu.setOnMouseClicked(this::btnMenuAction);
+        btnAbout.setOnMouseClicked(this::btnAboutAction);
+        btnSettings.setOnMouseClicked(this::btnSettingsAction);
+        btnHome.setOnMouseClicked(this::btnHomeAction);
+        btnAdmin.setOnMouseClicked(this::btnAdminAction);
+
         addValues();
+    }
+
+    private void btnAdminAction(MouseEvent mouseEvent) {
+        Main.screenController.activate("Admin");
+    }
+
+    private void btnHomeAction(MouseEvent mouseEvent) {
+        Main.screenController.activate("Home");
+    }
+
+    private void btnAboutAction(MouseEvent mouseEvent) {
+        Main.screenController.activate("About");
     }
 
     private void resetSeatState() {

@@ -44,9 +44,9 @@
                         </ImageView>
                     </children>
                 </HBox>
-                <AnchorPane id="menuPane" fx:id="menuPane" prefHeight="562.0" prefWidth="277.0" stylesheets="@../../../../res/css/light.css" visible="false">
+                <AnchorPane id="menuPane" fx:id="menuPane" prefHeight="562.0" prefWidth="277.0" stylesheets="@../../../../res/css/light.css">
                     <children>
-                        <AnchorPane layoutY="94.0" prefHeight="65.0" prefWidth="289.0" styleClass="menu-item">
+                        <AnchorPane fx:id="btnHome" layoutY="94.0" prefHeight="65.0" prefWidth="289.0" styleClass="menu-item">
                             <children>
                                 <Text layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home" textAlignment="CENTER" wrappingWidth="289.7454444973531">
                                     <font>
@@ -73,7 +73,7 @@
                                 </Text>
                             </children>
                         </AnchorPane>
-                        <AnchorPane layoutY="272.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css">
+                        <AnchorPane fx:id="btnAbout" layoutY="272.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css">
                             <children>
                                 <Text layoutX="83.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="About" textAlignment="CENTER" wrappingWidth="123.77556228637695">
                                     <font>
@@ -94,7 +94,7 @@
                     </children></AnchorPane>
             </children>
         </VBox>
-        <AnchorPane fx:id="mainPaneHome" disable="true" layoutY="83.0" prefHeight="562.0" prefWidth="291.0" stylesheets="@../../../../res/css/light.css">
+        <AnchorPane fx:id="mainPaneHome" disable="true" layoutY="83.0" prefHeight="562.0" prefWidth="291.0" stylesheets="@../../../../res/css/light.css" visible="false">
             <children>
                 <Text fx:id="txtUserName" fill="#f46161" layoutX="13.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User" textAlignment="CENTER" wrappingWidth="264.2673645019531">
                     <font>
