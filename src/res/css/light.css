@@ -264,3 +264,8 @@
 .align-center {
     -fx-alignment: center;
 }
+
+/* About */
+.my-pic {
+    -fx-background-radius: 20;
+}
