@@ -80,6 +80,7 @@ public class AboutController implements Initializable {
 
         // set
         menuPane.setVisible(false);
+        btnAdmin.setVisible(false);
         txtTitle.setText(Config.title + " " + Config.version);
         txtUserName.setText(Main.user.getName() + "");
         txtEmail.setText(Main.user.getEmail() + "");

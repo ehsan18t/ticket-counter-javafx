@@ -80,7 +80,7 @@
                                 </Text>
                             </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="btnAdmin" layoutY="496.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css">
+                        <AnchorPane fx:id="btnAdmin" layoutY="496.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css" visible="false">
                             <children>
                                 <Text layoutX="7.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Control" textAlignment="CENTER" wrappingWidth="274.1818389892578">
                                     <font>

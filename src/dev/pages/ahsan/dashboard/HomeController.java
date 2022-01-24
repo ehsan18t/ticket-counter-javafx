@@ -114,6 +114,7 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Add Pages
+        btnAdmin.setVisible(false);
         try {
             Parent settings = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.settingsScene)));
             Main.screenController.addScreen("Settings", 646, 1051, settings);
@@ -166,6 +167,7 @@ public class HomeController implements Initializable {
         btnAdmin.setOnMouseClicked(this::btnAdminAction);
 
         System.out.println(" - Logged in as " + Main.user.getName());
+        System.out.println(" - " + Main.user.getType());
         txtUserName.setText(Main.user.getName() + "");
     }
 

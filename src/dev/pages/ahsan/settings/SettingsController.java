@@ -100,6 +100,7 @@ public class SettingsController implements Initializable {
 
         // set
         menuPane.setVisible(false);
+        btnAdmin.setVisible(false);
         txtTitle.setText(Config.title + " " + Config.version);
         System.out.println(" - Logged in as " + Main.user.getName());
         setTF();
