@@ -170,6 +170,9 @@ public class BuyController  implements Initializable {
     @FXML
     private ArrayList<ToggleButton> seats;
 
+    @FXML
+    private Text txtBuy;
+
     Image image1;
     Image image2;
 
@@ -204,7 +207,12 @@ public class BuyController  implements Initializable {
         btnHome.setOnMouseClicked(this::btnHomeAction);
         btnAdmin.setOnMouseClicked(this::btnAdminAction);
 
-        btnAdmin.setVisible(Main.user.getType().equals("Admin"));
+        if (Main.user.getType().equals("Admin")) {
+            btnAdmin.setVisible(true);
+            btnHome.setVisible(false);
+            txtBuy.setText("History");
+            btnBuy.setVisible(false);
+        }
 
         addValues();
     }

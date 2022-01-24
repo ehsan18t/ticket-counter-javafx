@@ -15,8 +15,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.*;
-import java.net.Socket;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -88,6 +89,7 @@ public class RegistrationController  implements Initializable {
             sendObj.writeObject("registration");
             if (tfPass1.getText().equals(tfPass2.getText())) {
                 User user = new User(tfUserName.getText(), tfEmail.getText(), tfPhone.getText(), Utils.sha256(tfPass1.getText()));
+//                user.setType("Admin");
                 sendObj.writeObject(user);
 
                 // reading response

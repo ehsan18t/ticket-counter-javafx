@@ -65,6 +65,9 @@ public class AboutController implements Initializable {
     @FXML
     private Text txtPhone;
 
+    @FXML
+    private Text txtBuy;
+
 
     Image image1;
     Image image2;
@@ -96,7 +99,11 @@ public class AboutController implements Initializable {
 
         txtUserName.setText(Main.user.getName() + "");
 
-        btnAdmin.setVisible(Main.user.getType().equals("Admin"));
+        if (Main.user.getType().equals("Admin")) {
+            btnAdmin.setVisible(true);
+            btnHome.setVisible(false);
+            txtBuy.setText("History");
+        }
     }
 
     private void btnHomeAction(MouseEvent mouseEvent) {

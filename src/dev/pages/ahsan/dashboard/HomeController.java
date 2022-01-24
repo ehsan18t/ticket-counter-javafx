@@ -167,8 +167,6 @@ public class HomeController implements Initializable {
 
         System.out.println(" - Logged in as " + Main.user.getName());
         txtUserName.setText(Main.user.getName() + "");
-
-        btnAdmin.setVisible(Main.user.getType().equals("Admin"));
     }
 
     private void btnAboutAction(MouseEvent mouseEvent) {

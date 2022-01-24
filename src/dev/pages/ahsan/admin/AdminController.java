@@ -112,6 +112,9 @@ public class AdminController implements Initializable {
     @FXML
     private Text txtPhone;
 
+    @FXML
+    private Text txtBuy;
+
     Image image1;
     Image image2;
 
@@ -157,6 +160,11 @@ public class AdminController implements Initializable {
         btnSettings.setOnMouseClicked(this::btnSettingsAction);
         btnAbout.setOnMouseClicked(this::btnAboutAction);
         btnHome.setOnMouseClicked(this::btnHomeAction);
+
+        if (Main.user.getType().equals("Admin")) {
+            btnHome.setVisible(false);
+            txtBuy.setText("History");
+        }
     }
 
     private void btnHomeAction(MouseEvent mouseEvent) {

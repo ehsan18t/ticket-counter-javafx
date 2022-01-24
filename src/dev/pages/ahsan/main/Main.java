@@ -32,12 +32,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
-//        System.out.println(ZonedDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME));
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_hhmma").format(Calendar.getInstance().getTime());
-//        System.out.println(timeStamp);
-//        DateTimeFormatter timeFormatter = new DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern("hh:mm a").toFormatter(Locale.ENGLISH);
-//        LocalTime ct = LocalTime.parse("05:00 PM", timeFormatter);
-//        System.out.println(ct);
         // Configure
         sc = new Socket(Config.server, Config.port);
         OutputStream oo = sc.getOutputStream();
@@ -75,10 +69,27 @@ public class Main extends Application {
             boolean result = Utils.checkLogin(Utils.readUserFromFile(Config.userTempData), receiveObj, sendObj);
 
             if (result) {
-                System.out.println(" - Logging in to User Control Panel.");
-                Parent home = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.homeScene)));
-                screenController.addScreen("Home", 646, 1051, home);
-                Main.screenController.activate("Home");
+                if (Main.user.getType().equals("Admin")) {
+                    // Add Pages
+                    Parent settings = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.settingsScene)));
+                    Main.screenController.addScreen("Settings", 646, 1051, settings);
+
+                    Parent admin = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.adminScene)));
+                    Main.screenController.addScreen("Admin", 646, 1051, admin);
+
+                    Parent buy = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.buyScene)));
+                    Main.screenController.addScreen("Buy", 646, 1051, buy);
+
+                    Parent about = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.aboutScene)));
+                    Main.screenController.addScreen("About", 646, 1051, about);
+
+                    Main.screenController.activate("Admin");
+                } else {
+                    System.out.println(" - Logging in to User Control Panel.");
+                    Parent home = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.homeScene)));
+                    screenController.addScreen("Home", 646, 1051, home);
+                    Main.screenController.activate("Home");
+                }
             }
         } else {
             System.out.println(" - Redirecting to Login Page.");

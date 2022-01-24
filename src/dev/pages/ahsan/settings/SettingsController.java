@@ -86,6 +86,8 @@ public class SettingsController implements Initializable {
     @FXML
     private TextField tfPhone;
 
+    @FXML
+    private Text txtBuy;
 
 
     Image image1;
@@ -113,7 +115,12 @@ public class SettingsController implements Initializable {
         btnAbout.setOnMouseClicked(this::btnAboutAction);
         btnAdmin.setOnMouseClicked(this::btnAdminAction);
 
-        btnAdmin.setVisible(Main.user.getType().equals("Admin"));
+
+        if (Main.user.getType().equals("Admin")) {
+            btnAdmin.setVisible(true);
+            btnHome.setVisible(false);
+            txtBuy.setText("History");
+        }
     }
 
     private void btnAdminAction(MouseEvent mouseEvent) {
