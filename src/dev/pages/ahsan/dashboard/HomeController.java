@@ -114,7 +114,6 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Add Pages
-        btnAdmin.setVisible(false);
         try {
             Parent settings = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.settingsScene)));
             Main.screenController.addScreen("Settings", 646, 1051, settings);
