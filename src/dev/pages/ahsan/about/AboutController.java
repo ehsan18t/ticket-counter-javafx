@@ -151,8 +151,7 @@ public class AboutController implements Initializable {
     private void btnLogoutAction(MouseEvent mouseEvent) {
         if (Utils.removeFile(Config.userTempData) && Utils.removeFile(Config.savedUserData)) {
             System.out.println(" - Logout Successful!");
-        } else
-            System.out.println(" - Unexpected error on Logout Button Action!");
+        }
          Main.screenController.activate("Login");
     }
 
