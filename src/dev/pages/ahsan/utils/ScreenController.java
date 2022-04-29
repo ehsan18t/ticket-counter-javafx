@@ -1,10 +1,13 @@
 package dev.pages.ahsan.utils;
 
 import dev.pages.ahsan.main.Main;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Objects;
 
 class Size {
     double h;
@@ -17,6 +20,7 @@ class Size {
 }
 
 public class ScreenController {
+    private final HashMap<String, String> fxml = new HashMap<>();
     private final HashMap<String, Size> screenSize = new HashMap<>();
     private final HashMap<String, Parent> screenMap = new HashMap<>();
     private final Scene main;
@@ -32,6 +36,17 @@ public class ScreenController {
     public void addScreen(String name, double h, double w, Parent root){
         screenSize.put(name, new Size(h, w));
         screenMap.put(name, root);
+    }
+
+    public void addScreen(String name, String fxml, double h, double w){
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(fxml)));
+            screenSize.put(name, new Size(h, w));
+            screenMap.put(name, root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void removeScreen(String name){
