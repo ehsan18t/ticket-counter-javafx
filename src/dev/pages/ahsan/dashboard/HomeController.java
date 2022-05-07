@@ -154,8 +154,7 @@ public class HomeController implements Initializable {
         btnAbout.setOnMouseClicked(this::btnAboutAction);
         btnAdmin.setOnMouseClicked(this::btnAdminAction);
 
-        System.out.println(" - Logged in as " + Main.user.getName());
-        System.out.println(" - " + Main.user.getType());
+        System.out.println(" - Logged in as " + Main.user.getName() + " [" + Main.user.getType() + "]");
         txtUserName.setText(Main.user.getName() + "");
     }
 
