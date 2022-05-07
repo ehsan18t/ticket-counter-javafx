@@ -36,7 +36,7 @@ public class Utils {
         }
     }
 
-    public static User readUserFromFile(String filePath) {
+    synchronized public static User readUserFromFile(String filePath) {
         User user = null;
         try {
             FileInputStream fileIn = new FileInputStream(filePath);
@@ -50,7 +50,7 @@ public class Utils {
         return user;
     }
 
-    public static void writeUserToFile(User user, String filePath) {
+    synchronized public static void writeUserToFile(User user, String filePath) {
         try {
             FileOutputStream fileOut = new FileOutputStream(filePath);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
