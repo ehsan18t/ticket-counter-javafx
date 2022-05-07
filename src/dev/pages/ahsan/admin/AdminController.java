@@ -238,6 +238,7 @@ public class AdminController implements Initializable {
 
     // get add buses
     public ObservableList<Bus> getBus() {
+        if (Main.busData == null) Main.busData = new HashMap<>();
         ObservableList<Bus> allBus = FXCollections.observableArrayList();
         for (Map.Entry<Bus, HashMap<String, ArrayList<Ticket>>> entry: Main.busData.entrySet()) {
             allBus.add(entry.getKey());
