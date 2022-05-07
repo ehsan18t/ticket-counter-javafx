@@ -118,6 +118,8 @@ public class AdminController implements Initializable {
     Image image1;
     Image image2;
 
+    private Thread t;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/menu-expand.png")));
@@ -165,17 +167,40 @@ public class AdminController implements Initializable {
             btnHome.setVisible(false);
             txtBuy.setText("History");
         }
+
+        serverListener();
+        t.start();
     }
 
+
+    private void serverListener() {
+        t = new Thread(() -> {
+            while(true) {
+                try {
+                    String response = (String) Main.receiveObj.readObject();
+                    System.out.println(" [*] Received cmd from server " + response);
+                    Main.busData = (HashMap<Bus, HashMap<String, ArrayList<Ticket>>>) Main.receiveObj.readObject();
+                    if (response.contains("refresh")) {
+                        table.setItems(getBus());
+                    }
+                } catch (Exception ignored) {}
+            }});
+    }
+
+
+
     private void btnHomeAction(MouseEvent mouseEvent) {
+        t.interrupt();
         Main.sceneMan.open("home", Config.homeScene);
     }
 
     private void btnAboutAction(MouseEvent mouseEvent) {
+        t.interrupt();
         Main.sceneMan.open("about", Config.aboutScene);
     }
 
     private void btnBuyAction(MouseEvent mouseEvent) {
+        t.interrupt();
         Main.sceneMan.open("buy", Config.buyScene);
     }
 
@@ -221,6 +246,7 @@ public class AdminController implements Initializable {
     }
 
     public void btnSettingsAction(MouseEvent mouseEvent) {
+        t.interrupt();
         Main.sceneMan.open("settings", Config.settingsScene);
     }
 
@@ -250,6 +276,7 @@ public class AdminController implements Initializable {
     }
 
     private void btnLogoutAction(MouseEvent mouseEvent) {
+        t.interrupt();
         if (Utils.removeFile(Config.userTempData) && Utils.removeFile(Config.savedUserData)) {
             System.out.println(" - Logout Successful!");
         }
