@@ -145,6 +145,7 @@ public class SettingsController implements Initializable {
 
         User user = new User(Main.user.getName(), Main.user.getEmail(), Main.user.getPhone(), Main.user.getPasswords());
 
+        user.setType(Main.user.getType());
         user.setName(tfName.getText());
         user.setPhone(tfPhone.getText());
 
