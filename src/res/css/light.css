@@ -269,3 +269,8 @@
 .my-pic {
     -fx-background-radius: 20;
 }
+
+.hyperlink {
+    -fx-border-color: transparent;
+    -fx-padding: 4 0 4 0;
+}

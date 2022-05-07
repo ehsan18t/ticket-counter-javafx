@@ -8,6 +8,7 @@ import dev.pages.ahsan.main.Main;
 import dev.pages.ahsan.utils.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,18 +24,40 @@ import java.util.Timer;
 
 public class AboutController implements Initializable {
 
+    // About Info
+    @FXML
+    private Text txtTitle;
+
+    @FXML
+    private Text txtAuthorName;
+
+    @FXML
+    private Hyperlink txtAuthorEmail;
+
+    @FXML
+    private Text txtOrgName;
+
+    @FXML
+    private Hyperlink txtRepo;
+
+    // TopBar
     @FXML
     private ImageView btnClose;
 
     @FXML
     private ImageView btnMin;
 
-    @FXML
-    private Text txtTitle;
-
+    // Logged User Details
     @FXML
     private Text txtUserName;
 
+    @FXML
+    private Text txtEmail;
+
+    @FXML
+    private Text txtPhone;
+
+    // Manu & Others
     @FXML
     private ImageView btnLogout;
 
@@ -60,12 +83,6 @@ public class AboutController implements Initializable {
     private AnchorPane btnAdmin;
 
     @FXML
-    private Text txtEmail;
-
-    @FXML
-    private Text txtPhone;
-
-    @FXML
     private Text txtBuy;
 
 
@@ -77,11 +94,18 @@ public class AboutController implements Initializable {
         image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/menu-expand.png")));
         image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/017-menu-6.png")));
 
+        // About Info
+        txtTitle.setText(Config.title + " " + Config.version);
+        txtAuthorName.setText(Config.author);
+        txtOrgName.setText(Config.org);
+        txtAuthorEmail.setText(Config.email);
+        txtAuthorEmail.setOnMouseClicked(e -> Utils.openLink("mailto:" + Config.email));
+        txtRepo.setText(Config.gitRepo);
+        txtRepo.setOnMouseClicked(e -> Utils.openLink(Config.gitRepo));
 
         // set
         menuPane.setVisible(false);
         btnAdmin.setVisible(false);
-        txtTitle.setText(Config.title + " " + Config.version);
         txtUserName.setText(Main.user.getName() + "");
         txtEmail.setText(Main.user.getEmail() + "");
         txtPhone.setText(Main.user.getPhone() + "");

@@ -116,22 +116,22 @@
                 <Image url="@../../../../res/img/logout.png" />
             </image>
         </ImageView>
-      <Text fx:id="txtTitle" fill="#f47373" layoutX="387.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ticket Counter v1.0">
+      <Text fx:id="txtTitle" fill="#f47373" layoutX="291.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ticket Counter v1.0" textAlignment="CENTER" wrappingWidth="749.3700561523435">
          <font>
             <Font name="Ink Free" size="64.0" />
          </font>
       </Text>
-      <Text layoutX="582.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Developed by">
+      <Text layoutX="277.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Developed by" textAlignment="CENTER" wrappingWidth="749.3700561523435">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="466.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MD. Ahasan Khan">
+      <Text fx:id="txtAuthorName" layoutX="280.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MD. Ahasan Khan" textAlignment="CENTER" wrappingWidth="749.3700561523436">
          <font>
             <Font name="Lucida Handwriting Italic" size="36.0" />
          </font>
       </Text>
-      <Text fill="#e96900" layoutX="492.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="United International University">
+      <Text fx:id="txtOrgName" fill="#e96900" layoutX="492.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="United International University">
          <font>
             <Font size="24.0" />
          </font>
@@ -146,12 +146,12 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Hyperlink layoutX="578.0" layoutY="370.0" text="mkhan201122@bscse.uiu.ac.bd" textFill="#072ef4">
+      <Hyperlink fx:id="txtAuthorEmail" layoutX="578.0" layoutY="370.0" prefHeight="27.0" prefWidth="449.0" text="mkhan201122@bscse.uiu.ac.bd" textFill="#072ef4">
          <font>
             <Font size="14.0" />
          </font>
       </Hyperlink>
-      <Hyperlink layoutX="578.0" layoutY="396.0" text="https://github.com/Ahsan40/ticket-counter-javafx" textFill="#024338">
+      <Hyperlink fx:id="txtRepo" layoutX="578.0" layoutY="396.0" prefHeight="27.0" prefWidth="455.0" text="https://github.com/Ahsan40/ticket-counter-javafx" textFill="#024338">
          <font>
             <Font size="14.0" />
          </font>

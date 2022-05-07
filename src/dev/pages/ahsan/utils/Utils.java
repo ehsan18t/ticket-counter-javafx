@@ -6,7 +6,10 @@ import dev.pages.ahsan.user.User;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+import java.awt.*;
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
@@ -151,4 +154,11 @@ public class Utils {
         System.exit(0);
     }
 
+   public static void openLink(String link) {
+        try {
+            Desktop.getDesktop().browse(new URI(link));
+        } catch (URISyntaxException | IOException ex) {
+            System.err.println(" - Link open failed!");
+        }
+    }
 }

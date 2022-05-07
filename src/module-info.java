@@ -4,6 +4,7 @@ module ticket.counter {
     requires javafx.controls;
     requires javafx.graphics;
     requires animateFX;
+    requires java.desktop;
 
     // Opens
     opens dev.pages.ahsan.main to javafx.fxml;
