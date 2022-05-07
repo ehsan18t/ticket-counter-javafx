@@ -134,6 +134,13 @@ public class HomeController implements Initializable {
         image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/menu-expand.png")));
         image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/017-menu-6.png")));
 
+        // get data from server
+        try {
+            Main.sendObj.writeObject("getBusData");
+            Main.busData = (HashMap<Bus, HashMap<String, ArrayList<Ticket>>>) Main.receiveObj.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         // Table
         busIdCol.setCellValueFactory(new PropertyValueFactory<>("bus"));
