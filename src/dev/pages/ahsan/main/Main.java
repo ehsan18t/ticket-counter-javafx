@@ -43,6 +43,8 @@ public class Main extends Application {
         File f1 = new File(Config.savedUserData);
         File f2 = new File(Config.userTempData);
 
+        if (f2.exists()) f2.delete();
+
         if (f1.exists()) {
             Files.copy(f1.toPath(), f2.toPath());
             while (!f2.canWrite()) {
