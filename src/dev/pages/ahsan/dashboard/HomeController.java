@@ -177,6 +177,7 @@ public class HomeController implements Initializable {
 
     // get all tickets of current user
     public ObservableList<Ticket> getTickets() {
+        if (Main.busData == null) Main.busData = new HashMap<>();
         ObservableList<Ticket> allBus = FXCollections.observableArrayList();
         for (Map.Entry<Bus, HashMap<String, ArrayList<Ticket>>> entry: Main.busData.entrySet()) {
             if (entry.getValue().containsKey(Main.user.getEmail()))
