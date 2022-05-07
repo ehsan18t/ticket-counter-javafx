@@ -219,15 +219,15 @@ public class BuyController  implements Initializable {
     }
 
     private void btnAdminAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("Admin");
+        Main.sceneMan.open("admin", Config.adminScene);
     }
 
     private void btnHomeAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("Home");
+        Main.sceneMan.open("home", Config.homeScene);
     }
 
     private void btnAboutAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("About");
+        Main.sceneMan.open("about", Config.aboutScene);
     }
 
     private void resetSeatState() {
@@ -396,7 +396,7 @@ public class BuyController  implements Initializable {
     }
 
     public void btnSettingsAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("Settings");
+        Main.sceneMan.open("settings", Config.settingsScene);
     }
 
     private void btnMenuAction(MouseEvent mouseEvent) {
@@ -428,7 +428,8 @@ public class BuyController  implements Initializable {
         if (Utils.removeFile(Config.userTempData) && Utils.removeFile(Config.savedUserData)) {
             System.out.println(" - Logout Successful!");
         }
-         Main.screenController.activate("Login");
+         Main.sceneMan.reload("login");
+         Main.sceneMan.activate("login");
     }
 
     private void setBtnCloseAction(MouseEvent event) {

@@ -11,9 +11,7 @@ import dev.pages.ahsan.utils.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -113,24 +111,7 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Add Pages
         btnAdmin.setVisible(false);
-        try {
-            Parent settings = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.settingsScene)));
-            Main.screenController.addScreen("Settings", 646, 1051, settings);
-
-            Parent admin = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.adminScene)));
-            Main.screenController.addScreen("Admin", 646, 1051, admin);
-
-            Parent buy = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.buyScene)));
-            Main.screenController.addScreen("Buy", 646, 1051, buy);
-
-            Parent about = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.aboutScene)));
-            Main.screenController.addScreen("About", 646, 1051, about);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/menu-expand.png")));
         image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/017-menu-6.png")));
 
@@ -179,7 +160,7 @@ public class HomeController implements Initializable {
     }
 
     private void btnAboutAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("About");
+            Main.sceneMan.open("about", Config.aboutScene);
     }
 
     // get all tickets of current user
@@ -231,15 +212,15 @@ public class HomeController implements Initializable {
 
 
     private void btnBuyAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("Buy");
+        Main.sceneMan.open("buy", Config.buyScene);
     }
 
     private void btnAdminAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("Admin");
+        Main.sceneMan.open("admin", Config.adminScene);
     }
 
     public void btnSettingsAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("Settings");
+        Main.sceneMan.open("settings", Config.settingsScene);
     }
 
 
@@ -272,7 +253,8 @@ public class HomeController implements Initializable {
         if (Utils.removeFile(Config.userTempData) && Utils.removeFile(Config.savedUserData)) {
             System.out.println(" - Logout Successful!");
         }
-        Main.screenController.activate("Login");
+        Main.sceneMan.reload("login");
+        Main.sceneMan.activate("login");
     }
 
     private void setBtnCloseAction(MouseEvent event) {

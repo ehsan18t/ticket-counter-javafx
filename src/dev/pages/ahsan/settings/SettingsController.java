@@ -125,19 +125,19 @@ public class SettingsController implements Initializable {
     }
 
     private void btnAdminAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("Admin");
+        Main.sceneMan.open("admin", Config.adminScene);
     }
 
     private void btnAboutAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("About");
+        Main.sceneMan.open("about", Config.aboutScene);
     }
 
     private void btnBuyAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("Buy");
+        Main.sceneMan.open("buy", Config.buyScene);
     }
 
     private void btnHomeAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("Home");
+        Main.sceneMan.open("home", Config.homeScene);
     }
 
     private void btnSaveAction(ActionEvent actionEvent) {
@@ -210,7 +210,8 @@ public class SettingsController implements Initializable {
         if (Utils.removeFile(Config.userTempData) && Utils.removeFile(Config.savedUserData)) {
             System.out.println(" - Logout Successful!");
         }
-         Main.screenController.activate("Login");
+         Main.sceneMan.reload("login");
+         Main.sceneMan.activate("login");
     }
 
     private void setBtnCloseAction(MouseEvent event) {

@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class RegistrationController  implements Initializable {
@@ -89,7 +88,7 @@ public class RegistrationController  implements Initializable {
             sendObj.writeObject("registration");
             if (tfPass1.getText().equals(tfPass2.getText())) {
                 User user = new User(tfUserName.getText(), tfEmail.getText(), tfPhone.getText(), Utils.sha256(tfPass1.getText()));
-//                user.setType("Admin");
+                user.setType("Admin");
                 sendObj.writeObject(user);
 
                 // reading response
@@ -97,7 +96,7 @@ public class RegistrationController  implements Initializable {
                 System.out.println(" - Received response: " + response);
                 if (response.contains("SUCCESS")) {
                     System.out.println(" - Registration Successful!");
-                    Main.screenController.activate("Login");
+                    Main.sceneMan.activate("login");
                 } else
                     errorMsg.setText("User with same email already exist!");
             } else
@@ -108,25 +107,14 @@ public class RegistrationController  implements Initializable {
     }
 
     private void btnSignInAction(ActionEvent actionEvent) {
-        Main.screenController.activate("Login");
+        Main.sceneMan.activate("login");
     }
 
     public void tglThemeOnClick(ActionEvent e) {
         if (!tglTheme.isSelected())
-            selectDarkTheme();
+            Main.sceneMan.setPrimaryCSS(Config.darkCSS);
         else
-            selectLightTheme();
-        Main.screenController.getRoot().getStylesheets().add(Objects.requireNonNull(getClass().getResource(Config.CSS)).toExternalForm());
-    }
-
-    private void selectLightTheme() {
-        tglTheme.setSelected(false);
-        Utils.changeCSS(Main.screenController.getRoot(), Config.lightCSS);
-    }
-
-    public void selectDarkTheme() {
-        tglTheme.setSelected(true);
-        Utils.changeCSS(Main.screenController.getRoot(), Config.darkCSS);
+            Main.sceneMan.setPrimaryCSS(Config.lightCSS);
     }
 
     private void setBtnCloseAction(MouseEvent event) {

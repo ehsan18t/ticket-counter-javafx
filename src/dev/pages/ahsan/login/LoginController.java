@@ -6,9 +6,7 @@ import dev.pages.ahsan.user.User;
 import dev.pages.ahsan.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -19,9 +17,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -79,35 +75,19 @@ public class LoginController implements Initializable {
             if (chkRememberMe.isSelected())
                 Utils.writeUserToFile(Utils.readUserFromFile(Config.userTempData), Config.savedUserData);
             System.out.println(" - Logging in to User Control Panel");
-            Parent home = null;
-            try {
-                home = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.homeScene)));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Main.screenController.addScreen("Home", 646, 1051, home);
-            Main.screenController.activate("Home");
+//            Main.sceneMan.add("about", Config.aboutScene);
+            Main.sceneMan.open("home", Config.homeScene);
         } else {
             errorMsg.setText("Login Failed!");
         }
     }
 
+
     public void tglThemeOnClick(ActionEvent e) {
         if (!tglTheme.isSelected())
-            selectDarkTheme();
+            Main.sceneMan.setPrimaryCSS(Config.darkCSS);
         else
-            selectLightTheme();
-        Main.screenController.getRoot().getStylesheets().add(Objects.requireNonNull(getClass().getResource(Config.CSS)).toExternalForm());
-    }
-
-    private void selectLightTheme() {
-        tglTheme.setSelected(false);
-        Utils.changeCSS(Main.screenController.getRoot(), Config.lightCSS);
-    }
-
-    public void selectDarkTheme() {
-        tglTheme.setSelected(true);
-        Utils.changeCSS(Main.screenController.getRoot(), Config.darkCSS);
+            Main.sceneMan.setPrimaryCSS(Config.lightCSS);
     }
 
     private void setBtnCloseAction(MouseEvent event) {
@@ -123,6 +103,7 @@ public class LoginController implements Initializable {
     }
 
     private void btnRegisterAction(ActionEvent actionEvent) {
-        Main.screenController.activate("Register");
+        Main.sceneMan.reload("registration");
+        Main.sceneMan.activate("registration");
     }
 }

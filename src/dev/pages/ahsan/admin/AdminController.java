@@ -168,15 +168,15 @@ public class AdminController implements Initializable {
     }
 
     private void btnHomeAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("Home");
+        Main.sceneMan.open("home", Config.homeScene);
     }
 
     private void btnAboutAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("About");
+        Main.sceneMan.open("about", Config.aboutScene);
     }
 
     private void btnBuyAction(MouseEvent mouseEvent) {
-        Main.screenController.activate("Buy");
+        Main.sceneMan.open("buy", Config.buyScene);
     }
 
     private void btnRemoveAction(ActionEvent actionEvent) {
@@ -221,14 +221,7 @@ public class AdminController implements Initializable {
     }
 
     public void btnSettingsAction(MouseEvent mouseEvent) {
-//        try {
-//        Main.screenController.removeScreen("Buy");
-//        Parent buy = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.buyScene)));
-//        Main.screenController.addScreen("Buy", 646, 1051, buy);
-//    } catch (IOException e) {
-//        e.printStackTrace();
-//    }
-        Main.screenController.activate("Settings");
+        Main.sceneMan.open("settings", Config.settingsScene);
     }
 
     private void btnMenuAction(MouseEvent mouseEvent) {
@@ -260,7 +253,8 @@ public class AdminController implements Initializable {
         if (Utils.removeFile(Config.userTempData) && Utils.removeFile(Config.savedUserData)) {
             System.out.println(" - Logout Successful!");
         }
-         Main.screenController.activate("Login");
+         Main.sceneMan.reload("login");
+         Main.sceneMan.activate("login");
     }
 
     private void setBtnCloseAction(MouseEvent event) {

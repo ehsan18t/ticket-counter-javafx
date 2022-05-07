@@ -3,13 +3,10 @@ package dev.pages.ahsan.main;
 import dev.pages.ahsan.user.Bus;
 import dev.pages.ahsan.user.Ticket;
 import dev.pages.ahsan.user.User;
-import dev.pages.ahsan.utils.ScreenController;
+import dev.pages.ahsan.utils.SceneManager;
+import dev.pages.ahsan.utils.Size;
 import dev.pages.ahsan.utils.Utils;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -18,20 +15,23 @@ import java.net.Socket;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class Main extends Application {
     public static HashMap<Bus, HashMap<String, ArrayList<Ticket>>>  busData;
     public static User user = null;
-    public static Stage primaryStage;
-    public static Scene scene;
-    public static ScreenController screenController;
+    public static SceneManager sceneMan;
     public static Socket sc;
     public static ObjectOutputStream sendObj;
     public static ObjectInputStream receiveObj;
 
     @Override
     public void start(Stage stage) throws Exception{
+        // Scene Configs
+        stage.setTitle(Config.title + " " + Config.version);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        sceneMan = new SceneManager(stage, Config.lightCSS);
+        sceneMan.setDefaultSize(new Size(Config.defaultHeight, Config.defaultWeight));
+
         // Configure
         sc = new Socket(Config.server, Config.port);
         OutputStream oo = sc.getOutputStream();
@@ -50,69 +50,25 @@ public class Main extends Application {
             }
         }
 
-        primaryStage = stage;
-
-        // Set FXML
-        Parent login = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.loginScene)));
-        Parent register = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.registrationScene)));
-
-        // scene
-        scene = new Scene(login);
-        screenController = new ScreenController(scene);
-        screenController.addScreen("Login", 600, 500, login);
-        screenController.addScreen("Register", 656, 500, register);
-
 
         // Determining Page to Open
         System.out.println(" - Checking User");
+        sceneMan.add("login", Config.loginScene, 600, 500);
+        sceneMan.add("registration", Config.registrationScene,656, 500);
         if (f2.exists()) {
             boolean result = Utils.checkLogin(Utils.readUserFromFile(Config.userTempData), receiveObj, sendObj);
-
             if (result) {
                 if (Main.user.getType().equals("Admin")) {
-                    // Add Pages
-                    Parent settings = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.settingsScene)));
-                    Main.screenController.addScreen("Settings", 646, 1051, settings);
-
-                    Parent admin = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.adminScene)));
-                    Main.screenController.addScreen("Admin", 646, 1051, admin);
-
-                    Parent buy = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.buyScene)));
-                    Main.screenController.addScreen("Buy", 646, 1051, buy);
-
-                    Parent about = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.aboutScene)));
-                    Main.screenController.addScreen("About", 646, 1051, about);
-
-                    Main.screenController.activate("Admin");
+                    sceneMan.open("admin", Config.adminScene);
                 } else {
                     System.out.println(" - Logging in to User Control Panel.");
-                    Parent home = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Config.homeScene)));
-                    screenController.addScreen("Home", 646, 1051, home);
-                    Main.screenController.activate("Home");
+                    sceneMan.open("home", Config.homeScene);
                 }
             }
         } else {
             System.out.println(" - Redirecting to Login Page.");
-            screenController.activate("Login");
+            sceneMan.activate("login");
         }
-
-        // Set Title
-        primaryStage.setTitle(Config.title + " " + Config.version);
-
-        // Set CSS
-        screenController.getRoot().getStylesheets().add(Objects.requireNonNull(getClass().getResource(Config.CSS)).toExternalForm());
-
-        // Make Stage Transparent
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
-
-        // Make Scene Draggable
-        Utils.makeDraggable(scene);
-
-        // Make Scene Transparent
-        scene.setFill(Color.TRANSPARENT);
-
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     public static void main(String[] args) {
