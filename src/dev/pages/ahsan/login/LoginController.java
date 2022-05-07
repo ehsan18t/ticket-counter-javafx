@@ -74,9 +74,12 @@ public class LoginController implements Initializable {
         if (result) {
             if (chkRememberMe.isSelected())
                 Utils.writeUserToFile(Utils.readUserFromFile(Config.userTempData), Config.savedUserData);
-            System.out.println(" - Logging in to User Control Panel");
-//            Main.sceneMan.add("about", Config.aboutScene);
-            Main.sceneMan.open("home", Config.homeScene);
+            if (Main.user.getType().equalsIgnoreCase("admin")) {
+                Main.sceneMan.open("admin", Config.adminScene);
+            } else {
+                System.out.println(" - Logging in to User Control Panel.");
+                Main.sceneMan.open("home", Config.homeScene);
+            }
         } else {
             errorMsg.setText("Login Failed!");
         }

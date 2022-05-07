@@ -58,7 +58,7 @@ public class Main extends Application {
         if (f2.exists()) {
             boolean result = Utils.checkLogin(Utils.readUserFromFile(Config.userTempData), receiveObj, sendObj);
             if (result) {
-                if (Main.user.getType().equals("Admin")) {
+                if (Main.user.getType().equalsIgnoreCase("admin")) {
                     sceneMan.open("admin", Config.adminScene);
                 } else {
                     System.out.println(" - Logging in to User Control Panel.");
