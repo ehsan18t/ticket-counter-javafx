@@ -205,12 +205,16 @@ public class AdminController implements Initializable {
     }
 
     private void btnRemoveAction(ActionEvent actionEvent) {
+        ObservableList<Bus> original = FXCollections.observableArrayList();
+        HashMap<Bus, HashMap<String, ArrayList<Ticket>>>  busData = new HashMap<>();
         try {
             ObservableList<Bus> rows, allRows;
             allRows = table.getItems();
             rows = table.getSelectionModel().getSelectedItems();
             for (Bus b: rows) {
+                original.add(b);
                 Main.busData.remove(b);
+                busData.put(b, Main.busData.get(b));
                 buses.remove(b);
                 allRows.remove(b);
             }
@@ -218,7 +222,12 @@ public class AdminController implements Initializable {
         try {
             Main.sendObj.writeObject("removeBus");
             Main.sendObj.writeObject(Main.busData);
-        } catch (IOException e) {
+        } catch (Exception e) {
+            // if exception occurs original item restored to avoid data loss on client side
+            for (Bus b: original)
+                Main.busData.put(b, busData.get(b));
+
+            table.setItems(original);
             e.printStackTrace();
         }
     }
