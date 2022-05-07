@@ -178,7 +178,8 @@ public class BuyController  implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        serverListener();
+        if (!Main.user.getType().equalsIgnoreCase("admin"))
+            serverListener();
         seats = new ArrayList<>();
         initBtn();
         image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/menu-expand.png")));
