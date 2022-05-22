@@ -173,11 +173,14 @@ public class BuyController  implements Initializable {
     @FXML
     private Text txtBuy;
 
+    private boolean logout;
+
     Image image1;
     Image image2;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        logout = false;
         if (!Main.user.getType().equalsIgnoreCase("admin"))
             serverListener();
         seats = new ArrayList<>();
@@ -306,6 +309,11 @@ public class BuyController  implements Initializable {
             try {
                 String response = (String) Main.receiveObj.readObject();
                 System.out.println(" [*] Received cmd from server " + response);
+                if (logout) {
+                    Thread.interrupted();
+                    break;
+                }
+
                 Main.busData = (HashMap<Bus, HashMap<String, ArrayList<Ticket>>>) Main.receiveObj.readObject();
                 if (response.contains("refresh")) {
                     int i =  choiceBus.getSelectionModel().getSelectedIndex();
@@ -426,9 +434,14 @@ public class BuyController  implements Initializable {
     }
 
     private void btnLogoutAction(MouseEvent mouseEvent) {
+        try {
+            Main.sendObj.writeObject("logout");
+        } catch (IOException ignored) {}
         if (Utils.removeFile(Config.userTempData) && Utils.removeFile(Config.savedUserData)) {
+            logout = true;
             System.out.println(" - Logout Successful!");
         }
+
          Main.sceneMan.reload("login");
          Main.sceneMan.activate("login");
     }
