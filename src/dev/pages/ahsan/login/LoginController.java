@@ -94,7 +94,7 @@ public class LoginController implements Initializable {
     }
 
     private void setBtnCloseAction(MouseEvent event) {
-        File f = new File("userData.ser");
+        File f = new File(Config.userTempData);
         if (f.delete())
             System.out.println("Deleted temp user data userData.ser");
         System.exit(0);
