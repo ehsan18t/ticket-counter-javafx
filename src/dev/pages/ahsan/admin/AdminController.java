@@ -118,10 +118,11 @@ public class AdminController implements Initializable {
     Image image1;
     Image image2;
 
-    private Thread t;
+    private boolean logout;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        logout = false;
         image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/menu-expand.png")));
         image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/017-menu-6.png")));
 
@@ -169,16 +170,28 @@ public class AdminController implements Initializable {
         }
 
         serverListener();
-        t.start();
     }
 
-
+    private void logout() {
+        logout = true;
+        try {
+            Main.sendObj.writeObject("logout");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     private void serverListener() {
-        t = new Thread(() -> {
+        new Thread(() -> {
             while(true) {
                 try {
                     String response = (String) Main.receiveObj.readObject();
                     System.out.println(" [*] Received cmd from server " + response);
+
+                    if (logout) {
+                        Thread.interrupted();
+                        break;
+                    }
+
                     Main.busData = (HashMap<Bus, HashMap<String, ArrayList<Ticket>>>) Main.receiveObj.readObject();
                     if (response.contains("refresh")) {
                         table.setItems(getBus());
@@ -190,17 +203,17 @@ public class AdminController implements Initializable {
 
 
     private void btnHomeAction(MouseEvent mouseEvent) {
-        t.interrupt();
+        logout();
         Main.sceneMan.open("home", Config.homeScene);
     }
 
     private void btnAboutAction(MouseEvent mouseEvent) {
-        t.interrupt();
+        logout();
         Main.sceneMan.open("about", Config.aboutScene);
     }
 
     private void btnBuyAction(MouseEvent mouseEvent) {
-        t.interrupt();
+        logout();
         Main.sceneMan.open("buy", Config.buyScene);
     }
 
@@ -256,7 +269,7 @@ public class AdminController implements Initializable {
     }
 
     public void btnSettingsAction(MouseEvent mouseEvent) {
-        t.interrupt();
+        logout();
         Main.sceneMan.open("settings", Config.settingsScene);
     }
 
@@ -286,7 +299,7 @@ public class AdminController implements Initializable {
     }
 
     private void btnLogoutAction(MouseEvent mouseEvent) {
-        t.interrupt();
+        logout();
         if (Utils.removeFile(Config.userTempData) && Utils.removeFile(Config.savedUserData)) {
             System.out.println(" - Logout Successful!");
         }
@@ -295,6 +308,7 @@ public class AdminController implements Initializable {
     }
 
     private void setBtnCloseAction(MouseEvent event) {
+        logout();
         Utils.exit();
     }
 
