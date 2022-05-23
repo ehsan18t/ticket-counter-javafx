@@ -223,14 +223,17 @@ public class BuyController  implements Initializable {
     }
 
     private void btnAdminAction(MouseEvent mouseEvent) {
+        logout();
         Main.sceneMan.open("admin", Config.adminScene);
     }
 
     private void btnHomeAction(MouseEvent mouseEvent) {
+        logout();
         Main.sceneMan.open("home", Config.homeScene);
     }
 
     private void btnAboutAction(MouseEvent mouseEvent) {
+        logout();
         Main.sceneMan.open("about", Config.aboutScene);
     }
 
@@ -404,7 +407,16 @@ public class BuyController  implements Initializable {
         seats.add(btnSeat_6_3);
     }
 
+    private void logout() {
+        logout = true;
+        try {
+            Main.sendObj.writeObject("logout");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public void btnSettingsAction(MouseEvent mouseEvent) {
+        logout();
         Main.sceneMan.open("settings", Config.settingsScene);
     }
 
