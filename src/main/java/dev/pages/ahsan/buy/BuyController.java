@@ -185,8 +185,8 @@ public class BuyController  implements Initializable {
             serverListener();
         seats = new ArrayList<>();
         initBtn();
-        image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/menu-expand.png")));
-        image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/img/017-menu-6.png")));
+        image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/menu-expand.png")));
+        image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/017-menu-6.png")));
 
         // set
         menuPane.setVisible(false);

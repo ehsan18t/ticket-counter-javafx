@@ -17,12 +17,12 @@
          <buttons>
             <ImageView fx:id="btnMin" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../res/img/minimize.png" />
+                  <Image url="@../img/minimize.png" />
                </image>
             </ImageView>
             <ImageView fx:id="btnClose" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../res/img/exit.png" />
+                  <Image url="@../img/exit.png" />
                </image>
             </ImageView>
          </buttons>
@@ -33,17 +33,17 @@
                <children>
                   <ImageView fx:id="btnMenu" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
                      <image>
-                        <Image url="@../../../../res/img/017-menu-6.png" />
+                        <Image url="@../img/017-menu-6.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="92.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../res/img/eTicket-Logo.png" />
+                        <Image url="@../img/eTicket-Logo.png" />
                      </image>
                   </ImageView>
                </children>
             </HBox>
-            <AnchorPane id="menuPane" fx:id="menuPane" prefHeight="562.0" prefWidth="277.0" stylesheets="@../../../../res/css/light.css" visible="false">
+            <AnchorPane id="menuPane" fx:id="menuPane" prefHeight="562.0" prefWidth="277.0" stylesheets="@../css/light.css" visible="false">
                <children>
                   <AnchorPane layoutY="94.0" prefHeight="65.0" prefWidth="289.0" styleClass="menu-item-active">
                      <children>
@@ -54,7 +54,7 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="btnBuy" layoutX="-1.0" layoutY="159.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css">
+                  <AnchorPane fx:id="btnBuy" layoutX="-1.0" layoutY="159.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../css/light.css">
                      <children>
                         <Text layoutX="5.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Buy" textAlignment="CENTER" wrappingWidth="274.1818389892578">
                            <font>
@@ -63,7 +63,7 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="btnSettings" layoutX="-1.0" layoutY="215.0" onMouseClicked="#btnSettingsAction" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css">
+                  <AnchorPane fx:id="btnSettings" layoutX="-1.0" layoutY="215.0" onMouseClicked="#btnSettingsAction" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../css/light.css">
                      <children>
                         <Text layoutX="52.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" textAlignment="CENTER" wrappingWidth="185.9853515625001">
                            <font>
@@ -72,7 +72,7 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="btnAbout" layoutY="272.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css">
+                  <AnchorPane fx:id="btnAbout" layoutY="272.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../css/light.css">
                      <children>
                         <Text layoutX="83.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="About" textAlignment="CENTER" wrappingWidth="123.77556228637695">
                            <font>
@@ -81,7 +81,7 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="btnAdmin" layoutY="496.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css">
+                  <AnchorPane fx:id="btnAdmin" layoutY="496.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../css/light.css">
                      <children>
                         <Text layoutX="7.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Control" textAlignment="CENTER" wrappingWidth="274.1818389892578">
                            <font>
@@ -103,7 +103,7 @@
             <TableColumn fx:id="seatCol" maxWidth="93.38187521185841" prefWidth="58.472900390625" styleClass="align-center" text="Seat" />
          </columns>
       </TableView>
-      <AnchorPane fx:id="mainPaneHome" disable="true" layoutY="83.0" prefHeight="562.0" prefWidth="291.0" stylesheets="@../../../../res/css/light.css">
+      <AnchorPane fx:id="mainPaneHome" disable="true" layoutY="83.0" prefHeight="562.0" prefWidth="291.0" stylesheets="@../css/light.css">
          <children>
             <Text layoutX="93.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome">
                <font>
@@ -133,7 +133,7 @@
       </Text>
       <ImageView fx:id="btnLogout" fitHeight="40.0" fitWidth="40.0" layoutX="997.0" layoutY="589.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../res/img/logout.png" />
+            <Image url="@../img/logout.png" />
          </image>
       </ImageView>
       <AnchorPane layoutX="418.0" layoutY="83.0" prefHeight="136.0" prefWidth="201.0" style="-fx-background-color: skyblue; -fx-background-radius: 20;">

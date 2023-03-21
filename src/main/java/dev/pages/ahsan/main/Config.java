@@ -12,19 +12,21 @@ public class Config {
     public static final double defaultWeight = 1051;
 
     // Pages
-    public static final String loginScene = "/dev/pages/ahsan/login/login.fxml";
-    public static final String registrationScene = "/dev/pages/ahsan/registration/registration.fxml";
-    public static final String homeScene = "/dev/pages/ahsan/dashboard/home.fxml";
-    public static final String settingsScene = "/dev/pages/ahsan/settings/Settings.fxml";
-    public static final String adminScene = "/dev/pages/ahsan/admin/Admin.fxml";
-    public static final String buyScene = "/dev/pages/ahsan/buy/Buy.fxml";
-    public static final String aboutScene = "/dev/pages/ahsan/about/About.fxml";
-    public static final String lightCSS = "/res/css/light.css";
-    public static final String darkCSS = "/res/css/dark.css";
+    public static final String loginScene = "/fxml/login.fxml";
+    public static final String registrationScene = "/fxml/registration.fxml";
+    public static final String homeScene = "/fxml/home.fxml";
+    public static final String settingsScene = "/fxml/Settings.fxml";
+    public static final String adminScene = "/fxml/Admin.fxml";
+    public static final String buyScene = "/fxml/Buy.fxml";
+    public static final String aboutScene = "/fxml/About.fxml";
+
+    //Resources
+    public static final String lightCSS = "/css/light.css";
+    public static final String darkCSS = "/css/dark.css";
     public static String CSS = lightCSS;
-    public static final String icon = "/res/img/icon.png";
-    public static final String exitIcon = "/res/img/exit.png";
-    public static final String minimizeIcon = "/res/img/minimize.png";
+    public static final String icon = "/img/icon.png";
+    public static final String exitIcon = "/img/exit.png";
+    public static final String minimizeIcon = "/img/minimize.png";
 
     // Info
     public static final String author = "Md. Ahasan Khan";
