@@ -7,29 +7,29 @@ module ticket.counter {
     requires java.desktop;
 
     // Opens
-    opens dev.pages.ahsan.main to javafx.fxml;
-    opens dev.pages.ahsan.login to javafx.fxml;
-    opens dev.pages.ahsan.registration to javafx.fxml;
-    opens dev.pages.ahsan.dashboard to javafx.fxml;
-    opens dev.pages.ahsan.settings to javafx.fxml;
-    opens dev.pages.ahsan.admin to javafx.fxml;
-    opens dev.pages.ahsan.buy to javafx.fxml;
-    opens dev.pages.ahsan.about to javafx.fxml;
-    opens dev.pages.ahsan.user to javafx.base;
-    opens dev.pages.ahsan.utils to javafx.base;
+    opens dev.pages.ehsan.main to javafx.fxml;
+    opens dev.pages.ehsan.login to javafx.fxml;
+    opens dev.pages.ehsan.registration to javafx.fxml;
+    opens dev.pages.ehsan.dashboard to javafx.fxml;
+    opens dev.pages.ehsan.settings to javafx.fxml;
+    opens dev.pages.ehsan.admin to javafx.fxml;
+    opens dev.pages.ehsan.buy to javafx.fxml;
+    opens dev.pages.ehsan.about to javafx.fxml;
+    opens dev.pages.ehsan.user to javafx.base;
+    opens dev.pages.ehsan.utils to javafx.base;
     opens lib to javafx.fxml;
 
     // Exports
-    exports dev.pages.ahsan.main to javafx.graphics;
-    exports dev.pages.ahsan.login to javafx.graphics;
-    exports dev.pages.ahsan.registration to javafx.graphics;
-    exports dev.pages.ahsan.dashboard to javafx.graphics;
-    exports dev.pages.ahsan.admin to javafx.graphics;
-    exports dev.pages.ahsan.settings to javafx.graphics;
-    exports dev.pages.ahsan.buy to javafx.graphics;
-    exports dev.pages.ahsan.about to javafx.graphics;
-    exports dev.pages.ahsan.utils to javafx.graphics;
-    exports dev.pages.ahsan.user to javafx.graphics;
-    exports dev.pages.ahsan.controllers to javafx.graphics;
-    opens dev.pages.ahsan.controllers to javafx.fxml;
+    exports dev.pages.ehsan.main to javafx.graphics;
+    exports dev.pages.ehsan.login to javafx.graphics;
+    exports dev.pages.ehsan.registration to javafx.graphics;
+    exports dev.pages.ehsan.dashboard to javafx.graphics;
+    exports dev.pages.ehsan.admin to javafx.graphics;
+    exports dev.pages.ehsan.settings to javafx.graphics;
+    exports dev.pages.ehsan.buy to javafx.graphics;
+    exports dev.pages.ehsan.about to javafx.graphics;
+    exports dev.pages.ehsan.utils to javafx.graphics;
+    exports dev.pages.ehsan.user to javafx.graphics;
+    exports dev.pages.ehsan.controllers to javafx.graphics;
+    opens dev.pages.ehsan.controllers to javafx.fxml;
 }

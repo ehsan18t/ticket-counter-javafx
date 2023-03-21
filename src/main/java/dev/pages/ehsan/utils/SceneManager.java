@@ -1,4 +1,4 @@
-package dev.pages.ahsan.utils;
+package dev.pages.ehsan.utils;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,7 +24,7 @@ import java.util.Objects;
  *
  * @Author: Ahsan Khan
  * @Github: <a href="https://github.com/Ahsan40">https://github.com/Ahsan40</a>
- * @Contact: <a href="mailto:help.ahsan@gmail.com">help.ahsan@gmail.com</a>
+ * @Contact: <a href="mailto:help.ahsan@gmail.com">help.ehsan@gmail.com</a>
  */
 public class SceneManager {
     private static double xOffset;

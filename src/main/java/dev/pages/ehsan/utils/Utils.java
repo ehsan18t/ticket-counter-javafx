@@ -1,8 +1,8 @@
-package dev.pages.ahsan.utils;
+package dev.pages.ehsan.utils;
 
-import dev.pages.ahsan.main.Config;
-import dev.pages.ahsan.main.Main;
-import dev.pages.ahsan.user.User;
+import dev.pages.ehsan.main.Config;
+import dev.pages.ehsan.main.Main;
+import dev.pages.ehsan.user.User;
 import javafx.scene.Parent;
 
 import java.awt.*;

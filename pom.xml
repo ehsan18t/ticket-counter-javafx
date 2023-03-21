@@ -73,7 +73,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                dev.pages.ahsan.ticketcounterjavafx/dev.pages.ahsan.ticketcounterjavafx.HelloApplication
+                                dev.pages.ehsan.ticketcounterjavafx/dev.pages.ehsan.ticketcounterjavafx.HelloApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

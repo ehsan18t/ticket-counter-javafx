@@ -1,4 +1,4 @@
-package dev.pages.ahsan.user;
+package dev.pages.ehsan.user;
 
 import java.io.Serializable;
 

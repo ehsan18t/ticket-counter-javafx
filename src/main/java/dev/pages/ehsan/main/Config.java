@@ -1,4 +1,4 @@
-package dev.pages.ahsan.main;
+package dev.pages.ehsan.main;
 
 public class Config {
     // App Settings
