@@ -3,7 +3,7 @@ module ticket.counter {
     requires javafx.fxml;
     requires javafx.controls;
     requires javafx.graphics;
-    requires animateFX;
+    requires AnimateFX;
     requires java.desktop;
 
     // Opens

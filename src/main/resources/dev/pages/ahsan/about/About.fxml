@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="646.0" prefWidth="1051.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.pages.ahsan.about.AboutController">
+    <children>
+        <ButtonBar layoutX="970.0" layoutY="11.0">
+            <buttons>
+                <ImageView fx:id="btnMin" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../res/img/minimize.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="btnClose" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../res/img/exit.png" />
+                    </image>
+                </ImageView>
+            </buttons>
+        </ButtonBar>
+        <VBox prefHeight="646.0" prefWidth="274.0">
+            <children>
+                <HBox prefHeight="86.0" prefWidth="274.0">
+                    <children>
+                        <ImageView fx:id="btnMenu" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
+                            <image>
+                                <Image url="@../../../../res/img/017-menu-6.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="92.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../res/img/eTicket-Logo.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </HBox>
+                <AnchorPane id="menuPane" fx:id="menuPane" prefHeight="562.0" prefWidth="277.0" stylesheets="@../../../../res/css/light.css" visible="false">
+                    <children>
+                        <AnchorPane fx:id="btnHome" layoutY="94.0" prefHeight="65.0" prefWidth="289.0" styleClass="menu-item">
+                            <children>
+                                <Text layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home" textAlignment="CENTER" wrappingWidth="289.7454444973531">
+                                    <font>
+                                        <Font size="36.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="btnBuy" layoutX="-1.0" layoutY="159.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css">
+                            <children>
+                                <Text fx:id="txtBuy" layoutX="5.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Buy" textAlignment="CENTER" wrappingWidth="274.1818389892578">
+                                    <font>
+                                        <Font size="36.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="btnSettings" layoutX="-1.0" layoutY="215.0" onMouseClicked="#btnSettingsAction" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css">
+                            <children>
+                                <Text layoutX="52.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" textAlignment="CENTER" wrappingWidth="185.9853515625001">
+                                    <font>
+                                        <Font size="36.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane layoutY="272.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item-active" stylesheets="@../../../../res/css/light.css">
+                            <children>
+                                <Text layoutX="83.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="About" textAlignment="CENTER" wrappingWidth="123.77556228637695">
+                                    <font>
+                                        <Font size="36.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="btnAdmin" layoutY="496.0" prefHeight="65.0" prefWidth="290.0" styleClass="menu-item" stylesheets="@../../../../res/css/light.css" visible="false">
+                            <children>
+                                <Text layoutX="7.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Control" textAlignment="CENTER" wrappingWidth="274.1818389892578">
+                                    <font>
+                                        <Font size="36.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </AnchorPane>
+                    </children></AnchorPane>
+            </children>
+        </VBox>
+        <AnchorPane fx:id="mainPaneHome" disable="true" layoutY="83.0" prefHeight="562.0" prefWidth="291.0" stylesheets="@../../../../res/css/light.css">
+            <children>
+                <Text fx:id="txtUserName" fill="#f46161" layoutX="13.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User" textAlignment="CENTER" wrappingWidth="264.2673645019531">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Text>
+                <Text fx:id="txtEmail" fill="#f46161" layoutX="-3.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Email" textAlignment="CENTER" wrappingWidth="291.4908989822769">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Text>
+                <Text fx:id="txtPhone" fill="#f46161" layoutX="-1.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Phone" textAlignment="CENTER" wrappingWidth="289.7454444973531">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+        <ImageView fx:id="btnLogout" fitHeight="40.0" fitWidth="40.0" layoutX="997.0" layoutY="589.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../res/img/logout.png" />
+            </image>
+        </ImageView>
+      <Text fx:id="txtTitle" fill="#f47373" layoutX="291.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ticket Counter v1.0" textAlignment="CENTER" wrappingWidth="749.3700561523435">
+         <font>
+            <Font name="Ink Free" size="64.0" />
+         </font>
+      </Text>
+      <Text layoutX="277.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Developed by" textAlignment="CENTER" wrappingWidth="749.3700561523435">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtAuthorName" layoutX="280.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MD. Ahasan Khan" textAlignment="CENTER" wrappingWidth="749.3700561523436">
+         <font>
+            <Font name="Lucida Handwriting Italic" size="36.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtOrgName" fill="#e96900" layoutX="492.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="United International University">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="530.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Computer Science Engineering">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="533.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Hyperlink fx:id="txtAuthorEmail" layoutX="578.0" layoutY="370.0" prefHeight="27.0" prefWidth="449.0" text="mkhan201122@bscse.uiu.ac.bd" textFill="#072ef4">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink fx:id="txtRepo" layoutX="578.0" layoutY="396.0" prefHeight="27.0" prefWidth="455.0" text="https://github.com/Ahsan40/ticket-counter-javafx" textFill="#024338">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Hyperlink>
+      <Text layoutX="488.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Source Code: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+    </children>
+</AnchorPane>
