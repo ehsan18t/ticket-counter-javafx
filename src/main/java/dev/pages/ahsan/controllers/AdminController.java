@@ -1,4 +1,4 @@
-package dev.pages.ahsan.admin;
+package dev.pages.ahsan.controllers;
 
 import animatefx.animation.FadeIn;
 import animatefx.animation.SlideInLeft;

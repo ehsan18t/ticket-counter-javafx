@@ -1,4 +1,4 @@
-package dev.pages.ahsan.registration;
+package dev.pages.ahsan.controllers;
 
 import dev.pages.ahsan.main.Config;
 import dev.pages.ahsan.main.Main;
