@@ -2,7 +2,7 @@ package dev.pages.ehsan.controllers;
 
 import dev.pages.ehsan.main.Config;
 import dev.pages.ehsan.main.Main;
-import dev.pages.ehsan.user.User;
+import dev.pages.ehsan.classes.User;
 import dev.pages.ehsan.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -88,7 +88,7 @@ public class RegistrationController  implements Initializable {
             sendObj.writeObject("registration");
             if (tfPass1.getText().equals(tfPass2.getText())) {
                 User user = new User(tfUserName.getText(), tfEmail.getText(), tfPhone.getText(), Utils.sha256(tfPass1.getText()));
-//                user.setType("Admin");
+//                classes.setType("Admin");
                 sendObj.writeObject(user);
 
                 // reading response

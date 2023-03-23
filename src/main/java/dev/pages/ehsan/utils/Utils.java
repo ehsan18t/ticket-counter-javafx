@@ -2,7 +2,7 @@ package dev.pages.ehsan.utils;
 
 import dev.pages.ehsan.main.Config;
 import dev.pages.ehsan.main.Main;
-import dev.pages.ehsan.user.User;
+import dev.pages.ehsan.classes.User;
 import javafx.scene.Parent;
 
 import java.awt.*;
@@ -75,9 +75,9 @@ public class Utils {
             String response = (String) receiveObj.readObject();
             System.out.println(" - Received response: " + response);
             if (response.contains("SUCCESS")) {
-                System.out.println(" - Received logged user info from server");
+                System.out.println(" - Received logged classes info from server");
                 Main.user = (User) receiveObj.readObject();
-                System.out.println(" - Saving user info for later use");
+                System.out.println(" - Saving classes info for later use");
                 Utils.writeUserToFile(Main.user, Config.userTempData);    // writing info to a temp file
                 return true;
             }
@@ -92,7 +92,7 @@ public class Utils {
         try {
             // checking credentials
             System.out.println(" - Sending credentials");
-            System.out.println(" - Requesting for check user");
+            System.out.println(" - Requesting for check classes");
             String response = null;
             if (userData.getPasswords().equals(Main.user.getPasswords()))
                 response = "SUCCESS";
@@ -102,7 +102,7 @@ public class Utils {
 
             // updating info
             if (response != null) {
-                System.out.println(" - Requesting for update user data");
+                System.out.println(" - Requesting for update classes data");
 
                 userData.setPasswords(newPass);
                 System.out.println(userData.getPasswords());
@@ -111,7 +111,7 @@ public class Utils {
                 sendObj.writeObject("updateInfo");
                 sendObj.writeObject(userData);
 
-                System.out.println(" - Received new user info from server");
+                System.out.println(" - Received new classes info from server");
                 Main.user = userData;
                 Utils.writeUserToFile(Main.user, Config.userTempData);    // writing info to a temp file
                 System.out.println(" - Updating new info");
@@ -134,7 +134,7 @@ public class Utils {
 
     public static void exit() {
         if (removeFile(Config.userTempData))
-            System.out.println(" - Deleted temp user data " + Config.userTempData);
+            System.out.println(" - Deleted temp classes data " + Config.userTempData);
         System.exit(0);
     }
 

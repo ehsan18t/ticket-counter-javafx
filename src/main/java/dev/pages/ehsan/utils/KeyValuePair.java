@@ -1,6 +1,6 @@
 package dev.pages.ehsan.utils;
 
-import dev.pages.ehsan.user.Bus;
+import dev.pages.ehsan.classes.Bus;
 
 public class KeyValuePair {
     private final Bus key;

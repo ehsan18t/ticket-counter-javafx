@@ -1,23 +1,29 @@
-package dev.pages.ehsan.user;
+package dev.pages.ehsan.classes;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Ticket implements Serializable {
-    String from;
-    String to;
-    LocalDate date;
-    String time;
-    String seat;
-    int bus;
+public class Bus implements Serializable {
+    private int id;
+    private String from;
+    private String to;
+    private LocalDate date;
+    private String time;
 
-    public Ticket(String from, String to, LocalDate date, String time, String seat, int bus) {
+    public Bus(int id, String from, String to, LocalDate date, String time) {
+        this.id = id;
         this.from = from;
         this.to = to;
         this.date = date;
         this.time = time;
-        this.seat = seat;
-        this.bus = bus;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFrom() {
@@ -50,21 +56,5 @@ public class Ticket implements Serializable {
 
     public void setTime(String time) {
         this.time = time;
-    }
-
-    public String getSeat() {
-        return seat;
-    }
-
-    public void setSeat(String seat) {
-        this.seat = seat;
-    }
-
-    public int getBus() {
-        return bus;
-    }
-
-    public void setBus(int bus) {
-        this.bus = bus;
     }
 }

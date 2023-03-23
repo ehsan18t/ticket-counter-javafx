@@ -5,8 +5,8 @@ import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideOutLeft;
 import dev.pages.ehsan.main.Config;
 import dev.pages.ehsan.main.Main;
-import dev.pages.ehsan.user.Bus;
-import dev.pages.ehsan.user.Ticket;
+import dev.pages.ehsan.classes.Bus;
+import dev.pages.ehsan.classes.Ticket;
 import dev.pages.ehsan.utils.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -162,7 +162,7 @@ public class HomeController implements Initializable {
             Main.sceneMan.open("about", Config.aboutScene);
     }
 
-    // get all tickets of current user
+    // get all tickets of current classes
     public ObservableList<Ticket> getTickets() {
         if (Main.busData == null) Main.busData = new HashMap<>();
         ObservableList<Ticket> allBus = FXCollections.observableArrayList();

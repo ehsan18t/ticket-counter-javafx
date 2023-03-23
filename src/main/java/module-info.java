@@ -11,8 +11,8 @@ module ticket.counter {
     exports dev.pages.ehsan.main;
     opens dev.pages.ehsan.controllers to javafx.fxml;
     exports dev.pages.ehsan.controllers;
-    opens dev.pages.ehsan.user to javafx.base;
-    exports dev.pages.ehsan.user;
+    opens dev.pages.ehsan.classes to javafx.base;
+    exports dev.pages.ehsan.classes;
     opens dev.pages.ehsan.utils to javafx.base;
     exports dev.pages.ehsan.utils;
 }

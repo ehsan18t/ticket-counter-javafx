@@ -5,7 +5,7 @@ import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideOutLeft;
 import dev.pages.ehsan.main.Config;
 import dev.pages.ehsan.main.Main;
-import dev.pages.ehsan.user.User;
+import dev.pages.ehsan.classes.User;
 import dev.pages.ehsan.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -155,7 +155,7 @@ public class SettingsController implements Initializable {
             System.out.println(" [not changing pass]");
             boolean result = Utils.updateInfo(user, pass, Main.receiveObj, Main.sendObj);
             if (result) {
-                System.out.println(" - Updating user info of " + Main.user.getName());
+                System.out.println(" - Updating classes info of " + Main.user.getName());
                 setTF();
                 txtError.setText("Settings Saved!");
             }
@@ -163,7 +163,7 @@ public class SettingsController implements Initializable {
             boolean result = Utils.updateInfo(user, pass, Main.receiveObj, Main.sendObj);
             System.out.println(" [changing pass]");
             if (result) {
-                System.out.println(" - Updating user info of (with pass)" + Main.user.getName());
+                System.out.println(" - Updating classes info of (with pass)" + Main.user.getName());
                 setTF();
                 txtError.setText("Settings Saved!");
             } else {

@@ -2,7 +2,7 @@ package dev.pages.ehsan.controllers;
 
 import dev.pages.ehsan.main.Config;
 import dev.pages.ehsan.main.Main;
-import dev.pages.ehsan.user.User;
+import dev.pages.ehsan.classes.User;
 import dev.pages.ehsan.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -96,7 +96,7 @@ public class LoginController implements Initializable {
     private void setBtnCloseAction(MouseEvent event) {
         File f = new File(Config.userTempData);
         if (f.delete())
-            System.out.println("Deleted temp user data userData.ser");
+            System.out.println("Deleted temp classes data userData.ser");
         System.exit(0);
     }
 

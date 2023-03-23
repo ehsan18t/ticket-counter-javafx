@@ -5,8 +5,8 @@ import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideOutLeft;
 import dev.pages.ehsan.main.Config;
 import dev.pages.ehsan.main.Main;
-import dev.pages.ehsan.user.Bus;
-import dev.pages.ehsan.user.Ticket;
+import dev.pages.ehsan.classes.Bus;
+import dev.pages.ehsan.classes.Ticket;
 import dev.pages.ehsan.utils.KeyValuePair;
 import dev.pages.ehsan.utils.Utils;
 import javafx.event.ActionEvent;
@@ -263,7 +263,7 @@ public class BuyController  implements Initializable {
                     int x = s.charAt(0) - 'A';
                     int index = (x * 4) + (s.charAt(1) - '0');
 
-                    // if bought by current user
+                    // if bought by current classes
                     if (entry.getKey().equals(Main.user.getEmail())) {
                         seats.get(index - 1).setSelected(true);
                         seats.get(index - 1).setDisable(true);
@@ -289,7 +289,7 @@ public class BuyController  implements Initializable {
                 int x = s.charAt(0) - 'A';
                 int index = (x * 4) + (s.charAt(1) - '0');
 
-                // if bought by current user
+                // if bought by current classes
                 if (entry.getKey().equals(Main.user.getEmail())) {
                     seats.get(index - 1).setSelected(true);
                     seats.get(index - 1).setDisable(true);
@@ -331,7 +331,7 @@ public class BuyController  implements Initializable {
         Bus bus = choiceBus.getSelectionModel().getSelectedItem().getKey();
         String user  = Main.user.getEmail();
 
-        // If user data not exist create
+        // If classes data not exist create
         if (!Main.busData.get(bus).containsKey(user))
             Main.busData.get(bus).put(user, new ArrayList<>());
         // else just retrieve the previous data
