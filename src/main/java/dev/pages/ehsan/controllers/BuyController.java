@@ -7,7 +7,7 @@ import dev.pages.ehsan.main.Config;
 import dev.pages.ehsan.main.Main;
 import dev.pages.ehsan.classes.Bus;
 import dev.pages.ehsan.classes.Ticket;
-import dev.pages.ehsan.utils.KeyValuePair;
+import dev.pages.ehsan.classes.KeyValuePair;
 import dev.pages.ehsan.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

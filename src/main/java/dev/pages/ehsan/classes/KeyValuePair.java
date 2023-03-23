@@ -1,4 +1,4 @@
-package dev.pages.ehsan.utils;
+package dev.pages.ehsan.classes;
 
 import dev.pages.ehsan.classes.Bus;
 
