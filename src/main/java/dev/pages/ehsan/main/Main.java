@@ -17,15 +17,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Main extends Application {
-    public static HashMap<Bus, HashMap<String, ArrayList<Ticket>>>  busData;
+    public static HashMap<Bus, HashMap<String, ArrayList<Ticket>>> busData;
     public static User user = null;
     public static SceneManager sceneMan;
     public static Socket sc;
     public static ObjectOutputStream sendObj;
     public static ObjectInputStream receiveObj;
 
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
+
     @Override
-    public void start(Stage stage) throws Exception{
+    public void start(Stage stage) throws Exception {
         // Scene Configs
         stage.setTitle(Config.title + " " + Config.version);
         stage.initStyle(StageStyle.TRANSPARENT);
@@ -56,7 +60,7 @@ public class Main extends Application {
         // Determining Page to Open
         System.out.println(" - Checking User");
         sceneMan.add("login", Config.loginScene, 600, 500);
-        sceneMan.add("registration", Config.registrationScene,656, 500);
+        sceneMan.add("registration", Config.registrationScene, 656, 500);
         if (f2.exists()) {
             boolean result = Utils.checkLogin(Utils.readUserFromFile(Config.userTempData), receiveObj, sendObj);
             if (result) {
@@ -71,10 +75,6 @@ public class Main extends Application {
             System.out.println(" - Redirecting to Login Page.");
             sceneMan.activate("login");
         }
-    }
-
-    public static void main(String[] args) {
-        Application.launch(args);
     }
 
     @Override

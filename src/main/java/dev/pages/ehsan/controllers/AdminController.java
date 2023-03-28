@@ -3,10 +3,10 @@ package dev.pages.ehsan.controllers;
 import animatefx.animation.FadeIn;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideOutLeft;
-import dev.pages.ehsan.main.Config;
-import dev.pages.ehsan.main.Main;
 import dev.pages.ehsan.classes.Bus;
 import dev.pages.ehsan.classes.Ticket;
+import dev.pages.ehsan.main.Config;
+import dev.pages.ehsan.main.Main;
 import dev.pages.ehsan.utils.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,94 +30,64 @@ import java.util.*;
 
 public class AdminController implements Initializable {
     HashMap<Bus, HashMap<String, ArrayList<Ticket>>> buses;
-
-    @FXML
-    private Button btnAdd;
-
-    @FXML
-    private Button btnRemove;
-
-    @FXML
-    private DatePicker tfDate;
-
-    @FXML
-    private TextField tfFrom;
-
-    @FXML
-    private TextField tfId;
-
-    @FXML
-    private TextField tfTime;
-
-    @FXML
-    private TextField tfTo;
-
-    @FXML
-    private ImageView btnClose;
-
-    @FXML
-    private ImageView btnMin;
-
-    @FXML
-    private Text txtTitle;
-
-    @FXML
-    private Text txtUserName;
-
-    @FXML
-    private ImageView btnLogout;
-
-    @FXML
-    private AnchorPane menuPane;
-
-    @FXML
-    private AnchorPane mainPaneHome;
-
-    @FXML
-    private ImageView btnMenu;
-
-    @FXML
-    private AnchorPane btnBuy;
-
-    @FXML
-    private AnchorPane btnSettings;
-
-    @FXML
-    private AnchorPane btnAbout;
-
-    @FXML
-    private AnchorPane btnHome;
-
-    @FXML
-    private TableView<Bus> table;
-
-    @FXML
-    private TableColumn<Bus, String> timeCol;
-
-    @FXML
-    private TableColumn<Bus, String> toCol;
-
-    @FXML
-    private TableColumn<Bus, LocalDate> dateCol;
-
-    @FXML
-    private TableColumn<Bus, String> fromCol;
-
-    @FXML
-    private TableColumn<Bus, Integer> idCol;
-
-    @FXML
-    private Text txtEmail;
-
-    @FXML
-    private Text txtPhone;
-
-    @FXML
-    private Text txtBuy;
-
     Image image1;
     Image image2;
-
+    @FXML
+    private Button btnAdd;
+    @FXML
+    private Button btnRemove;
+    @FXML
+    private DatePicker tfDate;
+    @FXML
+    private TextField tfFrom;
+    @FXML
+    private TextField tfId;
+    @FXML
+    private TextField tfTime;
+    @FXML
+    private TextField tfTo;
+    @FXML
+    private ImageView btnClose;
+    @FXML
+    private ImageView btnMin;
+    @FXML
+    private Text txtTitle;
+    @FXML
+    private Text txtUserName;
+    @FXML
+    private ImageView btnLogout;
+    @FXML
+    private AnchorPane menuPane;
+    @FXML
+    private AnchorPane mainPaneHome;
+    @FXML
+    private ImageView btnMenu;
+    @FXML
+    private AnchorPane btnBuy;
+    @FXML
+    private AnchorPane btnSettings;
+    @FXML
+    private AnchorPane btnAbout;
+    @FXML
+    private AnchorPane btnHome;
+    @FXML
+    private TableView<Bus> table;
+    @FXML
+    private TableColumn<Bus, String> timeCol;
+    @FXML
+    private TableColumn<Bus, String> toCol;
+    @FXML
+    private TableColumn<Bus, LocalDate> dateCol;
+    @FXML
+    private TableColumn<Bus, String> fromCol;
+    @FXML
+    private TableColumn<Bus, Integer> idCol;
+    @FXML
+    private Text txtEmail;
+    @FXML
+    private Text txtPhone;
+    @FXML
+    private Text txtBuy;
     private boolean logout;
 
     @Override
@@ -180,9 +150,10 @@ public class AdminController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
     private void serverListener() {
         new Thread(() -> {
-            while(true) {
+            while (true) {
                 try {
                     String response = (String) Main.receiveObj.readObject();
                     System.out.println(" [*] Received cmd from server " + response);
@@ -196,10 +167,11 @@ public class AdminController implements Initializable {
                     if (response.contains("refresh")) {
                         table.setItems(getBus());
                     }
-                } catch (Exception ignored) {}
-            }});
+                } catch (Exception ignored) {
+                }
+            }
+        });
     }
-
 
 
     private void btnHomeAction(MouseEvent mouseEvent) {
@@ -219,25 +191,26 @@ public class AdminController implements Initializable {
 
     private void btnRemoveAction(ActionEvent actionEvent) {
         ObservableList<Bus> original = FXCollections.observableArrayList();
-        HashMap<Bus, HashMap<String, ArrayList<Ticket>>>  busData = new HashMap<>();
+        HashMap<Bus, HashMap<String, ArrayList<Ticket>>> busData = new HashMap<>();
         try {
             ObservableList<Bus> rows, allRows;
             allRows = table.getItems();
             rows = table.getSelectionModel().getSelectedItems();
-            for (Bus b: rows) {
+            for (Bus b : rows) {
                 original.add(b);
                 Main.busData.remove(b);
                 busData.put(b, Main.busData.get(b));
                 buses.remove(b);
                 allRows.remove(b);
             }
-        } catch (NoSuchElementException ignored) {}
+        } catch (NoSuchElementException ignored) {
+        }
         try {
             Main.sendObj.writeObject("removeBus");
             Main.sendObj.writeObject(Main.busData);
         } catch (Exception e) {
             // if exception occurs original item restored to avoid data loss on client side
-            for (Bus b: original)
+            for (Bus b : original)
                 Main.busData.put(b, busData.get(b));
 
             table.setItems(original);
@@ -262,7 +235,7 @@ public class AdminController implements Initializable {
     public ObservableList<Bus> getBus() {
         if (Main.busData == null) Main.busData = new HashMap<>();
         ObservableList<Bus> allBus = FXCollections.observableArrayList();
-        for (Map.Entry<Bus, HashMap<String, ArrayList<Ticket>>> entry: Main.busData.entrySet()) {
+        for (Map.Entry<Bus, HashMap<String, ArrayList<Ticket>>> entry : Main.busData.entrySet()) {
             allBus.add(entry.getKey());
         }
         return allBus;
@@ -303,8 +276,8 @@ public class AdminController implements Initializable {
         if (Utils.removeFile(Config.userTempData) && Utils.removeFile(Config.savedUserData)) {
             System.out.println(" - Logout Successful!");
         }
-         Main.sceneMan.reload("login");
-         Main.sceneMan.activate("login");
+        Main.sceneMan.reload("login");
+        Main.sceneMan.activate("login");
     }
 
     private void setBtnCloseAction(MouseEvent event) {

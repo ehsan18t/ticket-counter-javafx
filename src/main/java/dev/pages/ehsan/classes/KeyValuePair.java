@@ -1,7 +1,5 @@
 package dev.pages.ehsan.classes;
 
-import dev.pages.ehsan.classes.Bus;
-
 public class KeyValuePair {
     private final Bus key;
     private final String value;

@@ -23,15 +23,14 @@ public class Config {
     //Resources
     public static final String lightCSS = "/css/light.css";
     public static final String darkCSS = "/css/dark.css";
-    public static String CSS = lightCSS;
     public static final String icon = "/img/icon.png";
     public static final String exitIcon = "/img/exit.png";
     public static final String minimizeIcon = "/img/minimize.png";
-
     // Info
     public static final String author = "Md. Ehsan Khan";
     public static final String email = "mkhan201122@bscse.uiu.ac.bd";
     public static final String org = "United International University";
     public static final String gitProfile = "https://github.com/ehsan18t";
     public static final String gitRepo = gitProfile + "/ticket-counter-javafx";
+    public static String CSS = lightCSS;
 }

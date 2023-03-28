@@ -1,8 +1,8 @@
 package dev.pages.ehsan.utils;
 
+import dev.pages.ehsan.classes.User;
 import dev.pages.ehsan.main.Config;
 import dev.pages.ehsan.main.Main;
-import dev.pages.ehsan.classes.User;
 import javafx.scene.Parent;
 
 import java.awt.*;
@@ -20,7 +20,7 @@ public class Utils {
     }
 
     public static String sha256(final String base) {
-        try{
+        try {
             final MessageDigest digest = MessageDigest.getInstance("SHA-256");
             final byte[] hash = digest.digest(base.getBytes(StandardCharsets.UTF_8));
             final StringBuilder hexString = new StringBuilder();
@@ -31,7 +31,7 @@ public class Utils {
                 hexString.append(hex);
             }
             return hexString.toString();
-        } catch(Exception ex){
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
@@ -115,7 +115,7 @@ public class Utils {
                 Main.user = userData;
                 Utils.writeUserToFile(Main.user, Config.userTempData);    // writing info to a temp file
                 System.out.println(" - Updating new info");
-                File f  = new File(Config.savedUserData);
+                File f = new File(Config.savedUserData);
                 if (f.exists())
                     writeUserToFile(Main.user, Config.savedUserData);
                 return true;
@@ -138,7 +138,7 @@ public class Utils {
         System.exit(0);
     }
 
-   public static void openLink(String link) {
+    public static void openLink(String link) {
         try {
             Desktop.getDesktop().browse(new URI(link));
         } catch (URISyntaxException | IOException ex) {

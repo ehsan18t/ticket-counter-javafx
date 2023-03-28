@@ -24,70 +24,50 @@ import java.util.Timer;
 
 public class AboutController implements Initializable {
 
+    Image image1;
+    Image image2;
     // About Info
     @FXML
     private Text txtTitle;
-
     @FXML
     private Text txtAuthorName;
-
     @FXML
     private Hyperlink txtAuthorEmail;
-
     @FXML
     private Text txtOrgName;
-
     @FXML
     private Hyperlink txtRepo;
-
     // TopBar
     @FXML
     private ImageView btnClose;
-
     @FXML
     private ImageView btnMin;
-
     // Logged User Details
     @FXML
     private Text txtUserName;
-
     @FXML
     private Text txtEmail;
-
     @FXML
     private Text txtPhone;
-
     // Manu & Others
     @FXML
     private ImageView btnLogout;
-
     @FXML
     private AnchorPane menuPane;
-
     @FXML
     private AnchorPane mainPaneHome;
-
     @FXML
     private ImageView btnMenu;
-
     @FXML
     private AnchorPane btnBuy;
-
     @FXML
     private AnchorPane btnSettings;
-
     @FXML
     private AnchorPane btnHome;
-
     @FXML
     private AnchorPane btnAdmin;
-
     @FXML
     private Text txtBuy;
-
-
-    Image image1;
-    Image image2;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -177,8 +157,8 @@ public class AboutController implements Initializable {
         if (Utils.removeFile(Config.userTempData) && Utils.removeFile(Config.savedUserData)) {
             System.out.println(" - Logout Successful!");
         }
-         Main.sceneMan.reload("login");
-         Main.sceneMan.activate("login");
+        Main.sceneMan.reload("login");
+        Main.sceneMan.activate("login");
     }
 
     private void setBtnCloseAction(MouseEvent event) {

@@ -1,8 +1,8 @@
 package dev.pages.ehsan.controllers;
 
+import dev.pages.ehsan.classes.User;
 import dev.pages.ehsan.main.Config;
 import dev.pages.ehsan.main.Main;
-import dev.pages.ehsan.classes.User;
 import dev.pages.ehsan.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

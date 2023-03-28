@@ -96,6 +96,14 @@ public class SceneManager {
     //                      //
     //////////////////////////
 
+    public static Stage getStage(Scene sc) {
+        return (Stage) sc.getWindow();
+    }
+
+    public static Stage getStage(ActionEvent ae) {
+        return (Stage) ((Node) ae.getSource()).getScene().getWindow();
+    }
+
     /**
      * This function adds scene to map. It doesn't open/show the page
      * immediately. To show the page we need to call activate() method.
@@ -170,6 +178,8 @@ public class SceneManager {
         open(name, fxml, this.defaultSize);
     }
 
+    // CSS Functions
+
     /**
      * As the name suggest, it just refreshes/reloads the page.
      * If the data of an inactive page has been changed it won't
@@ -198,14 +208,14 @@ public class SceneManager {
             System.out.println(" - ERROR: PLEASE CHANGE THE PAGE BEFORE REMOVE!");
     }
 
-    // CSS Functions
-
     /**
      * Adds CSS to a scene.
      */
     public void addCSS(String name, String css) {
         manageCSS(name, true, css);
     }
+
+    // Drag
 
     /**
      * Adds default CSS to a scene. (if exist)
@@ -223,8 +233,6 @@ public class SceneManager {
     public void removeCSS(String name) {
         manageCSS(name, false);
     }
-
-    // Drag
 
     /**
      * Makes a scene draggable.
@@ -262,7 +270,6 @@ public class SceneManager {
     public void minimize() {
         this.primaryStage.setIconified(true);
     }
-
 
     //////////////////////////
     //                      //
@@ -434,13 +441,5 @@ public class SceneManager {
 
     public void setDefaultSize(double h, double w) {
         this.defaultSize = new Size(h, w);
-    }
-
-    public static Stage getStage(Scene sc) {
-        return (Stage) sc.getWindow();
-    }
-
-    public static Stage getStage(ActionEvent ae) {
-        return (Stage) ((Node) ae.getSource()).getScene().getWindow();
     }
 }

@@ -3,11 +3,11 @@ package dev.pages.ehsan.controllers;
 import animatefx.animation.FadeIn;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideOutLeft;
+import dev.pages.ehsan.classes.Bus;
+import dev.pages.ehsan.classes.KeyValuePair;
+import dev.pages.ehsan.classes.Ticket;
 import dev.pages.ehsan.main.Config;
 import dev.pages.ehsan.main.Main;
-import dev.pages.ehsan.classes.Bus;
-import dev.pages.ehsan.classes.Ticket;
-import dev.pages.ehsan.classes.KeyValuePair;
 import dev.pages.ehsan.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,152 +31,104 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.*;
 
-public class BuyController  implements Initializable {
+public class BuyController implements Initializable {
 
     HashMap<Bus, HashMap<String, ArrayList<Ticket>>> buses;
-
-    @FXML
-    private ImageView btnClose;
-
-    @FXML
-    private ImageView btnMin;
-
-    @FXML
-    private Text txtTitle;
-
-    @FXML
-    private Text txtUserName;
-
-    @FXML
-    private ImageView btnLogout;
-
-    @FXML
-    private ImageView btnMenu;
-
-    @FXML
-    private AnchorPane menuPane;
-
-    @FXML
-    private AnchorPane mainPaneHome;
-
-    @FXML
-    private AnchorPane btnHome;
-
-    @FXML
-    private AnchorPane btnSettings;
-
-    @FXML
-    private AnchorPane btnAbout;
-
-    @FXML
-    private AnchorPane btnAdmin;
-
-    @FXML
-    private Text txtEmail;
-
-    @FXML
-    private Text txtPhone;
-
-    @FXML
-    private Button btnBuy;
-
-    @FXML
-    private ChoiceBox<KeyValuePair> choiceBus;
-
-    @FXML
-    private ToggleButton btnSeat_0_0;
-
-    @FXML
-    private ToggleButton btnSeat_0_1;
-
-    @FXML
-    private ToggleButton btnSeat_0_2;
-
-    @FXML
-    private ToggleButton btnSeat_0_3;
-
-    @FXML
-    private ToggleButton btnSeat_1_0;
-
-    @FXML
-    private ToggleButton btnSeat_1_1;
-
-    @FXML
-    private ToggleButton btnSeat_1_2;
-
-    @FXML
-    private ToggleButton btnSeat_1_3;
-
-    @FXML
-    private ToggleButton btnSeat_2_0;
-
-    @FXML
-    private ToggleButton btnSeat_2_1;
-
-    @FXML
-    private ToggleButton btnSeat_2_2;
-
-    @FXML
-    private ToggleButton btnSeat_2_3;
-
-    @FXML
-    private ToggleButton btnSeat_3_0;
-
-    @FXML
-    private ToggleButton btnSeat_3_1;
-
-    @FXML
-    private ToggleButton btnSeat_3_2;
-
-    @FXML
-    private ToggleButton btnSeat_3_3;
-
-    @FXML
-    private ToggleButton btnSeat_4_0;
-
-    @FXML
-    private ToggleButton btnSeat_4_1;
-
-    @FXML
-    private ToggleButton btnSeat_4_2;
-
-    @FXML
-    private ToggleButton btnSeat_4_3;
-
-    @FXML
-    private ToggleButton btnSeat_5_0;
-
-    @FXML
-    private ToggleButton btnSeat_5_1;
-
-    @FXML
-    private ToggleButton btnSeat_5_2;
-
-    @FXML
-    private ToggleButton btnSeat_5_3;
-
-    @FXML
-    private ToggleButton btnSeat_6_0;
-
-    @FXML
-    private ToggleButton btnSeat_6_1;
-
-    @FXML
-    private ToggleButton btnSeat_6_2;
-
-    @FXML
-    private ToggleButton btnSeat_6_3;
-
-    @FXML
-    private ArrayList<ToggleButton> seats;
-
-    @FXML
-    private Text txtBuy;
-
-    private boolean logout;
-
     Image image1;
     Image image2;
+    @FXML
+    private ImageView btnClose;
+    @FXML
+    private ImageView btnMin;
+    @FXML
+    private Text txtTitle;
+    @FXML
+    private Text txtUserName;
+    @FXML
+    private ImageView btnLogout;
+    @FXML
+    private ImageView btnMenu;
+    @FXML
+    private AnchorPane menuPane;
+    @FXML
+    private AnchorPane mainPaneHome;
+    @FXML
+    private AnchorPane btnHome;
+    @FXML
+    private AnchorPane btnSettings;
+    @FXML
+    private AnchorPane btnAbout;
+    @FXML
+    private AnchorPane btnAdmin;
+    @FXML
+    private Text txtEmail;
+    @FXML
+    private Text txtPhone;
+    @FXML
+    private Button btnBuy;
+    @FXML
+    private ChoiceBox<KeyValuePair> choiceBus;
+    @FXML
+    private ToggleButton btnSeat_0_0;
+    @FXML
+    private ToggleButton btnSeat_0_1;
+    @FXML
+    private ToggleButton btnSeat_0_2;
+    @FXML
+    private ToggleButton btnSeat_0_3;
+    @FXML
+    private ToggleButton btnSeat_1_0;
+    @FXML
+    private ToggleButton btnSeat_1_1;
+    @FXML
+    private ToggleButton btnSeat_1_2;
+    @FXML
+    private ToggleButton btnSeat_1_3;
+    @FXML
+    private ToggleButton btnSeat_2_0;
+    @FXML
+    private ToggleButton btnSeat_2_1;
+    @FXML
+    private ToggleButton btnSeat_2_2;
+    @FXML
+    private ToggleButton btnSeat_2_3;
+    @FXML
+    private ToggleButton btnSeat_3_0;
+    @FXML
+    private ToggleButton btnSeat_3_1;
+    @FXML
+    private ToggleButton btnSeat_3_2;
+    @FXML
+    private ToggleButton btnSeat_3_3;
+    @FXML
+    private ToggleButton btnSeat_4_0;
+    @FXML
+    private ToggleButton btnSeat_4_1;
+    @FXML
+    private ToggleButton btnSeat_4_2;
+    @FXML
+    private ToggleButton btnSeat_4_3;
+    @FXML
+    private ToggleButton btnSeat_5_0;
+    @FXML
+    private ToggleButton btnSeat_5_1;
+    @FXML
+    private ToggleButton btnSeat_5_2;
+    @FXML
+    private ToggleButton btnSeat_5_3;
+    @FXML
+    private ToggleButton btnSeat_6_0;
+    @FXML
+    private ToggleButton btnSeat_6_1;
+    @FXML
+    private ToggleButton btnSeat_6_2;
+    @FXML
+    private ToggleButton btnSeat_6_3;
+    @FXML
+    private ArrayList<ToggleButton> seats;
+    @FXML
+    private Text txtBuy;
+    private boolean logout;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -248,7 +200,8 @@ public class BuyController  implements Initializable {
         try {
             choiceBus.getItems().clear();
             addValues();
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 
     private void loadSeatData() {
@@ -271,33 +224,37 @@ public class BuyController  implements Initializable {
                         seats.get(index - 1).setDisable(true);
                     }
 //                }
+                }
             }
-        }} catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 
 
     private void loadSeatData(int i) {
         try {
-        System.out.println(" - Loading data");
-        choiceBus.getSelectionModel().select(i);
-        System.out.println(Main.busData.containsKey(choiceBus.getValue().getKey()));
-        HashMap<String, ArrayList<Ticket>> data = Main.busData.get(choiceBus.getSelectionModel().getSelectedItem().getKey());
-        for (Map.Entry<String, ArrayList<Ticket>> entry : data.entrySet()) {
-            for (Ticket t : entry.getValue()) {
-                // Converting seat number to button index
-                String s = t.getSeat();
-                int x = s.charAt(0) - 'A';
-                int index = (x * 4) + (s.charAt(1) - '0');
+            System.out.println(" - Loading data");
+            choiceBus.getSelectionModel().select(i);
+            System.out.println(Main.busData.containsKey(choiceBus.getValue().getKey()));
+            HashMap<String, ArrayList<Ticket>> data = Main.busData.get(choiceBus.getSelectionModel().getSelectedItem().getKey());
+            for (Map.Entry<String, ArrayList<Ticket>> entry : data.entrySet()) {
+                for (Ticket t : entry.getValue()) {
+                    // Converting seat number to button index
+                    String s = t.getSeat();
+                    int x = s.charAt(0) - 'A';
+                    int index = (x * 4) + (s.charAt(1) - '0');
 
-                // if bought by current classes
-                if (entry.getKey().equals(Main.user.getEmail())) {
-                    seats.get(index - 1).setSelected(true);
-                    seats.get(index - 1).setDisable(true);
-                } else {
-                    seats.get(index - 1).setDisable(true);
+                    // if bought by current classes
+                    if (entry.getKey().equals(Main.user.getEmail())) {
+                        seats.get(index - 1).setSelected(true);
+                        seats.get(index - 1).setDisable(true);
+                    } else {
+                        seats.get(index - 1).setDisable(true);
+                    }
                 }
             }
-        }} catch (NullPointerException ignored) {}
+        } catch (NullPointerException ignored) {
+        }
     }
 
     private void choiceBusAction(ActionEvent actionEvent) {
@@ -308,36 +265,38 @@ public class BuyController  implements Initializable {
 
     private void serverListener() {
         new Thread(() -> {
-        while(true) {
-            try {
-                String response = (String) Main.receiveObj.readObject();
-                System.out.println(" [*] Received cmd from server " + response);
-                if (logout) {
-                    Thread.interrupted();
-                    break;
-                }
+            while (true) {
+                try {
+                    String response = (String) Main.receiveObj.readObject();
+                    System.out.println(" [*] Received cmd from server " + response);
+                    if (logout) {
+                        Thread.interrupted();
+                        break;
+                    }
 
-                Main.busData = (HashMap<Bus, HashMap<String, ArrayList<Ticket>>>) Main.receiveObj.readObject();
-                if (response.contains("refresh")) {
-                    int i =  choiceBus.getSelectionModel().getSelectedIndex();
-                    resetItems();
-                    loadSeatData(i);
+                    Main.busData = (HashMap<Bus, HashMap<String, ArrayList<Ticket>>>) Main.receiveObj.readObject();
+                    if (response.contains("refresh")) {
+                        int i = choiceBus.getSelectionModel().getSelectedIndex();
+                        resetItems();
+                        loadSeatData(i);
+                    }
+                } catch (Exception ignored) {
                 }
-            } catch (Exception ignored) {}
-        }}).start();
+            }
+        }).start();
     }
 
     private void btnBuyAction(ActionEvent actionEvent) {
         Bus bus = choiceBus.getSelectionModel().getSelectedItem().getKey();
-        String user  = Main.user.getEmail();
+        String user = Main.user.getEmail();
 
         // If classes data not exist create
         if (!Main.busData.get(bus).containsKey(user))
             Main.busData.get(bus).put(user, new ArrayList<>());
         // else just retrieve the previous data
-        ArrayList<Ticket> list  = Main.busData.get(bus).get(user);
+        ArrayList<Ticket> list = Main.busData.get(bus).get(user);
 
-        for (ToggleButton b: seats) {
+        for (ToggleButton b : seats) {
             if (b.isSelected() && !b.isDisabled()) {
                 list.add(new Ticket(bus.getFrom(), bus.getTo(), bus.getDate(), bus.getTime(), b.getText(), bus.getId()));
                 b.setSelected(true);
@@ -356,8 +315,8 @@ public class BuyController  implements Initializable {
         DateTimeFormatter timeFormatter = new DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern("hh:mm a").toFormatter(Locale.ENGLISH);
         LocalTime ct = LocalTime.now();
         LocalDate cd = LocalDate.now();
-        for (Map.Entry<Bus, HashMap<String, ArrayList<Ticket>>> entry: Main.busData.entrySet()) {
-            LocalTime t  = LocalTime.parse(entry.getKey().getTime(), timeFormatter);
+        for (Map.Entry<Bus, HashMap<String, ArrayList<Ticket>>> entry : Main.busData.entrySet()) {
+            LocalTime t = LocalTime.parse(entry.getKey().getTime(), timeFormatter);
             if (cd.isAfter(entry.getKey().getDate()))
                 continue;
             if (cd.isEqual(entry.getKey().getDate()))
@@ -415,6 +374,7 @@ public class BuyController  implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
     public void btnSettingsAction(MouseEvent mouseEvent) {
         logout();
         Main.sceneMan.open("settings", Config.settingsScene);
@@ -448,14 +408,15 @@ public class BuyController  implements Initializable {
     private void btnLogoutAction(MouseEvent mouseEvent) {
         try {
             Main.sendObj.writeObject("logout");
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+        }
         if (Utils.removeFile(Config.userTempData) && Utils.removeFile(Config.savedUserData)) {
             logout = true;
             System.out.println(" - Logout Successful!");
         }
 
-         Main.sceneMan.reload("login");
-         Main.sceneMan.activate("login");
+        Main.sceneMan.reload("login");
+        Main.sceneMan.activate("login");
     }
 
     private void setBtnCloseAction(MouseEvent event) {

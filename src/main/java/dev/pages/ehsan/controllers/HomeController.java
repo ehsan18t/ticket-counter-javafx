@@ -3,10 +3,10 @@ package dev.pages.ehsan.controllers;
 import animatefx.animation.FadeIn;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideOutLeft;
-import dev.pages.ehsan.main.Config;
-import dev.pages.ehsan.main.Main;
 import dev.pages.ehsan.classes.Bus;
 import dev.pages.ehsan.classes.Ticket;
+import dev.pages.ehsan.main.Config;
+import dev.pages.ehsan.main.Main;
 import dev.pages.ehsan.utils.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,81 +33,56 @@ import java.util.*;
 
 public class HomeController implements Initializable {
 
-    @FXML
-    private ImageView btnClose;
-
-    @FXML
-    private ImageView btnMin;
-
-    @FXML
-    private Text txtTitle;
-
-    @FXML
-    private Text txtUserName;
-
-    @FXML
-    private ImageView btnLogout;
-
-    @FXML
-    private AnchorPane menuPane;
-
-    @FXML
-    private AnchorPane mainPaneHome;
-
-    @FXML
-    private ImageView btnMenu;
-
-    @FXML
-    private AnchorPane btnBuy;
-
-    @FXML
-    private AnchorPane btnSettings;
-
-    @FXML
-    private AnchorPane btnAbout;
-
-    @FXML
-    private AnchorPane btnAdmin;
-
-    @FXML
-    private TableView<Ticket> table;
-
-    @FXML
-    private TableColumn<Ticket, String> timeCol;
-
-    @FXML
-    private TableColumn<Ticket, String> toCol;
-
-    @FXML
-    private TableColumn<Ticket, LocalDate> dateCol;
-
-    @FXML
-    private TableColumn<Ticket, String> fromCol;
-
-    @FXML
-    private TableColumn<Ticket, String> seatCol;
-
-    @FXML
-    private TableColumn<Ticket, Integer> busIdCol;
-
-    @FXML
-    private Text txtEmail;
-
-    @FXML
-    private Text txtPhone;
-
-    @FXML
-    private Text txtBuyCount;
-
-    @FXML
-    private Text txtTotalCount;
-
     int total = 0;
     int bought = 0;
-
-
     Image image1;
     Image image2;
+    @FXML
+    private ImageView btnClose;
+    @FXML
+    private ImageView btnMin;
+    @FXML
+    private Text txtTitle;
+    @FXML
+    private Text txtUserName;
+    @FXML
+    private ImageView btnLogout;
+    @FXML
+    private AnchorPane menuPane;
+    @FXML
+    private AnchorPane mainPaneHome;
+    @FXML
+    private ImageView btnMenu;
+    @FXML
+    private AnchorPane btnBuy;
+    @FXML
+    private AnchorPane btnSettings;
+    @FXML
+    private AnchorPane btnAbout;
+    @FXML
+    private AnchorPane btnAdmin;
+    @FXML
+    private TableView<Ticket> table;
+    @FXML
+    private TableColumn<Ticket, String> timeCol;
+    @FXML
+    private TableColumn<Ticket, String> toCol;
+    @FXML
+    private TableColumn<Ticket, LocalDate> dateCol;
+    @FXML
+    private TableColumn<Ticket, String> fromCol;
+    @FXML
+    private TableColumn<Ticket, String> seatCol;
+    @FXML
+    private TableColumn<Ticket, Integer> busIdCol;
+    @FXML
+    private Text txtEmail;
+    @FXML
+    private Text txtPhone;
+    @FXML
+    private Text txtBuyCount;
+    @FXML
+    private Text txtTotalCount;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -159,16 +134,16 @@ public class HomeController implements Initializable {
     }
 
     private void btnAboutAction(MouseEvent mouseEvent) {
-            Main.sceneMan.open("about", Config.aboutScene);
+        Main.sceneMan.open("about", Config.aboutScene);
     }
 
     // get all tickets of current classes
     public ObservableList<Ticket> getTickets() {
         if (Main.busData == null) Main.busData = new HashMap<>();
         ObservableList<Ticket> allBus = FXCollections.observableArrayList();
-        for (Map.Entry<Bus, HashMap<String, ArrayList<Ticket>>> entry: Main.busData.entrySet()) {
+        for (Map.Entry<Bus, HashMap<String, ArrayList<Ticket>>> entry : Main.busData.entrySet()) {
             if (entry.getValue().containsKey(Main.user.getEmail()))
-                  allBus.addAll(entry.getValue().get(Main.user.getEmail()));
+                allBus.addAll(entry.getValue().get(Main.user.getEmail()));
         }
         // sort by date
         allBus.sort(Comparator.comparing(Ticket::getDate));
@@ -176,17 +151,15 @@ public class HomeController implements Initializable {
     }
 
 
-
-
     private void count() {
         DateTimeFormatter timeFormatter = new DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern("hh:mm a").toFormatter(Locale.ENGLISH);
         LocalTime ct = LocalTime.now();
         LocalDate cd = LocalDate.now();
-        for (Map.Entry<Bus, HashMap<String, ArrayList<Ticket>>> entry: Main.busData.entrySet()) {
+        for (Map.Entry<Bus, HashMap<String, ArrayList<Ticket>>> entry : Main.busData.entrySet()) {
             if (entry.getValue().containsKey(Main.user.getEmail())) {
-                for (Ticket tk: entry.getValue().get(Main.user.getEmail())) {
+                for (Ticket tk : entry.getValue().get(Main.user.getEmail())) {
                     total++;
-                    LocalTime t  = LocalTime.parse(tk.getTime(), timeFormatter);
+                    LocalTime t = LocalTime.parse(tk.getTime(), timeFormatter);
                     if (cd.isAfter(tk.getDate()))
                         continue;
                     if (cd.isEqual(tk.getDate()))
@@ -198,16 +171,6 @@ public class HomeController implements Initializable {
 
         }
     }
-
-
-
-
-
-
-
-
-
-
 
 
     private void btnBuyAction(MouseEvent mouseEvent) {

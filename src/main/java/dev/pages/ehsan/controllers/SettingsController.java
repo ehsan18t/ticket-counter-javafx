@@ -3,9 +3,9 @@ package dev.pages.ehsan.controllers;
 import animatefx.animation.FadeIn;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideOutLeft;
+import dev.pages.ehsan.classes.User;
 import dev.pages.ehsan.main.Config;
 import dev.pages.ehsan.main.Main;
-import dev.pages.ehsan.classes.User;
 import dev.pages.ehsan.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,72 +26,50 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 
 public class SettingsController implements Initializable {
-    @FXML
-    private ImageView btnClose;
-
-    @FXML
-    private ImageView btnMin;
-
-    @FXML
-    private Text txtTitle;
-
-    @FXML
-    private Text txtUserName;
-
-    @FXML
-    private Text txtEmail;
-
-    @FXML
-    private Text txtPhone;
-
-    @FXML
-    private ImageView btnLogout;
-
-    @FXML
-    private ImageView btnMenu;
-
-    @FXML
-    private AnchorPane btnHome;
-
-    @FXML
-    private AnchorPane btnBuy;
-
-    @FXML
-    private AnchorPane btnAbout;
-
-    @FXML
-    private AnchorPane btnAdmin;
-
-    @FXML
-    private AnchorPane menuPane;
-
-    @FXML
-    private AnchorPane mainPaneHome;
-
-    @FXML
-    private Button btnSave;
-
-    @FXML
-    private TextField tfName;
-
-    @FXML
-    private Text txtError;
-
-    @FXML
-    private TextField tfNewPass;
-
-    @FXML
-    private TextField tfOldPass;
-
-    @FXML
-    private TextField tfPhone;
-
-    @FXML
-    private Text txtBuy;
-
-
     Image image1;
     Image image2;
+    @FXML
+    private ImageView btnClose;
+    @FXML
+    private ImageView btnMin;
+    @FXML
+    private Text txtTitle;
+    @FXML
+    private Text txtUserName;
+    @FXML
+    private Text txtEmail;
+    @FXML
+    private Text txtPhone;
+    @FXML
+    private ImageView btnLogout;
+    @FXML
+    private ImageView btnMenu;
+    @FXML
+    private AnchorPane btnHome;
+    @FXML
+    private AnchorPane btnBuy;
+    @FXML
+    private AnchorPane btnAbout;
+    @FXML
+    private AnchorPane btnAdmin;
+    @FXML
+    private AnchorPane menuPane;
+    @FXML
+    private AnchorPane mainPaneHome;
+    @FXML
+    private Button btnSave;
+    @FXML
+    private TextField tfName;
+    @FXML
+    private Text txtError;
+    @FXML
+    private TextField tfNewPass;
+    @FXML
+    private TextField tfOldPass;
+    @FXML
+    private TextField tfPhone;
+    @FXML
+    private Text txtBuy;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -141,7 +119,7 @@ public class SettingsController implements Initializable {
     }
 
     private void btnSaveAction(ActionEvent actionEvent) {
-        String pass  = Utils.sha256(tfNewPass.getText());
+        String pass = Utils.sha256(tfNewPass.getText());
 
         User user = new User(Main.user.getName(), Main.user.getEmail(), Main.user.getPhone(), Main.user.getPasswords());
 
@@ -211,8 +189,8 @@ public class SettingsController implements Initializable {
         if (Utils.removeFile(Config.userTempData) && Utils.removeFile(Config.savedUserData)) {
             System.out.println(" - Logout Successful!");
         }
-         Main.sceneMan.reload("login");
-         Main.sceneMan.activate("login");
+        Main.sceneMan.reload("login");
+        Main.sceneMan.activate("login");
     }
 
     private void setBtnCloseAction(MouseEvent event) {
