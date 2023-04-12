@@ -88,7 +88,7 @@ public class RegistrationController implements Initializable {
             sendObj.writeObject("registration");
             if (tfPass1.getText().equals(tfPass2.getText())) {
                 User user = new User(tfUserName.getText(), tfEmail.getText(), tfPhone.getText(), Utils.sha256(tfPass1.getText()));
-//                classes.setType("Admin");
+               // user.setType("Admin");
                 sendObj.writeObject(user);
 
                 // reading response
